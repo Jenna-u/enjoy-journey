@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>乐享其程</title>
+<!--库-->
+<link rel="stylesheet" type="text/css" href="css/amazeui.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/amazeui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="index"> 
+  <!-----------首页头部----------->
+  <div class="index_head searchHead">
+    <div class="logo backBnt"> <a href="index.html"><img src="img/icon07.png"></a> </div>
+    <!----------------搜索------------------>
+    <div class="search searchB"> 酒店 </div>
+  </div>
+  <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
+		<div class="am-tabs" data-am-tabs>
+			<ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-2">
+				<li class="am-active"><a href="#tab1">国内·港澳台</a></li>
+				<li><a href="#tab2">海外酒店</a></li>
+			</ul>
+
+			<div class="am-tabs-bd">
+				<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+					<div class="jlsx">
+                    	<div class="sxLine minH">
+                        	<div class="sxLineL">目的地</div>
+                            <div class="sxLineM">
+                            	北京
+                            </div>
+                            <div class="sxLineR">
+                            	<div class="wdwz"><a href="#"><i></i><p>我的位置</p></a></div>
+                            	<em>></em>
+                            </div>
+                        </div>
+                        <div class="sxLine minH">
+                        	<div class="sxLineL">日期</div>
+                            <div class="sxLineM">
+                            	<div class="row select-time">
+                                	<div class="timeLine">
+                                    <span class="time entertime"></span>
+                                    <input type="text" class="input-enter none">
+                                    <span>入住</span>
+                                    </div>
+                                    <div class="timeLine">
+                                    <span class="time leavetime"></span>
+                                    <input type="text" class="input-leave none">
+                                    <span>离店</span>
+                                    </div>
+                                    <span class="night">共1晚</span>
+                                </div>
+                            </div>
+                            <div class="sxLineR">
+                            	<em>></em>
+                            </div>
+                        </div>
+                        <div class="sxLine">
+                        	<a href="moreCtiySearch.html">
+                        	<div class="sxLineM sxLineMA">
+                            	关键字/位置/品牌/酒店名
+                            </div>
+                            <div class="sxLineR">
+                            	<em>></em>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="sxLine">
+                        	<a onClick="toshare()" href="javascript:void(0)">
+                        	<div class="sxLineM sxLineMA">
+                            	价格/星级
+                            </div>
+                            <div class="sxLineR">
+                            	<em>></em>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+				</div>
+				<div class="am-tab-panel am-fade" id="tab2">
+					<div class="jlsx">
+                    	<div class="sxLine minH">
+                        	<div class="sxLineL">目的地</div>
+                            <div class="sxLineM">
+                            	泰国
+                            </div>
+                            <div class="sxLineR">
+                            	<div class="wdwz"><a href="#"><i></i><p>我的位置</p></a></div>
+                            	<em>></em>
+                            </div>
+                        </div>
+                        <div class="sxLine minH">
+                        	<div class="sxLineL">日期</div>
+                            <div class="sxLineM">
+                            	<div class="row select-time">
+                                	<div class="timeLine">
+                                    <span class="time entertime"></span>
+                                    <input type="text" class="input-enter none">
+                                    <span>入住</span>
+                                    </div>
+                                    <div class="timeLine">
+                                    <span class="time leavetime"></span>
+                                    <input type="text" class="input-leave none">
+                                    <span>离店</span>
+                                    </div>
+                                    <span class="night">共1晚</span>
+                                </div>
+                            </div>
+                            <div class="sxLineR">
+                            	<em>></em>
+                            </div>
+                        </div>
+                        <div class="sxLine">
+                        	<a href="#">
+                        	<div class="sxLineM sxLineMA">
+                            	关键字/位置/品牌/酒店名
+                            </div>
+                            <div class="sxLineR">
+                            	<em>></em>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="sxLine">
+                        	<a onClick="toshare()" href="javascript:void(0)">
+                        	<div class="sxLineM sxLineMA">
+                            	价格/星级
+                            </div>
+                            <div class="sxLineR">
+                            	<em>></em>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="cxBnt"><a href="jiudiancxList.html">查询</a></div>
+    <!--弹层-->
+    <div class="am-share am-shareA">
+         <div class="xjjg">
+         	<div class="xjjgTitle">星级价格</div>
+            <ul class="sxnavA">
+                <li class="active" data-filter="all">二星及<br>以下经济</li>
+                <li data-filter="1">三星<br>舒适</li>
+                <li data-filter="2">四星<br>高档</li>
+                <li data-filter="3">五星<br>豪华</li>
+                <li data-filter="4">不限</li>
+            </ul>
+            <div class="project-screening">
+                <div class="project-screening-yellow"></div>
+                <div class="select-1-yellow"></div>
+                <div class="screening-select select-1 current"><a href="javascript:void(0)"><i></i>￥ 0</a></div>
+                <div class="screening-select select-2" selval="4,6"><a href="javascript:void(0)" selval="4,6"><i></i>￥ 150</a></div>
+                <div class="screening-select select-3" selval="6,7"><a href="javascript:void(0)" selval="6,7"><i></i>￥ 300</a></div>
+                <div class="screening-select select-4" selval="7,10"><a href="javascript:void(0)" selval="7,10"><i></i>￥ 450</a></div>
+                <div class="screening-select select-5" selval="10,-1"><a href="javascript:void(0)" selval="10,-1"><i></i>￥ 600</a></div>
+                <div class="screening-select select-6" selval="10,-1"><a href="javascript:void(0)" selval="10,-1"><i></i>￥ 1000</a></div>
+                <div class="screening-select select-7" selval="10,-1"><a href="javascript:void(0)" selval="10,-1"><i></i>不限</a></div>
+            </div>
+            <div class="bntLine">
+            	<div class="qxBnt">取 消</div>
+                <div class="qdBnt">确 认</div>
+            </div>
+         </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/date.js"></script>
+<script type="text/javascript">
+	$('.select-time').hotelDate();
+	
+	
+	function toshare(){
+		$(".am-shareA").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn,.clooseBnt").click(function(){
+			$(".am-shareA").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}
+	
+	$(function() {
+	//$('.jq22').filterizr();
+
+	$('.sxnavA li').on('click', function() {
+		$(this).toggleClass('active').siblings().removeClass('active');
+	});
+});
+
+$(".screening-select").click(function () {
+	var _parent = $(this);
+	var _postX = _parent.position().left;
+	_parent.siblings(".screening-select").removeClass("current");
+	_parent.addClass("current");
+	_parent.siblings(".project-screening-yellow").animate({ width: _postX }, 300);
+	_parent.siblings(".select-1-yellow").animate({ left: _postX - 7 }, 300);
+	//_parent.prevAll(".screening-select").css("background", "none");
+	_parent.nextAll().removeAttr("style");
+});
+
+</script>
+</div>
+</body>
+</html>

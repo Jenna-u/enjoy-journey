@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>乐享其程</title>
+	<!--库-->
+    <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="index">
+	<!-----------首页头部----------->
+    <div class="index_head searchHead">
+		<div class="logo backBnt">
+			<a href="jiudianxq.html"><img src="img/icon07.png"></a>
+		</div>
+		<!----------------搜索------------------>
+		<div class="search searchB"> 
+        	填写订单
+		</div>
+    </div>
+    <div class="ddCon">
+    	<ul>
+        	<li>
+            	<div class="jdjj">
+                	<h1 class="jdTitleA">北京幸福城酒店</h1>
+                    <p class="jdxq">
+                    	入住：7月14日   离店：7月15日  1晚<br>
+                        大床或单床无早<br>
+                        免费有线宽带  免费WIFI
+                    </p>
+                </div>
+                <div class="jdjgA">房费：<em class="orange">￥500</em>   返现总额：<em class="orange">￥11</em></div>
+            </li>
+            
+        </ul>
+        <ul class="qprxx">
+            <li>
+            	<div class="ddLeft">房间数</div>
+                <div class="ddRight">
+                	<a onClick="toshare()" href="javascript:void(0)">
+                	<span>1</span>
+                    <em> ></em>
+                    </a>
+                </div>
+            </li>
+            <li>
+            	<div class="ddLeft">入住人</div>
+                <div class="ddRight">
+                	<span><input type="text" class="namesrk" placeholder="填写一位入住人的姓名"></span>
+                </div>
+            </li>
+        </ul>
+        <ul class="qprxx">
+        	<li>
+            	<div class="ddLeft">最晚抵店时间</div>
+                <div class="ddRight">
+                	<span>2016 - 07 - 14 		(今天)</span>
+                    <p><a href="#">修改  > </a></p>
+                </div>
+            </li>
+            <li>
+            	<div class="ddLeft">联系手机</div>
+                <div class="ddRight">
+                	18701463466
+                </div>
+            </li>
+        </ul>
+        <ul class="qprxx fs14">
+        	<li>
+            	如需开具发票，请到酒店前台领取
+            </li>
+        </ul>
+        <ul class="qprxx fs14 dbtj">
+        	<li>
+            	<span>担保条件：<br></span>
+                <p>当前房型紧张，我们会根据您的担保方式，预授权或暂扣￥500，如订单不确认我们将立即进行退款。该订单确认后不可被取消修改，如未入住或取消修改，担保费用将不予退还。</p>
+                <a href="#">什么是担保？</a>
+            </li>
+        </ul>
+    </div>
+    <div id="book">
+        <div >
+            <div class="money">
+                <p>应付金额 <span>￥ 2348</span></p>
+            </div>
+            <div class="cur">
+                <a  href="#">提交订单</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--弹层-->
+    <div class="am-share am-shareA am-shareB">
+         <div class="roomsz">
+         	<div class="fjsTit">选择房间数 <i></i></div>
+         	<ul>
+            	<li class="xzHover">1间</li>
+                <li>2间</li>
+                <li>3间</li>
+                <li>4间</li>
+                <li>5间</li>
+                <li>6间</li>
+                <li>7间</li>
+                <li>8间</li>
+            </ul>
+         </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.Spinner.js"></script>
+    <script type="text/javascript">
+    $(function(){
+
+        $("#a").Spinner({value:868, min:10, len:3, max:1000});
+
+        $("#b").Spinner({value:99});
+
+        $("#c").Spinner({value:66});
+
+        $("#d").Spinner();
+
+    });
+	
+	function toshare(){
+		$(".am-shareA").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn,.fjsTit i").click(function(){
+			$(".am-shareA").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}
+	
+	$(function() {
+	//$('.jq22').filterizr();
+
+	$('.roomsz ul li').on('click', function() {
+		$(this).toggleClass('xzHover').siblings().removeClass('xzHover');
+	});
+});
+</script>
+</div>
+</body>
+</html>
