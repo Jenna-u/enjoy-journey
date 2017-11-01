@@ -7,5 +7,3 @@ tourism wap
 npm install
 npm start
 localhost:8888
-
-测试
