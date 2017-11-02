@@ -15,6 +15,5 @@ $.getJSON('http://localhost:8888/js/json/scenic_spot.json', function (res) {
   var source = $("#scenic_spot_list").html();
   var template = Handlebars.compile(source);
   var html = template(context);
-
   $('#tab1').append(html)
 })
