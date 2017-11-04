@@ -1,73 +1,68 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta content="telephone=no" name="format-detection">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>乐享其程</title>
-<!--库-->
-<link rel="stylesheet" type="text/css" href="css/amazeui.css">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/amazeui.js"></script>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="telephone=no" name="format-detection">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>乐享其程</title>
+  <!--库-->
+  <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script type="text/javascript" src="js/amazeui.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-<div id="index"> 
-  <!-----------首页头部----------->
-  <div class="index_head searchHead">
-    <div class="logo backBnt"> <a href="index.html"><img src="img/icon07.png"></a> </div>
-    <!----------------搜索------------------>
-    <div class="search searchB"> 景点 </div>
-    <a class="phone" href="moreCtiySearch.html"> <img src="img/icon09.png"> </a> </div>
-  <div id="trip_list" class="mt50">
-    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
-      <ul>
-        <li class="view"> <a href="dingpiaoxq.html">
-          <div class="pic"> <img src="img/img00.jpg">
-            <div class="cont"> <a title="" class="button">￥ <em>1338</em> 起</a> </div>
-            <div class="clear"></div>
-          </div>
-          </a>
-          <div class="con"> <span> <a href="dingpiaoxq.html">< 法瑞意10或11日游 > </a></span>
-            <p><i></i>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-          </div>
-        </li>
-        <li class="view"> <a href="dingpiaoxq.html">
-          <div class="pic"> <img src="img/img00.jpg">
-            <div class="cont"> <a title="" class="button">￥ <em>1338</em> 起</a> </div>
-            <div class="clear"></div>
-          </div>
-          </a>
-          <div class="con"> <span> <a href="dingpiaoxq.html">< 法瑞意10或11日游 > </a></span>
-            <p><i></i>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-          </div>
-        </li>
-        <li class="view"> <a href="dingpiaoxq.html">
-          <div class="pic"> <img src="img/img00.jpg">
-            <div class="cont"> <a title="" class="button">￥ <em>1338</em> 起</a> </div>
-            <div class="clear"></div>
-          </div>
-          </a>
-          <div class="con"> <span> <a href="dingpiaoxq.html">< 法瑞意10或11日游 > </a></span>
-            <p><i></i>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-          </div>
-        </li>
-        <li class="view"> <a href="dingpiaoxq.html">
-          <div class="pic"> <img src="img/img00.jpg">
-            <div class="cont"> <a title="" class="button">￥ <em>1338</em> 起</a> </div>
-            <div class="clear"></div>
-          </div>
-          </a>
-          <div class="con"> <span> <a href="dingpiaoxq.html">< 法瑞意10或11日游 > </a></span>
-            <p><i></i>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-          </div>
-        </li>
-      </ul>
+  <div id="index">
+    <!-----------首页头部----------->
+    <div class="index_head searchHead">
+      <div class="logo backBnt">
+        <a href="index.html">
+          <img src="img/icon07.png">
+        </a>
+      </div>
+      <!----------------搜索------------------>
+      <div class="search searchB"> 景点 </div>
+      <a class="phone" href="moreCtiySearch.html">
+        <img src="img/icon09.png"> </a>
+    </div>
+    <div id="trip_list" class="mt50">
+      <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+        <script id="scenic_spot_list" type="text/x-handlebars-template">
+          <ul>
+            {{#each data}}
+              <li class="view">
+                <a href="dingpiaoxq.html">
+                  <div class="pic">
+                    <img src="img/img00.jpg">
+                    <div class="cont">
+                      <a title="" class="button">￥
+                        <em>{{price}}</em> 起</a>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                </a>
+                <div class="con">
+                  <span>
+                    <a href="dingpiaoxq.html">
+                      {{name}}
+                    </a>
+                  </span>
+                  <p>
+                    <i></i>{{address}}</p>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+        </script>
+      </div>
     </div>
   </div>
-</div>
+  <script type="text/javascript" src="js/scenic_spot/index.js"></script>
 </body>
+
 </html>
