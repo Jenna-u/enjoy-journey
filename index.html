@@ -11,13 +11,14 @@
   <!--库-->
   <link rel="stylesheet" type="text/css" href="css/amazeui.css">
   <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <script type="text/javascript" src="js/amazeui.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
   <div id="index">
-    <!-----------首页头部----------->
+    <!-- ---------首页头部--------- -->
     <div class="index_head">
       <div class="logo">
         乐享其程
@@ -27,7 +28,7 @@
           <i></i>
         </a>
       </div>
-      <!----------------搜索------------------>
+      <!-- --------------搜索---------------- -->
       <div class="search">
         <a href="moreCtiySearch.html">泰国</a>
       </div>
@@ -35,34 +36,23 @@
         <img src="img/icon01.png">
       </a> -->
     </div>
-    <!-----------轮播banner----------->
+    <!-- ---------轮播banner--------- -->
     <div id="index_banner">
-      <div class="am-slider am-slider-default">
-        <ul class="am-slides">
-          <li>
-            <a title="" href="#">
-              <img src="img/img.jpg" />
-            </a>
-          </li>
-          <li>
-            <a title="" href="#">
-              <img src="img/img.jpg" />
-            </a>
-          </li>
-          <li>
-            <a title="" href="#">
-              <img src="img/img.jpg" />
-            </a>
-          </li>
-          <li>
-            <a title="" href="#">
-              <img src="img/img.jpg" />
-            </a>
-          </li>
-        </ul>
+      <div class="am-slider am-slider-default" id="index_slider">
+        <script id="h_slider" type="text/x-handlebars-template">
+          <ul class="am-slides">
+            {{#each adList}}
+            <li>
+              <a title="" href="#">
+                <img src="http://pic.lxqcheng.com/{{adPath}}" />
+              </a>
+            </li>
+            {{/each}}
+          </ul>
+        </script>
       </div>
     </div>
-    <!-----------栏目----------->
+    <!-- ---------栏目--------- -->
     <div class="order_nav">
       <ul class="box_nav am-avg-sm-4">
         <li>
@@ -134,19 +124,15 @@
       <div class="titleLxtt">
         <img src="img/H2pic.png">
       </div>
-      <div class="lxttCon">
-        <span>
-          <i></i>
-          <a href="#">全景炫彩黄石-美国东西海岸-黄石-大瀑布-夏威夷18日游 丘吉</a>
-        </span>
-        <span>
-          <i></i>
-          <a href="#">全景炫彩黄石-美国东西海岸-黄石-大瀑布-夏威夷18日游 丘吉</a>
-        </span>
-        <span>
-          <i></i>
-          <a href="#">全景炫彩黄石-美国东西海岸-黄石-大瀑布-夏威夷18日游 丘吉</a>
-        </span>
+      <div class="lxttCon" id="index_news">
+        <script id="h_news" type="text/x-handlebars-template">
+          {{#each newsList}}
+            <span>
+              <i></i>
+              <a href="{{id}}">{{title}}</a>
+            </span>
+          {{/each}}
+        </script>
       </div>
     </div>
     <div class="order_nav xltj">
@@ -221,139 +207,153 @@
       <div class="am-tabs" data-am-tabs>
         <ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-4">
           <li class="am-active">
-            <a href="#tab1">全部</a>
+            <a onclick="getTours('-1','tab1')">全部</a>
           </li>
           <li>
-            <a href="#tab2">出境游</a>
+            <a onclick="getTours('4','tab2')">出境游</a>
           </li>
           <li>
-            <a href="#tab3">国内游</a>
+            <a onclick="getTours('3','tab3')">国内游</a>
           </li>
           <li>
-            <a href="#tab4">周边游</a>
+            <a onclick="getTours('2','tab4')">周边游</a>
           </li>
         </ul>
 
         <div class="am-tabs-bd">
           <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+            <script id="h_tab1" type="text/x-handlebars-template">
+              <ul>
+                {{#each list}}
+                <li class="view">
+                  <div class="pic">
+                    <img src="{{cover}}">
+                    <div class="cont">
+                      <a title="" class="button" href="#">￥
+                        <em>{{price}}</em> 起</a>
+                    </div>
+                    <div class="clear"></div>
+                  </div>
+                  <div class="con">
+                    <span><{{name}}></span>
+                    <p><em>
+                      {{#compare type 2}}
+                        周边游
+                      {{else}}
+                        {{#compare type 3}}
+                        国内游
+                        {{else}}
+                        出境游
+                        {{/compare}}
+                      {{/compare}}
+                    </em>{{describes}}</p>
+                  </div>
+                </li>
+                {{/each}}
+              </ul>
+            </script>
+          </div>
+        <div class="am-tab-panel am-fade" id="tab2">
+          <script id="h_tab2" type="text/x-handlebars-template">
             <ul>
+              {{#each list}}
               <li class="view">
                 <div class="pic">
-                  <img src="img/img00.jpg">
+                  <img src="{{cover}}">
                   <div class="cont">
                     <a title="" class="button" href="#">￥
-                      <em>1338</em> 起</a>
-
+                      <em>{{price}}</em> 起</a>
                   </div>
                   <div class="clear"></div>
                 </div>
                 <div class="con">
-                  <span>
-                    < 法瑞意10或11日游> </span>
-                <p><em>出境游 </em>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-              </div>
-            </li>
-            <li class="view">
-              <div class="pic">
-                <img src="img/img01.jpg">
-                <div class="cont">
-                  <a title="" class="button" href="#">￥ <em>1992</em> 起</a>
-                  
+                  <span><{{name}}></span>
+                  <p><em>
+                    {{#compare type 2}}
+                      周边游
+                    {{else}}
+                      {{#compare type 3}}
+                      国内游
+                      {{else}}
+                      出境游
+                      {{/compare}}
+                    {{/compare}}
+                  </em>{{describes}}</p>
                 </div>
-                <div class="clear"></div>
-              </div>
-              <div class="con">
-                <span> < 法瑞意10或11日游 > </span>
-                <p><em>国内游</em>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-              </div>
-            </li>
-                        <li class="view">
-              <div class="pic">
-                <img src="img/img01.jpg">
-                <div class="cont">
-                  <a title="" class="button" href="#">￥ <em>1992</em> 起</a>
-                  
-                </div>
-                <div class="clear"></div>
-              </div>
-              <div class="con">
-                <span> < 法瑞意10或11日游 > </span>
-                <p><em>周边游</em>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-              </div>
-            </li>
-          </ul>
+              </li>
+              {{/each}}
+            </ul>
+          </script>
         </div>
-        <div class="am-tab-panel am-fade" id="tab2">
-          <ul>
-            <li class="view">
-              <div class="pic">
-                <img src="img/img00.jpg">
-                <div class="cont">
-                  <a title="" class="button" href="#">￥ <em>1338</em> 起</a>
-                  
+        <div class="am-tab-panel am-fade" id="tab3">
+          <script id="h_tab3" type="text/x-handlebars-template">
+            <ul>
+              {{#each list}}
+              <li class="view">
+                <div class="pic">
+                  <img src="{{cover}}">
+                  <div class="cont">
+                    <a title="" class="button" href="#">￥
+                      <em>{{price}}</em> 起</a>
+                  </div>
+                  <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-              </div>
-              <div class="con">
-                <span> < 法瑞意10或11日游 > </span>
-                <p><em>出境游 </em>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-              </div>
-            </li>
-            
-          </ul>
+                <div class="con">
+                  <span><{{name}}></span>
+                  <p><em>
+                    {{#compare type 2}}
+                      周边游
+                    {{else}}
+                      {{#compare type 3}}
+                      国内游
+                      {{else}}
+                      出境游
+                      {{/compare}}
+                    {{/compare}}
+                  </em>{{describes}}</p>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+          </script>
         </div>
-                <div class="am-tab-panel am-fade" id="tab3">
-          <ul>
-            
-            <li class="view">
-              <div class="pic">
-                <img src="img/img01.jpg">
-                <div class="cont">
-                  <a title="" class="button" href="#">￥ <em>1992</em> 起</a>
-                  
+        <div class="am-tab-panel am-fade" id="tab4">
+          <script id="h_tab4" type="text/x-handlebars-template">
+            <ul>
+              {{#each list}}
+              <li class="view">
+                <div class="pic">
+                  <img src="{{cover}}">
+                  <div class="cont">
+                    <a title="" class="button" href="#">￥
+                      <em>{{price}}</em> 起</a>
+                  </div>
+                  <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-              </div>
-              <div class="con">
-                <span> < 法瑞意10或11日游 > </span>
-                <p><em>国内游</em>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-              </div>
-            </li>
-                        
-          </ul>
-        </div>
-                <div class="am-tab-panel am-fade" id="tab4">
-          <ul>
-            
-                        <li class="view">
-              <div class="pic">
-                <img src="img/img01.jpg">
-                <div class="cont">
-                  <a title="" class="button" href="#">￥ <em>1992</em> 起</a>
-                  
+                <div class="con">
+                  <span><{{name}}></span>
+                  <p><em>
+                    {{#compare type 2}}
+                      周边游
+                    {{else}}
+                      {{#compare type 3}}
+                      国内游
+                      {{else}}
+                      出境游
+                      {{/compare}}
+                    {{/compare}}
+                  </em>{{describes}}</p>
                 </div>
-                <div class="clear"></div>
-              </div>
-              <div class="con">
-                <span> < 法瑞意10或11日游 > </span>
-                <p><em>周边游</em>超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 ...</p>
-              </div>
-            </li>
-          </ul>
+              </li>
+              {{/each}}
+            </ul>
+          </script>
         </div>
       </div>
     </div>
   </div>
   </div>
-    <script>
-    $(function () {
-        $('.am-slider').flexslider({
-            controlNav: true,               // Boolean: 是否创建控制点
-            directionNav: false,             // Boolean: 是否创建上/下一个按钮（previous/next）
-            touch: true,                    // Boolean: 允许触摸屏触摸滑动滑块
-        });
-    });
-</script>
+  <script type="text/javascript" src="js/get_data/index.js"></script>
 </div>
 </body>
 </html>

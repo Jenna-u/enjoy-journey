@@ -1,0 +1,18 @@
+{
+  "msg": "访问失败",
+  "code": 500,
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "name": "< 法瑞意10或11日游> ",
+        "price": 1338,
+        "tourday": 1,
+        "describes": "超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉",
+        "cover": "http://pic.lxqcheng.com//upload/tour/2016/11/thum/1481261985069.jpg",
+        "type": 4
+      }
+    ]
+  },
+  "ok": 0
+}
