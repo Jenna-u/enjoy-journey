@@ -1,222 +1,141 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta content="telephone=no" name="format-detection">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>乐享其程</title>
-<!--库-->
-<link rel="stylesheet" type="text/css" href="css/amazeui.css">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/amazeui.js"></script>
-<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="telephone=no" name="format-detection">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>乐享其程</title>
+  <!--库-->
+  <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/amazeui.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-<div id="index"> 
-  <!-----------首页头部----------->
-  <div class="index_head searchHead">
-    <div class="logo backBnt"> <a href="index.html"><img src="img/icon07.png"></a> </div>
-    <!----------------搜索------------------>
-    <div class="search searchB"> 精彩游记 </div>
-    <a class="phone">
-			<img src="img/icon14.png">
-		</a>
-  </div>
-  <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
-		<div class="am-tabs" data-am-tabs>
-			<ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-2">
-				<li class="am-active"><a href="#tab1">推荐</a></li>
-				<li><a href="#tab2">最新</a></li>
-			</ul>
+  <div id="index">
+    <!-----------首页头部----------->
+    <div class="index_head searchHead">
+      <div class="logo backBnt">
+        <a href="index.html">
+          <img src="img/icon07.png">
+        </a>
+      </div>
+      <!----------------搜索------------------>
+      <div class="search searchB"> 精彩游记 </div>
+      <a class="phone">
+        <img src="img/icon14.png">
+      </a>
+    </div>
+    <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
+      <div class="am-tabs" data-am-tabs>
+        <ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-2">
+          <li class="am-active">
+            <a href="#tab1">推荐</a>
+          </li>
+          <li>
+            <a href="#tab2">最新</a>
+          </li>
+        </ul>
+        <div class="am-tabs-bd">
+          <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+            <div class="yjList">
+              <script id="recommend_list" type="text/x-handlebars-template">
+              <ul>
+                {{#each data}}
+                <li style="position: relative">
+                  <div class="picLineA">
+                    <a href="gonglvxq.html?id={{id}}">
+                    <img src="http://pic.lxqcheng.com/{{cover}}">
+                    </a>
+                  </div>
+                  <div class="yjTitleLine">
+                    <h2 class="yjTit">
+                      <span><a href="gonglvxq.html?id={{id}}">{{title}}</a>	</span>
+                        <p>精华</p>
+                    </h2>
+                      <span class="dzdw">苏州定园</span>
+                  </div>
+                    <div class="yjqtList">
+                      <div class="fbyjzz">
+                          <span><img src="http://pic.lxqcheng.com/{{photo}}"></span>
+                            <p>{{name}}<br />{{creatime}}</p>
+                        </div>
+                        <div class="plcz">
+                          <span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
+                            <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
+                            <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
+                        </div>
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </script>
+            </div>
+          </div>
+          <div class="am-tab-panel am-fade" id="tab2">
+            <div class="yjList">
+              <script id="newest_list" type="text/x-handlebars-template">
+                <ul>
+                  {{#each list}}
+                    <li style="position: relative">
+                      <div class="picLineA">
+                        <a href="gonglvxq.html?id={{id}}">
+                          <img src="http://pic.lxqcheng.com/{{cover}}">
+                        </a>
+                      </div>
+                      <div class="yjTitleLine">
+                        <h2 class="yjTit">
+                          <span>
+                            <a href="gonglvxq.html?id={{id}}">{{title}}</a>
+                          </span>
+                          <p>精华</p>
+                        </h2>
+                        <span class="dzdw">苏州定园</span>
+                      </div>
+                      <div class="yjqtList">
+                        <div class="fbyjzz">
+                          <span>
+                            <img src="http://pic.lxqcheng.com/{{photo}}">
+                          </span>
+                          <p>{{name}}
+                            <br>{{creatime}}</p>
+                        </div>
+                        <div class="plcz">
+                          <span>
+                            <i class="jlIcon">
+                              <img src="img/icon14-2.png">
+                            </i>1.0k</span>
+                          <span>
+                            <a href="#">
+                              <i class="plIcon">
+                                <img src="img/icon14-3.png">
+                              </i>1</a>
+                          </span>
+                          <span>
+                            <a href="#">
+                              <i class="dzIcon">
+                                <img src="img/icon14-4.png">
+                              </i>0</a>
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                  {{/each}}
+                </ul>
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-			<div class="am-tabs-bd">
-				<div class="am-tab-panel am-fade am-in am-active" id="tab1">
-					<div class="yjList">
-                    	<ul>
-                        	<li>
-                            	<div class="picLineA"><a href="gonglvxq.html"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="gonglvxq.html">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="picLineA"><a href="#"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="#">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="picLineA"><a href="#"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="#">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="picLineA"><a href="#"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="#">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-				</div>
-				<div class="am-tab-panel am-fade" id="tab2">
-					<div class="yjList">
-                    	<ul>
-                        	<li>
-                            	<div class="picLineA"><a href="#"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="#">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="picLineA"><a href="#"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="#">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="picLineA"><a href="#"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="#">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="picLineA"><a href="#"><img src="img/img07.jpg"></a></div>
-                                <div class="yjTitleLine">
-                                	<h2 class="yjTit">
-                                    	<span><a href="#">【苏州】日宿希尔顿，夜游山塘街</a>	</span>
-                                        <p>精华</p>
-                                    </h2>
-                                    <span class="dzdw">苏州定园</span>
-                                </div>
-                                <div class="yjqtList">
-                                	<div class="fbyjzz">
-                                    	<span><img src="img/img03.jpg"></span>
-                                        <p>山野幽居<br>2016-07-21</p>
-                                    </div>
-                                    <div class="plcz">
-                                    	<span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                                        <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                                        <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-				</div>
-			</div>
-		</div>
-	</div>
-    
-</div>
+  </div>
+  <script type="text/javascript" src="/js/tourism_strategy/index.js"></script>
 </body>
+
 </html>

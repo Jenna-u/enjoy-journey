@@ -1,0 +1,61 @@
+{
+  "msg": "访问成功",
+  "code": 200,
+  "data": {
+    "list": [
+      {
+        "cover": "upload/travels/2016/11/thum/1480579362587.jpg",
+        "images": "upload/travels/2016/11/1480579362587.jpg",
+        "latitude": 0,
+        "imagesThum": "upload/travels/2016/11/thum/1480579362587.jpg",
+        "name": "李凯",
+        "photo": " ",
+        "creatime": 1480579363000,
+        "recommend": 0,
+        "id": 141,
+        "title": "南美，回到梦开始的地方——秘鲁、玻利维亚行纪",
+        "longitude": 0
+      },
+      {
+        "cover": "upload/travels/2016/11/thum/1480575559115.jpg",
+        "images": "upload/travels/2016/11/1480575559115.jpg",
+        "latitude": 0,
+        "imagesThum": "upload/travels/2016/11/thum/1480575559115.jpg",
+        "name": "好好先生",
+        "photo": "upload/common/2016/7/1470312405301.jpg",
+        "creatime": 1480399746000,
+        "recommend": 0,
+        "id": 119,
+        "title": "开往中越边境，这里不是桂林，山水依然甲天下",
+        "longitude": 0
+      },
+      {
+        "cover": "upload/travels/2016/10/thum/1480399051038.png",
+        "images": "upload/travels/2016/10/1480399051038.png",
+        "latitude": 0,
+        "imagesThum": "upload/travels/2016/10/thum/1480399051038.png",
+        "name": "好好先生",
+        "photo": "upload/common/2016/7/1470312405301.jpg",
+        "creatime": 1480399051000,
+        "recommend": 0,
+        "id": 117,
+        "title": "玩转北挪威，花样看极光",
+        "longitude": 0
+      },
+      {
+        "cover": "upload/travels/2016/11/thum/1480576064552.jpg",
+        "images": "upload/travels/2016/11/1480576064552.jpg",
+        "latitude": 0,
+        "imagesThum": "upload/travels/2016/11/thum/1480576064552.jpg",
+        "name": "好好先生",
+        "photo": "upload/common/2016/7/1470312405301.jpg",
+        "creatime": 1480398906000,
+        "recommend": 0,
+        "id": 116,
+        "title": "瞅瞅这些餐厅，为了吃也要去趟日本",
+        "longitude": 0
+      }
+    ]
+  },
+  "ok": 1
+}
