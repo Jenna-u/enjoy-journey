@@ -11,7 +11,7 @@
   <!--库-->
   <link rel="stylesheet" type="text/css" href="css/amazeui.css">
   <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
   <script type="text/javascript" src="js/amazeui.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -36,9 +36,9 @@
           <ul>
             {{#each data}}
               <li class="view">
-                <a href="dingpiaoxq.html">
+                <a href="dingpiaoxq.html?id={{id}}">
                   <div class="pic">
-                    <img src="img/img00.jpg">
+                    <img src="http://pic.lxqcheng.com/{{cover}}">
                     <div class="cont">
                       <a title="" class="button">￥
                         <em>{{price}}</em> 起</a>
@@ -48,7 +48,7 @@
                 </a>
                 <div class="con">
                   <span>
-                    <a href="dingpiaoxq.html">
+                    <a href="dingpiaoxq.html?id={{id}}">
                       {{name}}
                     </a>
                   </span>
