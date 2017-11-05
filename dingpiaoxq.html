@@ -11,6 +11,7 @@
   <!--库-->
   <link rel="stylesheet" type="text/css" href="css/amazeui.css">
   <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
   <script type="text/javascript" src="js/amazeui.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -20,51 +21,78 @@
     <!-----------首页头部----------->
     <div class="index_head dpxqHead">
       <div class="logo backBnt">
-        <a href="#"><img src="img/icon07.png"></a>
+        <a href="#">
+          <img src="img/icon07.png">
+        </a>
       </div>
       <!----------------搜索------------------>
       <div class="search searchC">
         景点
       </div>
       <a href="dingpiaoxq.html" class="iconA wzA">
-			<img src="img/icon08a.png">
-		</a>
+        <img src="img/icon08a.png">
+      </a>
       <a href="jdPicList.html" class="iconA wzB">
-			<img src="img/icon08b.png">
-		</a>
+        <img src="img/icon08b.png">
+      </a>
       <a href="jdplList.html" class="iconA wzC">
-			<img src="img/icon08b1.png">
-		</a>
+        <img src="img/icon08b1.png">
+      </a>
     </div>
     <!-----------轮播banner----------->
     <div id="index_banner" style="margin-top:0;">
       <div class="am-slider am-slider-default">
         <ul class="am-slides">
-          <li><a title="" href="#"><img src="img/img04.jpg"/></a></li>
-          <li><a title="" href="#"><img src="img/img04.jpg"/></a></li>
-          <li><a title="" href="#"><img src="img/img04.jpg"/></a></li>
-          <li><a title="" href="#"><img src="img/img04.jpg"/></a></li>
+          <li>
+            <a title="" href="#">
+              <img src="img/img04.jpg" />
+            </a>
+          </li>
+          <li>
+            <a title="" href="#">
+              <img src="img/img04.jpg" />
+            </a>
+          </li>
+          <li>
+            <a title="" href="#">
+              <img src="img/img04.jpg" />
+            </a>
+          </li>
+          <li>
+            <a title="" href="#">
+              <img src="img/img04.jpg" />
+            </a>
+          </li>
         </ul>
       </div>
     </div>
-    <div class="jdjs">
-      <h1 class="xqTitle">
-        <法瑞意10或11日游> <i></i></h1>
+    <div id="sceic_details_wrap" class="jdjs">
+      <script id="sceic_details" type="text/x-handlebars-template">
+        <h1 class="xqTitle">
+          <{{name}}> <i></i>
+        </h1>
       <p class="nrjj">
-        超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉 直飞红海，游轮3晚畅游，红海2晚度假，埃德福神庙声光秀 ...
+        {{description}}
       </p>
     </div>
     <div class="yjjk">
-      <h2 class="pjtitle">法瑞意10-13日游 成人票 1张</h2>
+      <h2 class="pjtitle">{{name}} 成人票 1张</h2>
       <div class="jgLine">
-        <div class="jgLeft"><span>￥ <em>2348</em> 起</span>
-          <p><i>立减2元</i></p>
+        <div class="jgLeft">
+          <span>￥
+            <em>{{price}}</em> 起</span>
+          <p>
+            <i>立减2元</i>
+          </p>
         </div>
-        <div class="ydBnt"><a href="menpiaodd.html">预订</a></div>
+        <div class="ydBnt">
+          <a href="menpiaodd.html">预订</a>
+        </div>
       </div>
       <div class="con">
-        <a class="more" onClick="toshare()" href="javascript:void(0)">套餐说明 <img src="img/icon08d.png"></a>
-
+        <a class="more" onClick="toshare()" href="javascript:void(0)">套餐说明
+          <img src="img/icon08d.png">
+        </a>
       </div>
     </div>
     <div class="yjjk">
@@ -84,65 +112,78 @@
       </p>
     </div>
     <div class="yjjk">
-      <h3 class="jdjsA"><i></i>景点介绍</h3>
+      <h3 class="jdjsA">
+        <i></i>景点介绍</h3>
       <p class="nrC">
-        北京海洋馆<br> 北京海洋馆占地12万平方米，建筑面积4.2万平方米，绿化面积达8万多平方米。[1-2]
-        <br> 北京海洋馆是大型的、现代化的、先进的海洋生物科普馆。它在多方面居于国内外领先地位：整体建筑面积最大，占地面积最大总水量最大；北京海洋馆首创人工海水，且海水量相当大[3] 。北京海洋馆拥有世界先进的维生系统，使用人工海水，总水量达18000吨。 馆内饲养和展示各种海洋鱼类及生物达千余种，数万尾；同时生物收藏量也属最大：海底生物总饲育鱼类达3万-5万尾，其中海洋观赏鱼类及淡水观赏鱼类近千余种。已有数万尾观赏鱼入住了
+       {{expandDescription}}
       </p>
-
     </div>
     <!--弹层-->
     <div class="am-share am-shareA">
-      <div class="cqtc">
-        <div class="pjTitleA"><span>法瑞意10-13日游</span>
-          <p>（特卖编号：212065648）</p>
-        </div>
-        <div class="dpxz">
-          <span>预订须知</span>
-          <p>门票类型：电子票<br> 提前预定时间：当天16点以前
-            <br> 入园方式：换票入园短信
-            <br> 门票有效期：2016.09.30
-            <br> 取票方式：凭订单号至北京海洋馆售票处（北京动物园北门）网络票兑换窗口换票。
-          </p>
-        </div>
-        <div class="dpxz">
-          <span>其他说明</span>
-          <p>1、 费用包含：含北京海洋馆成人门票（1张动物园成人门票（1张）；<br> 2、 有效期内未使用可退款；<br> 3、 咨询热线：6217 6655 - 6157；<br> 4、门票 2016年5月31日前有效，过期作废；<br> 5、 凭订单号至北京海洋馆售票处（北京动物园北门）网络兑换窗口换票<br> 此活动最终解释权归北京海洋馆所有
-          </p>
-        </div>
-        <div class="jgLine">
-          <div class="jgLeft"><span>￥ <em>2348</em> 起</span></div>
-          <div class="ydBnt"><a href="menpiaodd.html">预订</a></div>
+        <div class="cqtc">
+          <div class="pjTitleA">
+            <span>{{name}}</span>
+            <p>（特卖编号：212065648）</p>
+          </div>
+          <div class="dpxz">
+            <span>预订须知</span>
+            <p>门票类型：电子票
+              <br> 提前预定时间：当天16点以前
+              <br> 入园方式：换票入园短信
+              <br> 门票有效期：2016.09.30
+              <br> 取票方式：凭订单号至北京海洋馆售票处（北京动物园北门）网络票兑换窗口换票。
+            </p>
+          </div>
+          <div class="dpxz">
+            <span>其他说明</span>
+            <p>1、 费用包含：含北京海洋馆成人门票（1张动物园成人门票（1张）；
+              <br> 2、 有效期内未使用可退款；
+              <br> 3、 咨询热线：6217 6655 - 6157；
+              <br> 4、门票 2016年5月31日前有效，过期作废；
+              <br> 5、 凭订单号至北京海洋馆售票处（北京动物园北门）网络兑换窗口换票
+              <br> 此活动最终解释权归北京海洋馆所有
+            </p>
+          </div>
+          <div class="jgLine">
+            <div class="jgLeft">
+              <span>￥
+                <em>2348</em> 起</span>
+            </div>
+            <div class="ydBnt">
+              <a href="menpiaodd.html">预订</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <script>
-      $(function() {
-        $('.am-slider').flexslider({
-          controlNav: true, // Boolean: 是否创建控制点
-          directionNav: false, // Boolean: 是否创建上/下一个按钮（previous/next）
-          touch: true, // Boolean: 允许触摸屏触摸滑动滑块
-        });
-      });
-
-      function toshare() {
-        $(".am-shareA").addClass("am-modal-active");
-        if ($(".sharebg").length > 0) {
-          $(".sharebg").addClass("sharebg-active");
-        } else {
-          $("body").append('<div class="sharebg"></div>');
-          $(".sharebg").addClass("sharebg-active");
-        }
-        $(".sharebg-active,.share_btn,.clooseBnt").click(function() {
-          $(".am-shareA").removeClass("am-modal-active");
-          setTimeout(function() {
-            $(".sharebg-active").removeClass("sharebg-active");
-            $(".sharebg").remove();
-          }, 300);
-        })
-      }
     </script>
-  </div>
+      <script>
+        $(function () {
+          $('.am-slider').flexslider({
+            controlNav: true, // Boolean: 是否创建控制点
+            directionNav: false, // Boolean: 是否创建上/下一个按钮（previous/next）
+            touch: true, // Boolean: 允许触摸屏触摸滑动滑块
+          });
+        });
+
+        function toshare() {
+          $(".am-shareA").addClass("am-modal-active");
+          if ($(".sharebg").length > 0) {
+            $(".sharebg").addClass("sharebg-active");
+          } else {
+            $("body").append('<div class="sharebg"></div>');
+            $(".sharebg").addClass("sharebg-active");
+          }
+          $(".sharebg-active,.share_btn,.clooseBnt").click(function () {
+            $(".am-shareA").removeClass("am-modal-active");
+            setTimeout(function () {
+              $(".sharebg-active").removeClass("sharebg-active");
+              $(".sharebg").remove();
+            }, 300);
+          })
+        }
+      </script>
+      <script type="text/javascript" src="js/scenic_spot/sceic_details.js"></script>
+    </div>
 </body>
 
 </html>

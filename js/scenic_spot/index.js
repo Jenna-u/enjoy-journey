@@ -1,4 +1,4 @@
-/* 景点数据请求 */
+/* 景点列表数据请求 */
 
 // $.ajax({
 //   url: 'http://app.lxqcheng.com/ticket/attractionsList',
