@@ -18,7 +18,7 @@
 
 <body>
   <div id="index">
-    <!-----------首页头部----------->
+    <!-- ---------首页头部--------- -->
     <div class="index_head dpxqHead">
       <div class="logo backBnt">
         <a href="#">
@@ -39,7 +39,7 @@
         <img src="img/icon08b1.png">
       </a>
     </div>
-    <!-----------轮播banner----------->
+    <!-- ---------轮播banner--------- -->
     <div id="index_banner" style="margin-top:0;">
       <div class="am-slider am-slider-default">
         <ul class="am-slides">
@@ -66,60 +66,61 @@
         </ul>
       </div>
     </div>
-    <div id="sceic_details_wrap" class="jdjs">
-      <script id="sceic_details" type="text/x-handlebars-template">
+    <div id="sceic_details_wrap">
+      <script id="h_sceic_details_wrap" type="text/x-handlebars-template">
+      <div class="jdjs">
         <h1 class="xqTitle">
           <{{name}}> <i></i>
         </h1>
-      <p class="nrjj">
-        {{description}}
-      </p>
-    </div>
-    <div class="yjjk">
-      <h2 class="pjtitle">{{name}} 成人票 1张</h2>
-      <div class="jgLine">
-        <div class="jgLeft">
-          <span>￥
-            <em>{{price}}</em> 起</span>
-          <p>
-            <i>立减2元</i>
-          </p>
+        <p class="nrjj">
+          {{description}}
+        </p>
+      </div>
+      <div class="yjjk">
+        <h2 class="pjtitle">{{name}} 成人票 1张</h2>
+        <div class="jgLine">
+          <div class="jgLeft">
+            <span>￥
+              <em>{{price}}</em> 起</span>
+            <p>
+              <i>立减2元</i>
+            </p>
+          </div>
+          <div class="ydBnt">
+            <a href="menpiaodd.html">预订</a>
+          </div>
         </div>
-        <div class="ydBnt">
-          <a href="menpiaodd.html">预订</a>
+        <div class="con">
+          <a class="more" onClick="toshare()" href="javascript:void(0)">套餐说明
+            <img src="img/icon08d.png">
+          </a>
         </div>
       </div>
-      <div class="con">
-        <a class="more" onClick="toshare()" href="javascript:void(0)">套餐说明
-          <img src="img/icon08d.png">
-        </a>
+      <div class="yjjk">
+        <h3 class="nrT">[ 购票须知 ]</h3>
+        <p class="nrC">
+          1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
+          <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
+        </p>
+        <h3 class="nrT">[ 使用方式 ]</h3>
+        <p class="nrC">
+          1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
+          <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
+        </p>
+        <h3 class="nrT">[ 使用时间 ]</h3>
+        <p class="nrC">
+          开放时间： 07：30 - 18：30
+        </p>
       </div>
-    </div>
-    <div class="yjjk">
-      <h3 class="nrT">[ 购票须知 ]</h3>
-      <p class="nrC">
-        1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
-        <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
-      </p>
-      <h3 class="nrT">[ 使用方式 ]</h3>
-      <p class="nrC">
-        1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
-        <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
-      </p>
-      <h3 class="nrT">[ 使用时间 ]</h3>
-      <p class="nrC">
-        开放时间： 07：30 - 18：30
-      </p>
-    </div>
-    <div class="yjjk">
-      <h3 class="jdjsA">
-        <i></i>景点介绍</h3>
-      <p class="nrC">
-       {{expandDescription}}
-      </p>
-    </div>
+      <div class="yjjk">
+        <h3 class="jdjsA">
+          <i></i>景点介绍</h3>
+        <p class="nrC">
+        {{expandDescription}}
+        </p>
+      </div>
     <!--弹层-->
-    <div class="am-share am-shareA">
+      <div class="am-share am-shareA">
         <div class="cqtc">
           <div class="pjTitleA">
             <span>{{name}}</span>
@@ -156,34 +157,35 @@
         </div>
       </div>
     </script>
-      <script>
-        $(function () {
-          $('.am-slider').flexslider({
-            controlNav: true, // Boolean: 是否创建控制点
-            directionNav: false, // Boolean: 是否创建上/下一个按钮（previous/next）
-            touch: true, // Boolean: 允许触摸屏触摸滑动滑块
-          });
-        });
-
-        function toshare() {
-          $(".am-shareA").addClass("am-modal-active");
-          if ($(".sharebg").length > 0) {
-            $(".sharebg").addClass("sharebg-active");
-          } else {
-            $("body").append('<div class="sharebg"></div>');
-            $(".sharebg").addClass("sharebg-active");
-          }
-          $(".sharebg-active,.share_btn,.clooseBnt").click(function () {
-            $(".am-shareA").removeClass("am-modal-active");
-            setTimeout(function () {
-              $(".sharebg-active").removeClass("sharebg-active");
-              $(".sharebg").remove();
-            }, 300);
-          })
-        }
-      </script>
-      <script type="text/javascript" src="js/scenic_spot/sceic_details.js"></script>
     </div>
-</body>
+  </div>
+  <script type="text/javascript" src="js/util.js"></script>
+  <script type="text/javascript" src="js/scenic_spot/detail.js"></script>
+  <script>
+    $(function () {
+      $('.am-slider').flexslider({
+        controlNav: true, // Boolean: 是否创建控制点
+        directionNav: false, // Boolean: 是否创建上/下一个按钮（previous/next）
+        touch: true, // Boolean: 允许触摸屏触摸滑动滑块
+      });
+    });
 
+    function toshare() {
+      $(".am-shareA").addClass("am-modal-active");
+      if ($(".sharebg").length > 0) {
+        $(".sharebg").addClass("sharebg-active");
+      } else {
+        $("body").append('<div class="sharebg"></div>');
+        $(".sharebg").addClass("sharebg-active");
+      }
+      $(".sharebg-active,.share_btn,.clooseBnt").click(function () {
+        $(".am-shareA").removeClass("am-modal-active");
+        setTimeout(function () {
+          $(".sharebg-active").removeClass("sharebg-active");
+          $(".sharebg").remove();
+        }, 300);
+      })
+    }
+  </script>
+</body>
 </html>
