@@ -75,7 +75,7 @@
                         </div>
                         <div class="sxLine">
                         	<a onClick="toshare()" href="javascript:void(0)">
-                        	<div class="sxLineM sxLineMA">
+                        	<div class="sxLineM sxLineMA level">
                             	价格/星级
                             </div>
                             <div class="sxLineR">
@@ -130,7 +130,7 @@
                         </div>
                         <div class="sxLine">
                         	<a onClick="toshare()" href="javascript:void(0)">
-                        	<div class="sxLineM sxLineMA">
+                        	<div class="sxLineM sxLineMA level">
                             	价格/星级
                             </div>
                             <div class="sxLineR">
@@ -187,11 +187,7 @@
 			$(".sharebg").addClass("sharebg-active");
 		}
 		$(".sharebg-active,.share_btn,.clooseBnt").click(function(){
-			$(".am-shareA").removeClass("am-modal-active");	
-			setTimeout(function(){
-				$(".sharebg-active").removeClass("sharebg-active");	
-				$(".sharebg").remove();	
-			},300);
+			hidePop()
 		})
 	}
 	
@@ -199,7 +195,7 @@
 	//$('.jq22').filterizr();
 
 	$('.sxnavA li').on('click', function() {
-		$(this).toggleClass('active').siblings().removeClass('active');
+		$(this).addClass('active').siblings().removeClass('active');
 	});
 });
 
@@ -213,6 +209,31 @@ $(".screening-select").click(function () {
 	//_parent.prevAll(".screening-select").css("background", "none");
 	_parent.nextAll().removeAttr("style");
 });
+
+// 确认
+$('.qdBnt').click(function() {
+    var xinji = $('.sxnavA .active')[0] && $('.sxnavA .active')[0].textContent
+    xinji = xinji || '不限'
+    var price = $('.project-screening .current')[0] && $('.project-screening .current')[0].textContent
+    price = price || '不限'
+
+    hidePop()
+    $('.am-tabs-bd .am-active .level').html(`${price}/${xinji}`)
+})
+
+// 取消
+$('.qxBnt').click(function() {
+    hidePop()
+})
+
+// 弹窗消失
+function hidePop() {
+    $(".am-shareA").removeClass("am-modal-active");	
+    setTimeout(function(){
+        $(".sharebg-active").removeClass("sharebg-active");	
+        $(".sharebg").remove();	
+    },300);
+}
 
 </script>
 </div>

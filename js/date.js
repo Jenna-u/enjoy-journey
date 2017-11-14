@@ -81,11 +81,13 @@ var date = function ($) {
         var night = Number($('.leave').attr('index')) - Number($('.enter').attr('index'));
         $('.date').remove(); // 移除插件
         $('body').css({ overflow: 'auto' });
-        $('.entertime').text(enterTime); // 显示
-        $('.leavetime').text(leaveTime);
-        $('.input-enter').val(enterYear + '/' + enterTime);
-        $('.input-leave').val(leaveYear + '/' + leaveTime);
-        $('.night').text('共' + night + '晚');
+        if (night >= 0) {
+          $('.entertime').text(enterTime); // 显示
+          $('.leavetime').text(leaveTime);
+          $('.input-enter').val(enterYear + '/' + enterTime);
+          $('.input-leave').val(leaveYear + '/' + leaveTime);
+          $('.night').text('共' + night + '晚');
+        }
       });
 
       var num = 0;

@@ -14,18 +14,19 @@
   <script type="text/javascript" src="js/amazeui.js"></script>
   <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=v5SG7vVh29o3HX3wUiCoOBkl1QjFRRVW"></script>
 </head>
 
 <body>
   <div id="index">
-    <!-----------首页头部----------->
+    <!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
       <div class="logo backBnt">
         <a href="index.html">
           <img src="img/icon07.png">
         </a>
       </div>
-      <!----------------搜索------------------>
+      <!-- --------------搜索---------------- -->
       <div class="search searchB"> 精彩游记 </div>
       <a class="phone">
         <img src="img/icon14.png">
@@ -46,11 +47,11 @@
             <div class="yjList">
               <script id="recommend_list" type="text/x-handlebars-template">
               <ul>
-                {{#each data}}
+                {{#each this}}
                 <li style="position: relative">
                   <div class="picLineA">
                     <a href="gonglvxq.html?id={{id}}">
-                    <img src="http://pic.lxqcheng.com/{{cover}}">
+                    <img src="{{cdn}}{{cover}}">
                     </a>
                   </div>
                   <div class="yjTitleLine">
@@ -58,7 +59,7 @@
                       <span><a href="gonglvxq.html?id={{id}}">{{title}}</a>	</span>
                         <p>精华</p>
                     </h2>
-                      <span class="dzdw">苏州定园</span>
+                      <span class="dzdw">{{position}}</span>
                   </div>
                     <div class="yjqtList">
                       <div class="fbyjzz">
@@ -66,9 +67,9 @@
                             <p>{{name}}<br />{{creatime}}</p>
                         </div>
                         <div class="plcz">
-                          <span><i class="jlIcon"><img src="img/icon14-2.png"></i>1.0k</span>
-                            <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>1</a></span>
-                            <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>0</a></span>
+                          <span><i class="jlIcon"><img src="img/icon14-2.png"></i>{{browsingnumber}}</span>
+                            <span><a href="#"><i class="plIcon"><img src="img/icon14-3.png"></i>{{commentnumber}}</a></span>
+                            <span><a href="#"><i class="dzIcon"><img src="img/icon14-4.png"></i>{{praisenumber}}</a></span>
                         </div>
                     </div>
                   </li>
@@ -81,11 +82,11 @@
             <div class="yjList">
               <script id="newest_list" type="text/x-handlebars-template">
                 <ul>
-                  {{#each list}}
+                  {{#each this}}
                     <li style="position: relative">
                       <div class="picLineA">
                         <a href="gonglvxq.html?id={{id}}">
-                          <img src="http://pic.lxqcheng.com/{{cover}}">
+                          <img src="{{cdn}}{{cover}}">
                         </a>
                       </div>
                       <div class="yjTitleLine">
@@ -95,7 +96,7 @@
                           </span>
                           <p>精华</p>
                         </h2>
-                        <span class="dzdw">苏州定园</span>
+                        <span class="dzdw">{{position}}</span>
                       </div>
                       <div class="yjqtList">
                         <div class="fbyjzz">
@@ -109,18 +110,18 @@
                           <span>
                             <i class="jlIcon">
                               <img src="img/icon14-2.png">
-                            </i>1.0k</span>
+                            </i>{{browsingnumber}}</span>
                           <span>
                             <a href="#">
                               <i class="plIcon">
                                 <img src="img/icon14-3.png">
-                              </i>1</a>
+                              </i>{{commentnumber}}</a>
                           </span>
                           <span>
                             <a href="#">
                               <i class="dzIcon">
                                 <img src="img/icon14-4.png">
-                              </i>0</a>
+                              </i>{{praisenumber}}</a>
                           </span>
                         </div>
                       </div>
@@ -135,6 +136,7 @@
     </div>
 
   </div>
+  <script type="text/javascript" src="/js/util.js"></script>
   <script type="text/javascript" src="/js/tourism_strategy/index.js"></script>
 </body>
 
