@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>乐享其程</title>
+	<!--库-->
+    <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/amazeui.js"></script>
+	<script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="index">
+	<!-- ---------首页头部---------- -->
+    <div class="index_head searchHead">
+		<div class="logo backBnt">
+			<a href="index.html"><img src="img/icon07.png"></a>
+		</div>
+		<!-- --------------搜索---------------- -->
+		<div class="search searchB"> 
+        	旅游信息
+		</div>
+    </div>
+    <div class="ssLine">
+    	<div class="find_nav">
+    <div class="find_nav_left">
+        <div class="find_nav_list" id="pagenavi1">
+            <ul>
+                <li><a href="#" class="active">本站公告</a></li>
+                <li><a href="#">旅游资讯</a></li>
+                <li><a href="#">酒店资讯</a></li>
+                <li><a href="#">签证资讯</a></li>
+                <li><a href="#">旅行社资讯</a></li>
+                <li><a href="#">香水化妆品</a></li>
+                <li><a href="#">阿迪达斯</a></li>
+                <li><a href="#">耐克</a></li>
+                <li><a href="#">范思哲</a></li>
+                <li><a href="#">古驰</a></li>
+                <li class="sideline"></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+		
+    	<ul id='zixun'>
+			<script id="zixun_list" type="text/x-handlebars-template">
+				{{#each this}}
+				<li>
+					<div class="picLeft">
+						<a href="zixunxq.html?id={{id}}">
+						<span class="picLine"><img src="{{cdn}}{{imgthum}}"></span>
+						<em class="zxlb">{{cataName}}</em>
+						</a>
+					</div>
+					<div class="txtRight">
+						<h2 class="lineTitle zxTitleA">
+							<a href="zixunxq.html">
+								{{title}}
+							</a>
+						</h2>
+					</div>
+				</li>
+				{{/each}}
+			</script>
+        </ul>
+
+    </div>
+    </div>
+	<script type="text/javascript" src="js/touchslider.js"></script>
+	<script type="text/javascript" src="/js/util.js"></script>
+<script type="text/javascript">
+$(".find_nav_list").css("left",0);
+
+$(".find_nav_list li").each(function(){
+		$(".sideline").css({left:0});
+		$(".find_nav_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+});
+var nav_w=$(".find_nav_list li").first().width();
+$(".sideline").width(nav_w);
+var dataList = {};
+var itemId = {
+	'本站公告': 6,
+	'旅游资讯': 1,
+	'酒店资讯': 2,
+	'旅行社资讯': 4,
+	// 瞎写需要匹配
+	'香水化妆品': 1,
+	'香水化妆品': 1,
+	'阿迪达斯': 1,
+	'耐克': 2,
+	'范思哲': 1,
+	'古驰': 2,
+}
+var source = $("#zixun_list").html();
+var template = Handlebars.compile(source);
+$(".find_nav_list li").on('click', function(){
+	var text = $(this).text()
+	if ($(this).hasClass('find_nav_cur') && dataList[text]) return;
+	nav_w=$(this).width();
+	$(".sideline").stop(true);
+	$(".sideline").animate({left:$(this).position().left},300);
+	$(".sideline").animate({width:nav_w});
+	$(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+	var data = [];
+	var html;
+	if (dataList[text]) {
+		data = dataList[text]
+		html = template(data);
+        $('#zixun').html(html)
+	} else {
+		$.ajax({
+			url: `${api}newsAPI/getNewsList?cataId=${itemId[text]}`,
+			success: function(res) {
+				if (res.ok === 1) {
+					var newData = res.data.list
+					newData.forEach(function(item) {
+						item.cdn = cdn
+					});
+					dataList[text] = newData
+					html = template(newData);
+
+        			$('#zixun').html(html)
+				}
+			}
+		})
+	}
+	
+	var fn_w = ($(".find_nav").width() - nav_w) / 2;
+	var fnl_l;
+	var fnl_x = parseInt($(this).position().left);
+	if (fnl_x <= fn_w) {
+		fnl_l = 0;
+	} else if (fn_w - fnl_x <= flb_w - fl_w) {
+		fnl_l = flb_w - fl_w;
+	} else {
+		fnl_l = fn_w - fnl_x;
+	}
+	$(".find_nav_list").animate({
+		"left" : fnl_l
+	}, 300);
+	
+});
+// 页面首次进入模拟点击事件
+$('.find_nav_cur').click()
+
+var fl_w=$(".find_nav_list").width();
+var flb_w=$(".find_nav_left").width();
+$(".find_nav_list").on('touchstart', function (e) {
+	var touch1 = e.originalEvent.targetTouches[0];
+	x1 = touch1.pageX;
+	y1 = touch1.pageY;
+	ty_left = parseInt($(this).css("left"));
+});
+$(".find_nav_list").on('touchmove', function (e) {
+	var touch2 = e.originalEvent.targetTouches[0];
+	var x2 = touch2.pageX;
+	var y2 = touch2.pageY;
+	if(ty_left + x2 - x1>=0){
+		$(this).css("left", 0);
+	}else if(ty_left + x2 - x1<=flb_w-fl_w){
+		$(this).css("left", flb_w-fl_w);
+	}else{
+		$(this).css("left", ty_left + x2 - x1);
+	}
+	if(Math.abs(y2-y1)>0){
+		e.preventDefault();
+	}
+});
+
+
+for(n=1;n<9;n++){
+	var page='pagenavi'+n;
+	var mslide='slider'+n;
+	var mtitle='emtitle'+n;
+	arrdiv = 'arrdiv' + n;
+	var as=document.getElementById(page) && document.getElementById(page).getElementsByTagName('a');
+	var tt=new TouchSlider({id:mslide,'auto':'-1',fx:'ease-out',direction:'left',speed:600,timeout:5000,'before':function(index){
+		var as=document.getElementById(this.page).getElementsByTagName('a');
+		as[this.p].className='';
+		this.p=index;
+		
+		fnl_x =  parseInt($(".find_nav_list li").eq(this.p).position().left);
+		
+		nav_w=$(".find_nav_list li").eq(this.p).width();
+		$(".sideline").stop(true);
+		$(".sideline").animate({left:$(".find_nav_list li").eq(this.p).position().left},300);
+		$(".sideline").animate({width:nav_w},100);
+		$(".find_nav_list li").eq(this.p).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+		var fn_w = ($(".find_nav").width() - nav_w) / 2;
+		var fnl_l;
+		if (fnl_x <= fn_w) {
+			fnl_l = 0;
+		} else if (fn_w - fnl_x <= flb_w - fl_w) {
+			fnl_l = flb_w - fl_w;
+		} else {
+			fnl_l = fn_w - fnl_x;
+		}
+		$(".find_nav_list").animate({
+			"left" : fnl_l
+		}, 300);
+	}});
+	tt.page = page;
+	tt.p = 0;
+	//console.dir(tt); console.dir(tt.__proto__);
+	if (as instanceof Array) {
+		for(var i=0;i<as.length;i++){
+			(function(){
+				var j=i;
+				as[j].tt = tt;
+				as[j].onclick=function(){
+					this.tt.slide(j);
+					return false;
+				}
+			})();
+		}
+	} 
+}
+</script>
+</div>
+</body>
+</html>
