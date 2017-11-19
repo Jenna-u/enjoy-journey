@@ -11,17 +11,18 @@
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>    
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+	<!-- ---------首页头部---------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
 			<a href="jiudian.html"><img src="img/icon07.png"></a>
 		</div>
-		<!----------------搜索------------------>
+		<!-- --------------搜索---------------- -->
 		<div class="search searchA"> 
         	<a href="moreCtiySearch.html"><input class="submit " type="submit" value=" ">
 			<input class="text" type="search" placeholder="关键字 / 位置 / 品牌 / 酒店名"></a>
@@ -31,99 +32,61 @@
 		</a>
     </div>
     <div class="jiudList">
+        <script id="jiudian_list" type="text/x-handlebars-template">
     	<ul>
+            {{#each this}}
         	<li>
             	<div class="picLeft">
-                	<a href="jiudianxq.html">
-                	<img src="img/img06.jpg">
+                	<a href="jiudianxq.html?id={{hotelID}}">
+                	<img src="{{cover}}">
                     </a>
                 </div>
                 <div class="txtRight">
-                	<h2 class="lineTitle jdTit"><a href="jiudianxq.html">蟒山（北京）会议中心</a></h2>
+                	<h2 class="lineTitle jdTit"><a href="jiudianxq.html?id={{hotelID}}">{{hotelName}}</a></h2>
                     <div class="pfLine">
-                    	<span>4.2分  89条点评</span>
-                        <p>￥ <em>483</em> 起</p>
+                    	<span>{{score}}分  {{countComment}}条点评</span>
+                        <p>￥ <em>{{minPrice}}</em> 起</p>
                     </div>
                     <div class="jdjsB">
-                    	<span>四星级酒店</span>
-                        <p>距市中心32.8公里 十三陵水库、居庸关长城风景区</p>
+                    	<span>{{beStart}}</span>
+                        <p>{{expandDataPositional}}</p>
                     </div>
                 </div>
             </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="jiudianxq.html">
-                	<img src="img/img06.jpg">
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle jdTit"><a href="jiudianxq.html">蟒山（北京）会议中心</a></h2>
-                    <div class="pfLine">
-                    	<span>4.2分  89条点评</span>
-                        <p>￥ <em>483</em> 起</p>
-                    </div>
-                    <div class="jdjsB">
-                    	<span>四星级酒店</span>
-                        <p>距市中心32.8公里 十三陵水库、居庸关长城风景区</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="jiudianxq.html">
-                	<img src="img/img06.jpg">
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle jdTit"><a href="jiudianxq.html">蟒山（北京）会议中心</a></h2>
-                    <div class="pfLine">
-                    	<span>4.2分  89条点评</span>
-                        <p>￥ <em>483</em> 起</p>
-                    </div>
-                    <div class="jdjsB">
-                    	<span>四星级酒店</span>
-                        <p>距市中心32.8公里 十三陵水库、居庸关长城风景区</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="jiudianxq.html">
-                	<img src="img/img06.jpg">
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle jdTit"><a href="jiudianxq.html">蟒山（北京）会议中心</a></h2>
-                    <div class="pfLine">
-                    	<span>4.2分  89条点评</span>
-                        <p>￥ <em>483</em> 起</p>
-                    </div>
-                    <div class="jdjsB">
-                    	<span>四星级酒店</span>
-                        <p>距市中心32.8公里 十三陵水库、居庸关长城风景区</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="jiudianxq.html">
-                	<img src="img/img06.jpg">
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle jdTit"><a href="jiudianxq.html">蟒山（北京）会议中心</a></h2>
-                    <div class="pfLine">
-                    	<span>4.2分  89条点评</span>
-                        <p>￥ <em>483</em> 起</p>
-                    </div>
-                    <div class="jdjsB">
-                    	<span>四星级酒店</span>
-                        <p>距市中心32.8公里 十三陵水库、居庸关长城风景区</p>
-                    </div>
-                </div>
-            </li>
+            {{/each}}
         </ul>
+        </script>
     </div>
 </div>
 </body>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" >
+var chnNumChar = {
+    1: '一',
+    2: '二',
+    3: '三',
+    4: '四',
+    5: '五',
+};
+var params = '';
+var urlParms = getParam()
+for (k in urlParms) {
+    params += `&${k}=${urlParms[k]}`
+}
+params = params.slice(1)
+$.ajax(`${api}/hotelAPI/getHotelList?${params}`)
+.done(function(res) {
+    if (res.ok !== 1) return;
+    var list = res.data.list
+    list.forEach(function(item) {
+        item.cover = cdn + item.cover;
+        item.beStart = chnNumChar[item.beStart] + '星级酒店'
+    })
+    var source = $("#jiudian_list").html();
+    var template = Handlebars.compile(source);
+    var html = template(list);
+    $('.jiudList').html(html)
+})
+
+</script>
 </html>

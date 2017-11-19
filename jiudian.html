@@ -12,6 +12,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/amazeui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=v5SG7vVh29o3HX3wUiCoOBkl1QjFRRVW"></script>
 </head>
 
 <body>
@@ -24,8 +25,8 @@
   </div>
   <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
 		<div class="am-tabs" data-am-tabs>
-			<ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-2">
-				<li class="am-active"><a href="#tab1">国内·港澳台</a></li>
+			<ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-2" id="country-title">
+				<li class="am-active country-inside" inside><a href="#tab1">国内·港澳台</a></li>
 				<li><a href="#tab2">海外酒店</a></li>
 			</ul>
 
@@ -34,7 +35,7 @@
 					<div class="jlsx">
                     	<div class="sxLine minH">
                         	<div class="sxLineL">目的地</div>
-                            <div class="sxLineM">
+                            <div class="sxLineM" id="my-position">
                             	北京
                             </div>
                             <div class="sxLineR">
@@ -143,7 +144,7 @@
 			</div>
 		</div>
 	</div>
-    <div class="cxBnt"><a href="jiudiancxList.html">查询</a></div>
+    <div class="cxBnt"><a href="javascript:;" id="search-button">查询</a></div>
     <!--弹层-->
     <div class="am-share am-shareA">
          <div class="xjjg">
@@ -172,11 +173,11 @@
             </div>
          </div>
     </div>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/date.js"></script>
+<script type="text/javascript" src="js/hotel/index.js"></script>
 <script type="text/javascript">
 	$('.select-time').hotelDate();
-	
 	
 	function toshare(){
 		$(".am-shareA").addClass("am-modal-active");	
@@ -234,6 +235,22 @@ function hidePop() {
         $(".sharebg").remove();	
     },300);
 }
+var chnNumChar = {
+    二:2,
+    三:3,
+    四:4,
+    五:5,
+};
+// 查询按钮
+$('#search-button').click(function() {
+    var cityType = $('#country-title .am-active').hasClass('country-inside') ? 1 : 2
+    var startTime = $(`#tab${cityType} .input-enter`).val().split('/').join('-')
+    var endTime = $(`#tab${cityType} .input-leave`).val().split('/').join('-')
+    var level = $(`#tab${cityType} .level`).text().trim().split('/')
+    var maxPrice = level[0].match(/\d/g) ? parseInt(level[0].match(/\d/g).join('')) : -1
+    var beStart = chnNumChar[level[1][0]] || -1
+    window.location.href = `jiudiancxList.html?cityType=${cityType}&startTime=${startTime}&endTime=${endTime}&maxPrice=${maxPrice}&beStart=${beStart}`
+})
 
 </script>
 </div>
