@@ -86,7 +86,7 @@ var date = function ($) {
           $('.leavetime').text(leaveTime);
           $('.input-enter').val(enterYear + '/' + enterTime);
           $('.input-leave').val(leaveYear + '/' + leaveTime);
-          $('.night').text('共' + night + '晚');
+          $('.night-number').text(night);
         }
       });
 

@@ -9,6 +9,15 @@ function getDateTime (time) {
   return `${creatime.getFullYear()}-${creatime.getMonth() + 1}-${creatime.getDay()}`
 }
 
+// 根据1，2，3 转化为相应一二三
+var chnNumChar = {
+  1: '一',
+  2: '二',
+  3: '三',
+  4: '四',
+  5: '五',
+};
+
 // 一个比较参数是否等于某值的方法
 if(Handlebars) {
   Handlebars.registerHelper("compare",function(v1, v2, opts){

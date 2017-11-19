@@ -57,7 +57,11 @@
                                     <input type="text" class="input-leave none">
                                     <span>离店</span>
                                     </div>
-                                    <span class="night">共1晚</span>
+                                    <span class="night">
+                                        共
+                                        <span class="night-number">1</span>
+                                        晚
+                                    </span>
                                 </div>
                             </div>
                             <div class="sxLineR">
@@ -112,7 +116,10 @@
                                     <input type="text" class="input-leave none">
                                     <span>离店</span>
                                     </div>
-                                    <span class="night">共1晚</span>
+                                    <span class="night">共
+                                        <span class="night-number">1</span>
+                                        晚
+                                    </span>
                                 </div>
                             </div>
                             <div class="sxLineR">
@@ -249,7 +256,8 @@ $('#search-button').click(function() {
     var level = $(`#tab${cityType} .level`).text().trim().split('/')
     var maxPrice = level[0].match(/\d/g) ? parseInt(level[0].match(/\d/g).join('')) : -1
     var beStart = chnNumChar[level[1][0]] || -1
-    window.location.href = `jiudiancxList.html?cityType=${cityType}&startTime=${startTime}&endTime=${endTime}&maxPrice=${maxPrice}&beStart=${beStart}`
+    var night = $(`#tab${cityType} .night-number`).text()
+    window.location.href = `jiudiancxList.html?cityType=${cityType}&startTime=${startTime}&endTime=${endTime}&maxPrice=${maxPrice}&beStart=${beStart}&night=${night}`
 })
 
 </script>

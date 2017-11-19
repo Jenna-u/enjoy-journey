@@ -37,7 +37,7 @@
             {{#each this}}
         	<li>
             	<div class="picLeft">
-                	<a href="jiudianxq.html?id={{hotelID}}">
+                	<a href="jiudianxq.html?{{link}}">
                 	<img src="{{cover}}">
                     </a>
                 </div>
@@ -61,13 +61,6 @@
 </body>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" >
-var chnNumChar = {
-    1: '一',
-    2: '二',
-    3: '三',
-    4: '四',
-    5: '五',
-};
 var params = '';
 var urlParms = getParam()
 for (k in urlParms) {
@@ -81,6 +74,7 @@ $.ajax(`${api}/hotelAPI/getHotelList?${params}`)
     list.forEach(function(item) {
         item.cover = cdn + item.cover;
         item.beStart = chnNumChar[item.beStart] + '星级酒店'
+        item.link = `id=${item.hotelID}&startTime=${urlParms.startTime}&endTime=${urlParms.endTime}&night=${urlParms.night}`
     })
     var source = $("#jiudian_list").html();
     var template = Handlebars.compile(source);

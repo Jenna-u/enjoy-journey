@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>    
 	<link rel="stylesheet" type="text/css" href="css/style.css">
     
     <link rel="stylesheet" href="css/photoswipe.css"> 
@@ -19,12 +20,13 @@
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+    <script id="hotel-detail" type="text/x-handlebars-template">
+	<!-- ---------首页头部---------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
 			<a href="#"><img src="img/icon07.png"></a>
 		</div>
-		<!----------------搜索------------------>
+		<!-- --------------搜索---------------- -->
 		<div class="search searchB"> 
         	景点
 		</div>
@@ -35,13 +37,13 @@
     </div>
     <div class="jdtpLine">
     	<div class="jdLeft">
-        	<h1 class="jdTitle">北京幸福城酒店</h1>
-            <span>高档型酒店</span>
-            <p><em>4.6</em> 分 <a href="jiudiandpList.html">共57人点评</a></p>
+        	<h1 class="jdTitle">{{hotelName}}</h1>
+            <span>{{beStart}}</span>
+            <p><em>{{score}}</em> 分 <a href="jiudiandpList.html">共{{countComment}}人点评</a></p>
         </div>
         <div class="picListRight" id="photos">
-        	<img src="img/img03.jpg">
-            <p>24张</p>
+        	<img src="{{cover}}">
+            <p>{{imgLength}}</p>
         </div>
     </div>
     <!--图片放大预览-->
@@ -83,26 +85,31 @@
     <div class="lineB">
     	<ul>
         	<li>
-            	<span><i class="mapIcon"></i>东城东直门外大街察慈小区一幢</span>
+            	<span><i class="mapIcon"></i>{{hotelSite}}</span>
                 <p><a href="#">地图 ></a></p>
             </li>
             <li>
-            	<div class="iconList"><i><img src="img/icon12-2.png"></i> <i><img src="img/icon12-3.png"></i> <i class="iconB"><img src="img/icon12-4.png"></i> <i><img src="img/icon12-5.png"></i> <i class="iconB"><img src="img/icon12-6.png"></i><i class="iconB"><img src="img/icon12-7.png"></i><i class="iconB"><img src="img/icon12-8.png"></i></div>
+                <div class="iconList">
+                {{#each iconList}}
+                    <i><img src="{{this}}"></i>
+                {{/each}}
+            </div>
                 <p><a href="#">详情 ></a></p>
             </li>
         </ul>
     </div>
     <div class="roomList">
     	<ul id="accordion" class="accordion">
+            {{#each isHave}}
             <li>
                 <div class="link">
                 	<div class="roomjj">
-                    	<div class="roomPic"><img src="img/img03.jpg"></div>
+                    	<div class="roomPic"><img src="{{houseTypeCover}}"></div>
                         <div class="roomTxt">
-                        	<span>标准双人间 ></span>
-                            <p>25m² 大床或单床</p>
+                        	<span>{{houseTypeName}} ></span>
+                            <p>{{houseTypeBed}}</p>
                         </div>
-                        <div class="price">￥ <em>3148</em> 起</div>
+                        <div class="price">￥ <em>{{houseTypeVipPrice}}</em> 起</div>
                     </div>
                 	<i class="fa fa-chevron-down moreBntA"></i>
                 </div>
@@ -115,7 +122,7 @@
                         </div>
                         <div class="xqjsLine">
                         	<div class="ydBnts">
-                            	<span class="ydBntA"><a href="jiudianyd.html">预定</a></span>
+                            	<span class="ydBntA"><a href="{{link}}">预定</a></span>
                                 <span class="dbBnt">担保</span>
                             </div>
                             <div class="priceA">
@@ -143,64 +150,17 @@
                     </li>
                 </ul>
             </li>
+            {{/each}}
+            {{#each isNot}}
             <li>
                 <div class="link">
                 	<div class="roomjj">
-                    	<div class="roomPic"><img src="img/img03.jpg"></div>
+                    	<div class="roomPic"><img src="{{houseTypeVipPrice}}"></div>
                         <div class="roomTxt">
-                        	<span>标准双人间 ></span>
-                            <p>25m² 大床或单床</p>
+                        	<span>{{houseTypeName}} ></span>
+                            <p>{{houseTypeBed}}</p>
                         </div>
-                        <div class="price">￥ <em>3148</em> 起</div>
-                    </div>
-                	<i class="fa fa-chevron-down moreBntA"></i>
-                </div>
-                <ul class="submenu">
-                    <li>
-                    	<div class="xqjsLine rLine">
-                        	<span class="roonLine">标准双人间 ></span>
-                            <p class="roomxqtxt">25m² 大床或单床</p>
-                            <span class="qrbnt">立即确认</span>
-                        </div>
-                        <div class="xqjsLine">
-                        	<div class="ydBnts">
-                            	<span class="ydBntA"><a href="#">预定</a></span>
-                                <span class="dbBnt">担保</span>
-                            </div>
-                            <div class="priceA">
-                            	<span class="priceB">￥ <em>395</em></span>
-                                <span class="fxL">500返5</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                    	<div class="xqjsLine rLine">
-                        	<span class="roonLine">标准双人间 ></span>
-                            <p class="roomxqtxt">25m² 大床或单床</p>
-                            <span class="qrbnt">立即确认</span>
-                        </div>
-                        <div class="xqjsLine">
-                        	<div class="ydBnts">
-                            	<span class="ydBntA"><a href="#">预定</a></span>
-                                <span class="dbBnt">担保</span>
-                            </div>
-                            <div class="priceA">
-                            	<span class="priceB">￥ <em>395</em></span>
-                                <span class="fxL">500返5</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <div class="link">
-                	<div class="roomjj">
-                    	<div class="roomPic"><img src="img/img03.jpg"></div>
-                        <div class="roomTxt">
-                        	<span>标准双人间 ></span>
-                            <p>25m² 大床或单床</p>
-                        </div>
-                        <div class="price dwPrice">￥ <em>3148</em> 起</div>
+                        <div class="price dwPrice">￥ <em>{{houseTypeVipPrice}}</em> 起</div>
                     </div>
                 	<i class="fa fa-chevron-down moreBntA"></i>
                     <em class="sqIcon"></em>
@@ -242,6 +202,7 @@
                     </li>
                 </ul>
             </li>
+            {{/each}}
         </ul>
     </div>
     <div class="jdcl">
@@ -251,86 +212,11 @@
             取消政策：不同类型的客房附带不同的取消预订和预先付费政策。选择上述客房时，请参阅“客房政策”。
         </div>
     </div>
-    <script>
-		$(function() {
-	var Accordion = function(el, multiple) {
-		this.el = el || {};
-		this.multiple = multiple || false;
-
-		// Variables privadas
-		var links = this.el.find('.link');
-		// Evento
-		links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
-	};
-
-	Accordion.prototype.dropdown = function(e) {
-		var $el = e.data.el;
-			$this = $(this);
-			$next = $this.next();
-
-		$next.slideToggle();
-		$this.parent().toggleClass('open');
-
-		if (!e.data.multiple) {
-			$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
-		}
-	};
-
-	var accordion = new Accordion($('#accordion'), false);
-	$('.submenu li').click(function () {
-		$(this).addClass('current').siblings('li').removeClass('current');
-	});
-});
-	</script>
-    <script src="js/photoswipe.min.js"></script> 
-<script src="js/photoswipe-ui-default.min.js"></script> 
-    <script type="text/javascript">
-var openPhotoSwipe = function() {
-    var pswpElement = document.querySelectorAll('.pswp')[0];
-
-    var items = [
-        {
-            src: 'images/s1.jpg',
-            w: 800,
-            h: 1142
-        },
-        {
-            src: 'images/s2.jpg',
-            w: 800,
-            h: 1142
-        },
-		{
-            src: 'images/s3.jpg',
-            w: 800,
-            h: 1142
-        },
-		{
-            src: 'images/s4.jpg',
-            w: 800,
-            h: 1142
-        },
-		{
-            src: 'images/s5.jpg',
-            w: 800,
-            h: 1142
-        }
-    ];
-    
-    var options = {
-        history: false,
-        focus: false,
-
-        showAnimationDuration: 0,
-        hideAnimationDuration: 0
-        
-    };
-    
-    var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-    gallery.init();
-};
-
-document.getElementById('photos').onclick = openPhotoSwipe;
-</script>
+    </script>
 </div>
+<script  type="text/javascript" src="/js/util.js"></script>
+<script src="js/photoswipe.min.js"></script> 
+<script src="js/photoswipe-ui-default.min.js"></script> 
+<script type="text/javascript" src="/js/hotel/detail.js"></script>
 </body>
 </html>

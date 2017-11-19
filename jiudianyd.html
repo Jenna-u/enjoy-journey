@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>  
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -27,18 +28,21 @@
 		</div>
     </div>
     <div class="ddCon">
-    	<ul>
+    	<ul class="meet-detail">
+            <script id="meet-title" type="text/x-handlebars-template">
         	<li>
             	<div class="jdjj">
-                	<h1 class="jdTitleA">北京幸福城酒店</h1>
+                	<h1 class="jdTitleA">{{name}}</h1>
                     <p class="jdxq">
-                    	入住：7月14日   离店：7月15日  1晚<br>
-                        大床或单床无早<br>
+                    	入住：{{startData}}   离店：{{endData}}  {{night}}晚<br>
+                        {{bed}}{{food}}<br>
+                        {{net}}
                         免费有线宽带  免费WIFI
                     </p>
                 </div>
                 <div class="jdjgA">房费：<em class="orange">￥500</em>   返现总额：<em class="orange">￥11</em></div>
             </li>
+            </script>
             
         </ul>
         <ul class="qprxx">
@@ -114,7 +118,30 @@
          </div>
     </div>
     <script type="text/javascript" src="js/jquery.Spinner.js"></script>
+    <script  type="text/javascript" src="/js/util.js"></script>
     <script type="text/javascript">
+
+    var urlParams = getParam()
+    var startTime = urlParams.startTime.split('-')
+    var endTime = urlParams.endTime.split('-')
+    var startData = startTime[1] + '月' + startTime[2] + '日'
+    var endData = endTime[1] + '月' + endTime[2] + '日'
+    
+    var detail = {
+        startData: startData,
+        endData: endData,
+        night: urlParams.night,
+        bed: decodeURIComponent(urlParams.bed),
+        food: parseInt(urlParams.food) ? '无早' : '有早',
+        net: parseInt(urlParams.net) ? '无宽带' : '免费Wi-Fi'
+    }
+    var source = $("#meet-title").html();
+    var template = Handlebars.compile(source);
+    var html = template(detail);
+
+    $('.meet-detail').html(html)
+
+
     $(function(){
 
         $("#a").Spinner({value:868, min:10, len:3, max:1000});
