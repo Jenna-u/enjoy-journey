@@ -9,6 +9,13 @@ function getDateTime (time) {
   return `${creatime.getFullYear()}-${creatime.getMonth() + 1}-${creatime.getDay()}`
 }
 
+// 拿到新闻需要的时间 MM-DD hh:mm
+
+function getTime(time) {
+  var myDate = new Date(time)
+  return `${myDate.getMonth() + 1}-${myDate.getDay()} ${myDate.getHours()}:${myDate.getMinutes()}`
+}
+
 // 根据1，2，3 转化为相应一二三
 var chnNumChar = {
   1: '一',

@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script> 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -23,19 +24,30 @@
 		</div>
 		
     </div>
-    <div class="zxxqCon">
-    	<h1 class="zxTitle">暑期亲子悠哉精选惠-美国西海岸经典三城深度9-13日游   20人舒心团</h1>
-        <h3 class="zxTime">中国网  07-25 10：08</h3>
+    <div class="zxxqCon" id="zixun">
+        <script id="zixun-detail" type="text/x-handlebars-template">
+    	<h1 class="zxTitle">{{title}}</h1>
+        <h3 class="zxTime">{{source}}  {{time}}</h3>
         <div class="zxCom">
-        	超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉  直飞红海，游轮3晚畅游，红海2晚度假，埃德福神庙声光秀 ...<br>
-从昆明到大理可以选择火车卧铺这样既不会浪费时间又可以省一晚住宿费,如果是旺季一定要记得提前订好票!大概100元左右<br>
-大理住宿有很多有意思的客栈,我们住的地方是提前从“去哪儿”上预定的,叫泰美客栈,干净舒适而且老板服务态度真的超级好!而且碰到一个在大理做义工的妹纸!与她聊天也 ..<br>
-<img src="img/img05.jpg">
-超4500人出游，超千单好评，全含，瑞士深度，少女峰，金色山口，法拉  直飞红海，游轮3晚畅游，红海2晚度假，埃德福神庙声光秀 ...<br>
-从昆明到大理可以选择火车卧铺这样既不会浪费时间又可以省一晚住宿费,如果是旺季一定要记得提前订好票!大概100元左右<br>
-大理住宿有很多有意思的客栈,我们住的地方 ...
+        	{{{textcontent}}}
         </div>
+        </script>
     </div>
 </div>
 </body>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript">
+var id = getParam().id
+$.ajax(`${api}/newsAPI/newsDetailForMobile?id=${id}`)
+.done(function(res) {
+    if(res.ok !== 1) return;
+    var data = res.data;
+    data.time = getTime(data.creatime)
+    var source = $("#zixun-detail").html();
+    var template = Handlebars.compile(source);
+    var html = template(data);
+    $('#zixun').html(html)
+
+})
+</script>
 </html>
