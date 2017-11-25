@@ -29,6 +29,7 @@
       <div class="search searchC">
         景点
       </div>
+      <script id="h_jd_banner" type="text/x-handlebars-template">
       <a href="dingpiaoxq.html" class="iconA wzA">
         <img src="img/icon08a.png">
       </a>
@@ -41,29 +42,16 @@
     </div>
     <!-- ---------轮播banner--------- -->
     <div id="index_banner" style="margin-top:0;">
-      <div class="am-slider am-slider-default">
+      <div class="am-slider am-slider-default" id="jd_banner">
+        <script id="h_jd_banner" type="text/x-handlebars-template">
         <ul class="am-slides">
+          {{#each imgList}}
           <li>
-            <a title="" href="#">
-              <img src="img/img04.jpg" />
-            </a>
+            <img src="{{../cdn}}{{this}}" />
           </li>
-          <li>
-            <a title="" href="#">
-              <img src="img/img04.jpg" />
-            </a>
-          </li>
-          <li>
-            <a title="" href="#">
-              <img src="img/img04.jpg" />
-            </a>
-          </li>
-          <li>
-            <a title="" href="#">
-              <img src="img/img04.jpg" />
-            </a>
-          </li>
+          {{/each}}
         </ul>
+        </script>
       </div>
     </div>
     <div id="sceic_details_wrap">
@@ -76,18 +64,19 @@
           {{description}}
         </p>
       </div>
+      {{#each ticketData}}
       <div class="yjjk">
-        <h2 class="pjtitle">{{name}} 成人票 1张</h2>
+        <h2 class="pjtitle">{{title}} {{cataName}} 1张</h2>
         <div class="jgLine">
           <div class="jgLeft">
             <span>￥
-              <em>{{price}}</em> 起</span>
-            <p>
+              <em>{{rackRate}}</em> 起</span>
+            <!-- <p>
               <i>立减2元</i>
-            </p>
+            </p> -->
           </div>
           <div class="ydBnt">
-            <a href="menpiaodd.html">预订</a>
+            <a href="menpiaodd.html?id={{id}}">预订</a>
           </div>
         </div>
         <div class="con">
@@ -96,6 +85,7 @@
           </a>
         </div>
       </div>
+      {{/each}}
       <div class="yjjk">
         <h3 class="nrT">[ 购票须知 ]</h3>
         <p class="nrC">
@@ -156,20 +146,12 @@
           </div>
         </div>
       </div>
-    </script>
+      </script>
     </div>
   </div>
   <script type="text/javascript" src="js/util.js"></script>
   <script type="text/javascript" src="js/scenic_spot/detail.js"></script>
   <script>
-    $(function () {
-      $('.am-slider').flexslider({
-        controlNav: true, // Boolean: 是否创建控制点
-        directionNav: false, // Boolean: 是否创建上/下一个按钮（previous/next）
-        touch: true, // Boolean: 允许触摸屏触摸滑动滑块
-      });
-    });
-
     function toshare() {
       $(".am-shareA").addClass("am-modal-active");
       if ($(".sharebg").length > 0) {
