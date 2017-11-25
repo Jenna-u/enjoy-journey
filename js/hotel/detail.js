@@ -19,11 +19,11 @@ $.ajax(`${api}hotelAPI/getHotelByhotelID?hotelID=${urlParams.id}&startTime=${url
   })
   data.isHave.forEach(function(h) {
     h.houseTypeCover = cdn + h.houseTypeCover 
-    h.link = `jiudianyd.html?name=${data.hotelName}&startTime=${urlParams.startTime}&endTime=${urlParams.endTime}&night=${urlParams.night}&net=${h.houseTypeNetWork}$food=${h.houseTypeFood}&bed=${encodeURIComponent(h.houseTypeBed)}`
+    h.link = `jiudianyd.html?hotelId=${data.hotelID}&name=${data.hotelName}&startTime=${urlParams.startTime}&endTime=${urlParams.endTime}&night=${urlParams.night}&net=${h.houseTypeNetWork}&food=${h.houseTypeFood}&bed=${h.houseTypeBed}&price=${h.houseTypeVipPrice}&id=${h.houseTypeID}`
   })
   data.isNot.forEach(function(n) {
     n.houseTypeCover = cdn + n.houseTypeCover 
-    data.link = `jiudianyd.html?name=${data.hotelName}&startTime=${urlParams.startTime}&endTime=${urlParams.endTime}&night=${urlParams.night}&net=${n.houseTypeNetWork}$food=${n.houseTypeFood}&bed=${encodeURIComponent(n.houseTypeBed)}`    
+    data.link = `jiudianyd.html?hotelId=${data.hotelID}&name=${data.hotelName}&startTime=${urlParams.startTime}&endTime=${urlParams.endTime}&night=${urlParams.night}&net=${n.houseTypeNetWork}&food=${n.houseTypeFood}&bed=${n.houseTypeBed}&price=${h.houseTypeVipPrice}&id=${h.houseTypeID}`    
   })
 
   var source = $("#hotel-detail").html();

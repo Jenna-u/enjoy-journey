@@ -116,35 +116,16 @@
                 <ul class="submenu">
                     <li>
                     	<div class="xqjsLine rLine">
-                        	<span class="roonLine">标准双人间 ></span>
-                            <p class="roomxqtxt">25m² 大床或单床</p>
+                        	<span class="roonLine">{{houseTypeName}} ></span>
+                            <p class="roomxqtxt">{{houseTypeBed}}</p>
                             <span class="qrbnt">立即确认</span>
                         </div>
                         <div class="xqjsLine">
                         	<div class="ydBnts">
                             	<span class="ydBntA"><a href="{{link}}">预定</a></span>
-                                <span class="dbBnt">担保</span>
                             </div>
                             <div class="priceA">
-                            	<span class="priceB">￥ <em>395</em></span>
-                                <span class="fxL">500返5</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                    	<div class="xqjsLine rLine">
-                        	<span class="roonLine">标准双人间 ></span>
-                            <p class="roomxqtxt">25m² 大床或单床</p>
-                            <span class="qrbnt">立即确认</span>
-                        </div>
-                        <div class="xqjsLine">
-                        	<div class="ydBnts">
-                            	<span class="ydBntA"><a href="#">预定</a></span>
-                                <span class="dbBnt">担保</span>
-                            </div>
-                            <div class="priceA">
-                            	<span class="priceB">￥ <em>395</em></span>
-                                <span class="fxL">500返5</span>
+                            	<span class="priceB">￥ <em>{{houseTypeVipPrice}}</em></span>
                             </div>
                         </div>
                     </li>
@@ -208,8 +189,7 @@
     <div class="jdcl">
     	<h3 class="jdclTitle">酒店策略</h3>
         <div class="jdclCon">
-        	入住时间：10:00以后     离店时间：12:00以前<br>
-            取消政策：不同类型的客房附带不同的取消预订和预先付费政策。选择上述客房时，请参阅“客房政策”。
+            {{expandDataHotelStrategy}}
         </div>
     </div>
     </script>

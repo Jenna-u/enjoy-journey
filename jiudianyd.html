@@ -37,10 +37,9 @@
                     	入住：{{startData}}   离店：{{endData}}  {{night}}晚<br>
                         {{bed}}{{food}}<br>
                         {{net}}
-                        免费有线宽带  免费WIFI
                     </p>
                 </div>
-                <div class="jdjgA">房费：<em class="orange">￥500</em>   返现总额：<em class="orange">￥11</em></div>
+                <div class="jdjgA">房费：<em class="orange">￥{{totalPrice}}</em></div>
             </li>
             </script>
             
@@ -50,7 +49,7 @@
             	<div class="ddLeft">房间数</div>
                 <div class="ddRight">
                 	<a onClick="toshare()" href="javascript:void(0)">
-                	<span>1</span>
+                	<span class="number">1</span>
                     <em> ></em>
                     </a>
                 </div>
@@ -66,14 +65,13 @@
         	<li>
             	<div class="ddLeft">最晚抵店时间</div>
                 <div class="ddRight">
-                	<span>2016 - 07 - 14 		(今天)</span>
-                    <p><a href="#">修改  > </a></p>
+                	<span><i class="arrive-time">2016 - 07 - 14</i>  (晚上八点前)</span>
                 </div>
             </li>
             <li>
             	<div class="ddLeft">联系手机</div>
                 <div class="ddRight">
-                	18701463466
+                    <input type="number" class="phonesrk" placeholder="填写电话号码">
                 </div>
             </li>
         </ul>
@@ -93,10 +91,10 @@
     <div id="book">
         <div >
             <div class="money">
-                <p>应付金额 <span>￥ 2348</span></p>
+                <p>应付金额 <span class="total-money">￥ 2348</span></p>
             </div>
             <div class="cur">
-                <a  href="#">提交订单</a>
+                <a  href="javascript:;" class="tijiao">提交订单</a>
             </div>
             <div class="clear"></div>
         </div>
@@ -104,8 +102,8 @@
     <!--弹层-->
     <div class="am-share am-shareA am-shareB">
          <div class="roomsz">
-         	<div class="fjsTit">选择房间数 <i></i></div>
-         	<ul>
+         	<div class="fjsTit">选择房间数 <i class="close-room"></i></div>
+         	<ul class="room-number">
             	<li class="xzHover">1间</li>
                 <li>2间</li>
                 <li>3间</li>
@@ -126,18 +124,69 @@
     var endTime = urlParams.endTime.split('-')
     var startData = startTime[1] + '月' + startTime[2] + '日'
     var endData = endTime[1] + '月' + endTime[2] + '日'
+
+    var totalPrice = urlParams.price * urlParams.night
     
     var detail = {
         startData: startData,
         endData: endData,
         night: urlParams.night,
-        bed: decodeURIComponent(urlParams.bed),
+        name: urlParams.name,
+        bed: urlParams.bed,
+        totalPrice: totalPrice,
         food: parseInt(urlParams.food) ? '无早' : '有早',
-        net: parseInt(urlParams.net) ? '无宽带' : '免费Wi-Fi'
+        net: parseInt(urlParams.net) ? '无宽带' : '免费Wi-Fi',
     }
+    var startTime = urlParams.startTime
+    var endTime = urlParams.endTime
+    var hotelId = urlParams.hotelId
+    var typeId = urlParams.id
+
+    $('.total-money').html(`￥ ${totalPrice}`)
+    $('.arrive-time').html(startTime)
+
+
     var source = $("#meet-title").html();
     var template = Handlebars.compile(source);
     var html = template(detail);
+    $.ajax(`${api}hotelAPI/getHotelStock?hotelID=${hotelId}&hotelHouseTypeID=${typeId}&startTime=${startTime}&endTime=${endTime}`)
+    .done(function(res) {
+        if (res.ok !== 1) return
+        var stock  = res.data.list.stock
+        if (stock < 8) {
+           [].slice.call($('.room-number').children(), stock).forEach(function(el) {
+                el.remove()
+           })
+        }
+        $('.close-room').click(function() {
+            var number = parseInt($('.room-number .xzHover').text())
+            $('.number').html(number)
+            $('.total-money').html(`￥ ${totalPrice * number}`)
+        })
+
+    })
+
+    $('.tijiao').click(function() {
+        var postData = {
+            startTime: startTime,
+            endTime: endTime,
+            hotelID: hotelId,
+            hotelHouseTypeID: typeId,
+            num: $('.number').html(),
+        }
+        var phone = $('.phonesrk').val()
+        if (phone) {
+            postData.phone = phone
+        }
+
+        $.ajax({
+            method: 'POST',
+            url: `${api}hotelAPI/addHotelOrder`,
+            data: postData
+        })
+
+    })
+   
 
     $('.meet-detail').html(html)
 
