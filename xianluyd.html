@@ -10,18 +10,16 @@
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-    <script id="h_scenic_spot" type="text/x-handlebars-template">
-	<!-- ---------首页头部--------- -->
+	<!-----------首页头部----------->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="dingpiaoxq.html?id={{attractionsId}}"><img src="img/icon07.png"></a>
+			<a href="xianluxq.html"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
@@ -29,67 +27,64 @@
 		</div>
     </div>
     <div class="ddCon">
-    	<ul>
-        	<li>
-            	<div class="ddLeft">门票名称</div>
-                <div class="ddRight">
-                	<span>{{title}}</span>
-                    <p><em class="orange" style="float: left;">￥ {{rackRate}}</em> /张</p>
-                </div>
-            </li>
-            <li>
-            	<div class="ddLeft">出游日期</div>
-                <div class="ddRight">
-                	<span>2016 - 07 - 14 		(今天)</span>
-                    <p><a href="#">修改  > </a></p>
-                </div>
-            </li>
-            <li>
-            	<div class="ddLeft">购买数量</div>
-                <div class="ddRight">
-                	<div id="d" class="Spinner"></div>
-                </div>
-            </li>
-        </ul>
         <ul class="qprxx">
-        	<li class="qpTit">取票人信息</li>
+        	<li class="qpTit">预订人信息</li>
             <li>
             	<div class="ddLeft">姓名</div>
                 <div class="ddRight">
-                	<span><input id="name" type="text" placeholder="请输入取票人姓名" class="namesrk"></span>
+                	<span><input type="text" placeholder="必填" class="namesrk"></span>
                 </div>
             </li>
             <li>
             	<div class="ddLeft">手机</div>
                 <div class="ddRight">
-                	<span><input id="mobile" type="text" placeholder="请输入手机号" class="namesrk"></span>
+                	<span><input type="text" class="namesrk"></span>
+                </div>
+            </li>
+            <li>
+            	<div class="ddLeft">邮箱</div>
+                <div class="ddRight">
+                	<span><input type="text" class="namesrk" placeholder="必填，接收合同信息"></span>
                 </div>
             </li>
         </ul>
         <ul class="qprxx">
-        	<li class="qpTit">取票方式</li>
+        	<li class="qpTit">游客信息 <span>2成人</span> <p><a href="addcyyk.html">常用游客</a></p></li>
             <li>
-            	<div class="ddLeft">取票方式</div>
+            	<div class="ddLeft">游客1</div>
                 <div class="ddRight">
-                	门票自取 （网上支付）
+                	<span><input type="text" placeholder="名字" class="namesrk"></span>
                 </div>
             </li>
             <li>
-            	<div class="ddLeft">取票地址</div>
+            	<div class="ddLeft">游客1</div>
                 <div class="ddRight">
-                	凭订单号至北京海洋馆售票处（北京动物园北门网络票兑换窗口换票
+                	<span><input type="text" placeholder="名字" class="namesrk"></span>
+                </div>
+            </li>
+            <li>
+            	<div class="ddLeft">出游人群限制</div>
+                <div class="ddRight">
+                	不接受大于 70 周岁（含）出游人<br>
+                    不接受全是未成年人出游
                 </div>
             </li>
         </ul>
-        <div class="tyxy"><input name="" type="checkbox" value="" id="xy"> <label for="xy">我已阅读并接受 <a onClick="toshare()" href="javascript:void(0)">《门票预订须知》</a></label></div>
+        <div class="tyxy"><input name="" type="checkbox" value="" id="xy"> <label for="xy">我确认全部出游人都满足出游条件</label></div>
+        <ul class="qprxx">
+        	<li class="qpTit">签证材料确认 <img src="img/icon15-8.png"></li>
+            <li class="cll">
+            	北京中东非以色列
+            </li>
+        </ul>
     </div>
     <div id="book">
         <div >
             <div class="money">
-                <p>应付金额 <span>￥ {{rackRate}}</span></p>
+                <p>总价 <span>￥ 2348</span></p>
             </div>
             <div class="cur">
-                <a onclick="submitOrder()">提交订单</a>
+                <a  href="#">提交订单</a>
             </div>
             <div class="clear"></div>
         </div>
@@ -124,28 +119,37 @@
         </div>
          </div>
     </div>
-    </script>
-</div>
-<script type="text/javascript" src="js/util.js"></script>
-<script type="text/javascript" src="js/jquery.Spinner.js"></script>
-<script type="text/javascript" src="js/scenic_spot/order.js"></script>
-<script type="text/javascript">
-function toshare(){
-    $(".am-shareA").addClass("am-modal-active");	
-    if($(".sharebg").length>0){
-        $(".sharebg").addClass("sharebg-active");
-    }else{
-        $("body").append('<div class="sharebg"></div>');
-        $(".sharebg").addClass("sharebg-active");
-    }
-    $(".sharebg-active,.share_btn,.clooseBnt").click(function(){
-        $(".am-shareA").removeClass("am-modal-active");	
-        setTimeout(function(){
-            $(".sharebg-active").removeClass("sharebg-active");	
-            $(".sharebg").remove();	
-        },300);
-    })
-}
+    <script type="text/javascript" src="js/jquery.Spinner.js"></script>
+    <script type="text/javascript">
+    $(function(){
+
+        $("#a").Spinner({value:868, min:10, len:3, max:1000});
+
+        $("#b").Spinner({value:99});
+
+        $("#c").Spinner({value:66});
+
+        $("#d").Spinner();
+
+    });
+	
+	function toshare(){
+		$(".am-shareA").addClass("am-modal-active");	
+		if($(".sharebg").length>0){
+			$(".sharebg").addClass("sharebg-active");
+		}else{
+			$("body").append('<div class="sharebg"></div>');
+			$(".sharebg").addClass("sharebg-active");
+		}
+		$(".sharebg-active,.share_btn,.clooseBnt").click(function(){
+			$(".am-shareA").removeClass("am-modal-active");	
+			setTimeout(function(){
+				$(".sharebg-active").removeClass("sharebg-active");	
+				$(".sharebg").remove();	
+			},300);
+		})
+	}
 </script>
+</div>
 </body>
 </html>
