@@ -18,6 +18,7 @@
 
 <body>
   <div id="index">
+    <script id="h_scenic_spot" type="text/x-handlebars-template">
     <!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
       <div class="logo backBnt">
@@ -31,8 +32,7 @@
         <img src="img/icon09.png"> </a>
     </div>
     <div id="trip_list" class="mt50">
-      <div class="am-tab-panel am-fade am-in am-active" id="scenic_spot_list">
-        <script id="h_scenic_spot_list" type="text/x-handlebars-template">
+      <div class="am-tab-panel am-fade am-in am-active">
           <ul>
             {{#each data}}
               <li class="view">
@@ -58,9 +58,9 @@
               </li>
               {{/each}}
             </ul>
-        </script>
       </div>
     </div>
+    </script>
   </div>
   <script type="text/javascript" src="js/util.js"></script>
   <script type="text/javascript" src="js/scenic_spot/list.js"></script>

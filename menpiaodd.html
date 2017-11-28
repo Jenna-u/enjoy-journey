@@ -10,16 +10,18 @@
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
+    <script id="h_scenic_spot" type="text/x-handlebars-template">
 	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="#"><img src="img/icon07.png"></a>
+			<a href="dingpiaoxq.html?id={{attractionsId}}"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
@@ -31,8 +33,8 @@
         	<li>
             	<div class="ddLeft">门票名称</div>
                 <div class="ddRight">
-                	<span><恋恋海豚岛>-立减2000澳新凯墨12日游>途牛包团，纯玩国航直飞，大洋路，直升机  ...</span>
-                    <p><em class="orange">￥ 1650</em> /张</p>
+                	<span>{{title}}</span>
+                    <p><em class="orange" style="float: left;">￥ {{rackRate}}</em> /张</p>
                 </div>
             </li>
             <li>
@@ -54,13 +56,13 @@
             <li>
             	<div class="ddLeft">姓名</div>
                 <div class="ddRight">
-                	<span><input type="text" placeholder="请输入取票人姓名" class="namesrk"></span>
+                	<span><input id="name" type="text" placeholder="请输入取票人姓名" class="namesrk"></span>
                 </div>
             </li>
             <li>
             	<div class="ddLeft">手机</div>
                 <div class="ddRight">
-                	<span><input type="text" class="namesrk"></span>
+                	<span><input id="mobile" type="text" class="namesrk"></span>
                 </div>
             </li>
         </ul>
@@ -122,39 +124,28 @@
         </div>
          </div>
     </div>
-    <script type="text/javascript" src="js/util.js"></script>
-    <script type="text/javascript" src="js/scenic_spot/order.js"></script>
-    <script type="text/javascript" src="js/jquery.Spinner.js"></script>
-    <script type="text/javascript">
-    $(function(){
-
-        $("#a").Spinner({value:868, min:10, len:3, max:1000});
-
-        $("#b").Spinner({value:99});
-
-        $("#c").Spinner({value:66});
-
-        $("#d").Spinner();
-
-    });
-	
-	function toshare(){
-		$(".am-shareA").addClass("am-modal-active");	
-		if($(".sharebg").length>0){
-			$(".sharebg").addClass("sharebg-active");
-		}else{
-			$("body").append('<div class="sharebg"></div>');
-			$(".sharebg").addClass("sharebg-active");
-		}
-		$(".sharebg-active,.share_btn,.clooseBnt").click(function(){
-			$(".am-shareA").removeClass("am-modal-active");	
-			setTimeout(function(){
-				$(".sharebg-active").removeClass("sharebg-active");	
-				$(".sharebg").remove();	
-			},300);
-		})
-	}
-</script>
+    </script>
 </div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/jquery.Spinner.js"></script>
+<script type="text/javascript" src="js/scenic_spot/order.js"></script>
+<script type="text/javascript">
+function toshare(){
+    $(".am-shareA").addClass("am-modal-active");	
+    if($(".sharebg").length>0){
+        $(".sharebg").addClass("sharebg-active");
+    }else{
+        $("body").append('<div class="sharebg"></div>');
+        $(".sharebg").addClass("sharebg-active");
+    }
+    $(".sharebg-active,.share_btn,.clooseBnt").click(function(){
+        $(".am-shareA").removeClass("am-modal-active");	
+        setTimeout(function(){
+            $(".sharebg-active").removeClass("sharebg-active");	
+            $(".sharebg").remove();	
+        },300);
+    })
+}
+</script>
 </body>
 </html>

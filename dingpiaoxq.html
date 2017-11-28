@@ -18,10 +18,11 @@
 
 <body>
   <div id="index">
+    <script id="h_sceic_details_wrap" type="text/x-handlebars-template">
     <!-- ---------首页头部--------- -->
     <div class="index_head dpxqHead">
       <div class="logo backBnt">
-        <a href="#">
+        <a href="jingdianmpList.html">
           <img src="img/icon07.png">
         </a>
       </div>
@@ -29,125 +30,119 @@
       <div class="search searchC">
         景点
       </div>
-      <script id="h_jd_banner" type="text/x-handlebars-template">
-      <a href="dingpiaoxq.html" class="iconA wzA">
+      <a href="dingpiaoxq.html" class="iconA wzA iconHover">
         <img src="img/icon08a.png">
       </a>
-      <a href="jdPicList.html" class="iconA wzB">
+      <a href="jdPicList.html?id={{id}}" class="iconA wzB">
         <img src="img/icon08b.png">
       </a>
-      <a href="jdplList.html" class="iconA wzC">
+      <a href="jdplList.html?id={{id}}" class="iconA wzC">
         <img src="img/icon08b1.png">
       </a>
     </div>
     <!-- ---------轮播banner--------- -->
     <div id="index_banner" style="margin-top:0;">
       <div class="am-slider am-slider-default" id="jd_banner">
-        <script id="h_jd_banner" type="text/x-handlebars-template">
         <ul class="am-slides">
-          {{#each imgList}}
+          {{#each img}}
           <li>
             <img src="{{../cdn}}{{this}}" />
           </li>
           {{/each}}
         </ul>
-        </script>
       </div>
     </div>
-    <div id="sceic_details_wrap">
-      <script id="h_sceic_details_wrap" type="text/x-handlebars-template">
-      <div class="jdjs">
-        <h1 class="xqTitle">
-          <{{name}}> <i></i>
-        </h1>
-        <p class="nrjj">
-          {{description}}
-        </p>
+    <div class="jdjs">
+      <h1 class="xqTitle">
+        <{{name}}> <i></i>
+      </h1>
+      <p class="nrjj">
+        {{description}}
+      </p>
+    </div>
+    {{#each ticketData}}
+    <div class="yjjk">
+      <h2 class="pjtitle">{{title}} {{cataName}} 1张</h2>
+      <div class="jgLine">
+        <div class="jgLeft">
+          <span>￥
+            <em>{{rackRate}}</em> 起</span>
+          <!-- <p>
+            <i>立减2元</i>
+          </p> -->
+        </div>
+        <div class="ydBnt">
+          <a href="menpiaodd.html?id={{id}}">预订</a>
+        </div>
       </div>
-      {{#each ticketData}}
-      <div class="yjjk">
-        <h2 class="pjtitle">{{title}} {{cataName}} 1张</h2>
+      <div class="con">
+        <a class="more" onClick="toshare()" href="javascript:void(0)">套餐说明
+          <img src="img/icon08d.png">
+        </a>
+      </div>
+    </div>
+    {{/each}}
+    <div class="yjjk">
+      <h3 class="nrT">[ 购票须知 ]</h3>
+      <p class="nrC">
+        1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
+        <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
+      </p>
+      <h3 class="nrT">[ 使用方式 ]</h3>
+      <p class="nrC">
+        1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
+        <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
+      </p>
+      <h3 class="nrT">[ 使用时间 ]</h3>
+      <p class="nrC">
+        开放时间： 07：30 - 18：30
+      </p>
+    </div>
+    <div class="yjjk">
+      <h3 class="jdjsA">
+        <i></i>景点介绍</h3>
+      <p class="nrC">
+      {{expandDescription}}
+      </p>
+    </div>
+  <!--弹层-->
+    <div class="am-share am-shareA">
+      <div class="cqtc">
+        <div class="pjTitleA">
+          <span>{{name}}</span>
+          <p>（特卖编号：212065648）</p>
+        </div>
+        <div class="dpxz">
+          <span>预订须知</span>
+          <p>门票类型：电子票
+            <br> 提前预定时间：当天16点以前
+            <br> 入园方式：换票入园短信
+            <br> 门票有效期：2016.09.30
+            <br> 取票方式：凭订单号至北京海洋馆售票处（北京动物园北门）网络票兑换窗口换票。
+          </p>
+        </div>
+        <div class="dpxz">
+          <span>其他说明</span>
+          <p>1、 费用包含：含北京海洋馆成人门票（1张动物园成人门票（1张）；
+            <br> 2、 有效期内未使用可退款；
+            <br> 3、 咨询热线：6217 6655 - 6157；
+            <br> 4、门票 2016年5月31日前有效，过期作废；
+            <br> 5、 凭订单号至北京海洋馆售票处（北京动物园北门）网络兑换窗口换票
+            <br> 此活动最终解释权归北京海洋馆所有
+          </p>
+        </div>
         <div class="jgLine">
           <div class="jgLeft">
             <span>￥
-              <em>{{rackRate}}</em> 起</span>
-            <!-- <p>
-              <i>立减2元</i>
-            </p> -->
+              <em>2348</em> 起</span>
           </div>
           <div class="ydBnt">
-            <a href="menpiaodd.html?id={{id}}">预订</a>
-          </div>
-        </div>
-        <div class="con">
-          <a class="more" onClick="toshare()" href="javascript:void(0)">套餐说明
-            <img src="img/icon08d.png">
-          </a>
-        </div>
-      </div>
-      {{/each}}
-      <div class="yjjk">
-        <h3 class="nrT">[ 购票须知 ]</h3>
-        <p class="nrC">
-          1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
-          <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
-        </p>
-        <h3 class="nrT">[ 使用方式 ]</h3>
-        <p class="nrC">
-          1、特卖产品 因名额有限，预订完成不保证抢购成功，仅付款成 功为抢购成功，如给您带来不便，敬请谅解；
-          <br> 2、付款完成 后，我司会在您出游前一天以短信的形式将出团通 知书发送到您的手机上，请您保持手机畅通并注意查收。
-        </p>
-        <h3 class="nrT">[ 使用时间 ]</h3>
-        <p class="nrC">
-          开放时间： 07：30 - 18：30
-        </p>
-      </div>
-      <div class="yjjk">
-        <h3 class="jdjsA">
-          <i></i>景点介绍</h3>
-        <p class="nrC">
-        {{expandDescription}}
-        </p>
-      </div>
-    <!--弹层-->
-      <div class="am-share am-shareA">
-        <div class="cqtc">
-          <div class="pjTitleA">
-            <span>{{name}}</span>
-            <p>（特卖编号：212065648）</p>
-          </div>
-          <div class="dpxz">
-            <span>预订须知</span>
-            <p>门票类型：电子票
-              <br> 提前预定时间：当天16点以前
-              <br> 入园方式：换票入园短信
-              <br> 门票有效期：2016.09.30
-              <br> 取票方式：凭订单号至北京海洋馆售票处（北京动物园北门）网络票兑换窗口换票。
-            </p>
-          </div>
-          <div class="dpxz">
-            <span>其他说明</span>
-            <p>1、 费用包含：含北京海洋馆成人门票（1张动物园成人门票（1张）；
-              <br> 2、 有效期内未使用可退款；
-              <br> 3、 咨询热线：6217 6655 - 6157；
-              <br> 4、门票 2016年5月31日前有效，过期作废；
-              <br> 5、 凭订单号至北京海洋馆售票处（北京动物园北门）网络兑换窗口换票
-              <br> 此活动最终解释权归北京海洋馆所有
-            </p>
-          </div>
-          <div class="jgLine">
-            <div class="jgLeft">
-              <span>￥
-                <em>2348</em> 起</span>
-            </div>
-            <div class="ydBnt">
-              <a href="menpiaodd.html">预订</a>
-            </div>
+            <a href="menpiaodd.html">预订</a>
           </div>
         </div>
       </div>
-      </script>
     </div>
+    </script>
   </div>
   <script type="text/javascript" src="js/util.js"></script>
   <script type="text/javascript" src="js/scenic_spot/detail.js"></script>

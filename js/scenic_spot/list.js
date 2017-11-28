@@ -7,10 +7,10 @@ $.ajax({
     if(res.code == 200) {
       var data = res.data;
 
-      var source = $("#h_scenic_spot_list").html();
+      var source = $("#h_scenic_spot").html();
       var template = Handlebars.compile(source);
       var html = template({ data: data, cdn: window.cdn || '' });
-      $('#scenic_spot_list').append(html);
+      $('#index').html(html);
     }
   }
 });

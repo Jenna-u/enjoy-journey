@@ -25,15 +25,24 @@ var chnNumChar = {
   5: '五',
 };
 
-// 一个比较参数是否等于某值的方法
-if(Handlebars) {
-  Handlebars.registerHelper("compare",function(v1, v2, opts){
-    if(v1 == v2)
-      return opts.fn(this);
-    else
-      return opts.inverse(this);
-  });
+// 给回退按钮加链接
+function fallback () {
+  $('#fallback').attr('href', window.urlParams.redirect || 'index.html');
 }
+
+// 获取用户cookie
+function getUserCookie() {
+	var reg = new RegExp("(^| )lxqc_user=([^;]*)(;|$)");
+	var arr = decodeURIComponent(document.cookie).match(reg);
+	if(arr) {
+		window.lxqc_user = unescape(arr[2]) ? JSON.parse(unescape(arr[2])) : null;
+	} else {
+		window.lxqc_user = null;
+	}
+}
+getUserCookie();
+console.log(window.lxqc_user,'window.lxqc_user')
+
 // 获取url上的参数
 function getParam() {
   var url = location.search;

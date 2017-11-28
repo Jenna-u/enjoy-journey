@@ -10,30 +10,32 @@
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+  <script id="h_sceic_details_wrap" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
     <div class="index_head dpxqHead">
-		<div class="logo backBnt">
-			<a href="#"><img src="img/icon07.png"></a>
-		</div>
-		<!----------------搜索------------------>
-		<div class="search searchC"> 
-        	景点
-		</div>
-        <a href="dingpiaoxq.html" class="iconA wzA">
-			<img src="img/icon08a.png">
-		</a>
-        <a href="jdPicList.html" class="iconA wzB">
-			<img src="img/icon08b.png">
-		</a>
-        <a href="jdplList.html" class="iconA wzC iconHover">
-			<img src="img/icon08b1.png">
-		</a>
+        <div class="logo backBnt">
+            <a href="jingdianmpList.html"><img src="img/icon07.png"></a>
+        </div>
+        <!----------------搜索------------------>
+        <div class="search searchC"> 
+            景点
+        </div>
+        <a href="dingpiaoxq.html?id={{id}}" class="iconA wzA">
+            <img src="img/icon08a.png">
+        </a>
+        <a href="jdPicList.html?id={{id}}" class="iconA wzB">
+            <img src="img/icon08b.png">
+        </a>
+        <a href="jdplList.html?id={{id}}" class="iconA wzC iconHover">
+            <img src="img/icon08b1.png">
+        </a>
     </div>
     <div class="picLineTitlePic"><img src="img/bgImg00.jpg"></div>
     <div class="plpf">
@@ -41,101 +43,90 @@
         <div class="myd">
         	<div class="mydLeft">
             	<span>总体满意度 :</span>
-                <em>4.0</em>
-                <p><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i></i></p>
+                <em>{{score}}</em>
+                <p>
+                    {{#each scoreList}}
+                        {{#if this}}
+                            <i class="dlxx"></i>
+                        {{else}}
+                            <i></i>
+                        {{/if}}
+                    {{/each}}
+                </p>
             </div>
-            <div class="plsl">共  5260 人评价</div>
+            <div class="plsl">共  {{totalNum}} 人评价</div>
         </div>
     </div>
     <div class="tjsx">
     	<ul class="sxnav">
-            <li class="active" data-filter="all">全部 (5260)</li>
-            <li data-filter="1">满意 (5316)</li>
-            <li data-filter="2">一般 (193)</li>
-            <li data-filter="3">不满意 (52)</li>
+            <li class="active" data-filter="all">全部 ({{totalNum}})</li>
+            <li data-filter="1">满意 ({{goodNum}})</li>
+            <li data-filter="2">一般 ({{neutralNum}})</li>
+            <!-- <li data-filter="3">不满意 (52)</li>
             <li data-filter="4">家庭出游 (5316)</li>
             <li data-filter="5">一般 (193)</li>
-            <li data-filter="5">一般 (193)</li>
+            <li data-filter="5">一般 (193)</li> -->
         </ul>
         <div class="plList">
         	<ul>
-            	<li>
-                	<div class="plliLeft">
-                    	<div class="picA"><img src="img/img03.jpg"></div>
+                {{#each list}}
+                <li>
+                    <div class="plliLeft">
+                        <div class="picA"><img src="{{../cdn}}{{memberPhoto}}"></div>
                         <span class="djL">LV 5</span>
                         <p>2016-6-24</p>
                     </div>
                     <div class="plliMid">
-                    	<h3 class="plTitle">颜值不错</h3>
+                        <h3 class="plTitle">{{content}}</h3>
                         <div class="mydLeft ztmyd">
                             <span>总体满意度 :</span>
-                            <em>4.0</em>
+                            <em>{{score}}</em>
                             <p><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i></i></p>
                         </div>
-                        <div class="plCon">景色还是挺不错的，值得去！</div>
+                        <div class="plCon">{{content}}</div>
                         <ul class="picListpl">
-                        	<li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
+                            {{#each commentImgThum}}
+                            <li><img src="{{../../cdn}}{{this}}"></li>
+                            {{/each}}
                         </ul>
                     </div>
                     <div class="dz"><i class="dzhover"></i><p>有用</p></div>
                 </li>
-                <li>
-                	<div class="plliLeft">
-                    	<div class="picA"><img src="img/img03.jpg"></div>
-                        <span class="djL">LV 5</span>
-                        <p>2016-6-24</p>
-                    </div>
-                    <div class="plliMid">
-                    	<h3 class="plTitle">颜值不错</h3>
-                        <div class="mydLeft ztmyd">
-                            <span>总体满意度 :</span>
-                            <em>4.0</em>
-                            <p><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i></i></p>
-                        </div>
-                        <div class="plCon">景色还是挺不错的，值得去！</div>
-                        <ul class="picListpl">
-                        	<li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                        </ul>
-                    </div>
-                    <div class="dz"><i></i><p>有用</p></div>
-                </li>
-                <li>
-                	<div class="plliLeft">
-                    	<div class="picA"><img src="img/img03.jpg"></div>
-                        <span class="djL">LV 5</span>
-                        <p>2016-6-24</p>
-                    </div>
-                    <div class="plliMid">
-                    	<h3 class="plTitle">颜值不错</h3>
-                        <div class="mydLeft ztmyd">
-                            <span>总体满意度 :</span>
-                            <em>4.0</em>
-                            <p><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i class="dlxx"></i><i></i></p>
-                        </div>
-                        <div class="plCon">景色还是挺不错的，值得去！</div>
-                        <ul class="picListpl">
-                        	<li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                            <li><img src="img/img03.jpg"></li>
-                        </ul>
-                    </div>
-                    <div class="dz"><i></i><p>有用</p></div>
-                </li>
+                {{/each}}
             </ul>
         </div>
+      </script>
     </div>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript">
+      if(window.urlParams.id) {
+        $.ajax({
+            type: "GET",
+            url: window.api + "/ticket/commentList?attractionsId=" + window.urlParams.id,
+            success: function(res){
+            if(res.code == 200) {
+                var data = res.data;
+                var scoreList = ['','','','',''];
+                var score = parseInt(data.score);
+                for (var i = 0; i < score; i++){
+                    scoreList[i] = 1;
+                }
+                data['scoreList'] = scoreList;
+                data['cdn'] = window.cdn || '';
+                data['id'] = window.urlParams.id;
+                var template = Handlebars.compile($('#h_sceic_details_wrap').html());
+                var html = template(data);
+                $('#index').html(html);
+            }
+            }
+        });
+        }
+    </script>
     <script>
-$(function() {
+    $(function() {
 	//$('.jq22').filterizr();
 
-	$('.sxnav li').on('click', function() {
+	    $('.sxnav li').on('click', function() {
 		$(this).toggleClass('active').siblings().removeClass('active');
 	});
 });

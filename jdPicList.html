@@ -9,43 +9,63 @@
 	<title>乐享其程</title>
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-<div id="index">
-	<!-----------首页头部----------->
+  <div id="index">
+	<script id="h_sceic_details_wrap" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
     <div class="index_head dpxqHead">
 		<div class="logo backBnt">
-			<a href="#"><img src="img/icon07.png"></a>
+			<a href="jingdianmpList.html"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchC"> 
         	景点
 		</div>
-        <a href="dingpiaoxq.html" class="iconA wzA">
+        <a href="dingpiaoxq.html?id={{id}}" class="iconA wzA">
 			<img src="img/icon08a.png">
 		</a>
-        <a href="jdPicList.html" class="iconA wzB iconHover">
+        <a href="jdPicList.html?id={{id}}" class="iconA wzB iconHover">
 			<img src="img/icon08b.png">
 		</a>
-        <a href="jdplList.html" class="iconA wzC">
+        <a href="jdplList.html?id={{id}}" class="iconA wzC">
 			<img src="img/icon08b1.png">
 		</a>
     </div>
     <div class="picLineTitlePic"><img src="img/bgImg00.jpg"></div>
     <div class="picList">
     	<ul>
-        	<li><img src="img/img05.jpg"></li>
-            <li><img src="img/img05.jpg"></li>
-            <li><img src="img/img05.jpg"></li>
-            <li><img src="img/img05.jpg"></li>
-            <li><img src="img/img05.jpg"></li>
+		  {{#each img}}
+        	<li><img src="{{../cdn}}{{this}}"></li>
+		  {{/each}}
         </ul>
     </div>
-    
-</div>
+	</script>
+  </div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript">
+  if(window.urlParams.id) {
+	$.ajax({
+		type: "GET",
+		url: window.api + "/ticket/attractionsDetail?id=" + window.urlParams.id + '&memberId=' + (window.urlParams.memberId || ''),
+		success: function(res){
+		if(res.code == 200) {
+			var data = res.data;
+			var imgList = data.img.split(',');
+			data['img'] = imgList;
+			data['cdn'] = window.cdn || '';
+			var template = Handlebars.compile($('#h_sceic_details_wrap').html());
+			var html = template(data);
+			$('#index').html(html);
+		}
+		}
+	});
+	}
+</script>
 </body>
 </html>

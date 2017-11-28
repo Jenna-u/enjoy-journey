@@ -19,7 +19,7 @@
 	<!-- ---------首页头部--------- -->
     <div class="index_head dpxqHead">
 		<div class="logo backBnt">
-			<a href="#"><img src="img/icon07.png"></a>
+			<a id="fallback" href="#"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchC"> 
@@ -33,13 +33,13 @@
     <div class="logodlk">
     	<div class="logoLine">
         	<i><img src="img/icon14-14.png"></i>
-            <input type="text" class="tel" placeholder="输入手机号码">
+            <input id="mobile" type="text" class="tel" placeholder="输入手机号码">
         </div>
         <div class="logoLine">
         	<i class="mmIcon"><img src="img/icon14-15.png"></i>
-            <input type="password" class="tel" placeholder="输入用户名密码">
+            <input id="password" type="password" class="tel" placeholder="输入用户名密码">
         </div>
-        <div class="logoLineA"><input type="button" class="loginBnt" value="登录"></div>
+        <div class="logoLineA"><input onclick="login()" type="button" class="loginBnt" value="登录"></div>
         <div class="logoLineB"><a href="#">忘记密码了？</a></div>
     </div>
     <div class="dsfdl">
@@ -51,5 +51,7 @@
         </ul>
     </div>
 </div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>
