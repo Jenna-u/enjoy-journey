@@ -48,5 +48,10 @@ function getParam() {
   return theRequest;
 }
 
+// 回退事件
+$('.backBnt').click(function(){
+  history.back()
+})
+
 window.urlParams = getParam();
 console.log('window.urlParams', window.urlParams)

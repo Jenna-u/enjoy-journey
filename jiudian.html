@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/amazeui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=v5SG7vVh29o3HX3wUiCoOBkl1QjFRRVW"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oldLI23y0a3VLbPOfuGoC7B0XIgxbW2e"></script>
 </head>
 
 <body>
@@ -184,6 +184,14 @@
 <script type="text/javascript" src="js/date.js"></script>
 <script type="text/javascript" src="js/hotel/index.js"></script>
 <script type="text/javascript">
+    // 获取当前位置
+    var map = new BMap.Map("allmap");
+    var myCity = new BMap.LocalCity();
+	myCity.get(function(result) {
+        var cityName = result.name;
+        $('#my-position').html(cityName)
+    });
+
 	$('.select-time').hotelDate();
 	
 	function toshare(){

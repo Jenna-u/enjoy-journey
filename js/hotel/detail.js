@@ -32,6 +32,25 @@ $.ajax(`${api}hotelAPI/getHotelByhotelID?hotelID=${urlParams.id}&startTime=${url
 
   $('#index').html(html)
 
+  // 获取酒店地理位置
+  var map = new BMap.Map("allmap");
+  map.centerAndZoom(new BMap.Point(116.331398,39.897445),11);
+  map.enableScrollWheelZoom(true);
+
+  $('.get-pointer').click(function() {
+    $('.hotel-name').html(data.hotelName)
+    map.clearOverlays(); 
+    var new_point = new BMap.Point(data.longitude, data.latitude);
+    var marker = new BMap.Marker(new_point);  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
+    map.panTo(new_point);    
+    $('.mask').addClass('show')
+  })
+
+  $('.map-goback').click(function() {
+    $('.mask').removeClass('show')
+  })
+
   // 酒店图片展示
   document.getElementById('photos').onclick = openPhotoSwipe(items);
 

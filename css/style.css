@@ -799,6 +799,49 @@ em{font-style:normal;}
     transform: rotate(0deg);
 }
 
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: none;
+}
+.mask.show {
+    display: block;
+}
+.map-title {
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    background-color: #0060f1
+}
+.map-goback {
+    position: absolute;
+    color: #fff;
+    top: 6px;
+    left: 10px;
+    font-family: "黑体-简";
+    font-size: 15px;
+    line-height: 40px;
+}
+.map-goback img {
+    width: 13px;
+    height: 20px;
+    float: left;
+    margin-top: 10px;
+}
+.hotel-name {
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+    background: none;
+}
+#allmap {
+    width: 100%;
+    height: calc(100% - 50px)
+}
 /**
  * Submenu
  -----------------------------*/
