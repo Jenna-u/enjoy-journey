@@ -2,25 +2,61 @@
 if(window.urlParams.id) {
   $.ajax({
     type: "GET",
-    url: window.api + "/ticket/ticketDetail?id=" + window.urlParams.id + '&memberId=' + (window.urlParams.memberId || ''),
+    url: window.api + "ticket/ticketDetail?id=" + window.urlParams.id + '&memberId=' + (window.urlParams.memberId || ''),
     success: function(res){
       if(res.code == 200) {
         var data = res.data;
-        var imgList = res.data.img.split(',');
-        var template = Handlebars.compile($('#h_sceic_details_wrap').html());
-        var templateBanner = Handlebars.compile($('#h_jd_banner').html());
+        data['cdn'] = window.cdn || '';
+        var template = Handlebars.compile($('#h_scenic_spot').html());
         var html = template(data);
-        var htmlBanner = templateBanner({ imgList: imgList, cdn: window.cdn || '' })
-        $('#sceic_details_wrap').html(html);
-        $('#jd_banner').html(htmlBanner);
-
-        $(function () {
-          $('.am-slider').flexslider({
-            controlNav: true, // Boolean: 是否创建控制点
-            directionNav: false, // Boolean: 是否创建上/下一个按钮（previous/next）
-            touch: true, // Boolean: 允许触摸屏触摸滑动滑块
-          });
+        $('#index').html(html);
+        $(function(){
+          $("#a").Spinner({value:868, min:10, len:3, max:1000});
+          $("#b").Spinner({value:99});
+          $("#c").Spinner({value:66});
+          $("#d").Spinner();
         });
+      }
+    }
+  });
+}
+
+/* 提交景点订单 */
+function submitOrder () {
+  if(!window.lxqc_user || !window.lxqc_user.id) {
+    location.href = "login.html?redirect=" + location.href;
+    return false;
+  } 
+  var ticketId = window.urlParams.id;
+  var memberId = window.lxqc_user.id;
+  var num = $('.Amount').val();
+  var name = $('#name').val();
+  var mobile = $('#mobile').val();
+  var data = '2017/11/24';
+  var readProtocol = $('#xy').prop('checked');
+  if (!mobile || !/^0?(1)[0-9]{10}$/.test(mobile)) {
+    alert('亲，手机号码格式错误！')
+    return false
+  }
+  var data= {
+    ticketId: ticketId,
+    memberId: memberId,
+    num: num,
+    name: name,
+    mobile: mobile,
+    data: data
+  };
+  $.ajax({
+    url: window.api + "ticket/addOrder",
+    type: 'POST',
+    dataType: 'json',
+    data: data,
+    success: function (res) {
+      console.log(res,'ress')
+      if(res.code == 200) {
+        
+      } else {
+        alert(res.msg)
       }
     }
   });
