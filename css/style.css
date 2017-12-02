@@ -1019,6 +1019,18 @@ em{font-style:normal;}
 .plnr{width:100%; line-height:20px; padding:5px; font-size:14px; resize:none; height:150px; margin-top:10px; border:0;}
 .addPic{margin-top:10px; overflow:hidden; border-top:1px solid #e6e6e6; padding-top:10px;}
 .addPic span{width:60px; height:60px; float:left; margin-right:10px;}
+#img_input {
+    display: none;
+}
+.addPic .img_preview {
+    display: inline-block;
+    width: inherit;
+    margin: 0;
+}
+.img_preview > img {
+    max-width: 60px;
+    margin-right: 10px;
+}
 /*-------------------------登录--------------------------*/
 .index_head.dpxqHead .phone{color:#fff;}
 #index.loginBg{background:url(../img/bgImg02.jpg) no-repeat; background-size:100% 100%;}

@@ -5,6 +5,10 @@ $.ajax(`${api}travelsAPI/travelDetailForMobile?id=${id}`)
   var data = res.data
   data.cover = cdn + data.cover
   data.imagesThum = cdn + data.imagesThum
+  data.time = getDateTime(data.starttime)
+  data.images = data.images.split(',').map(function(i){
+    return cdn + i
+  })
 
   var source = $("#xiangq").html();
   var template = Handlebars.compile(source);

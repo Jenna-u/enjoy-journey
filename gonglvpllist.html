@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="css/amazeui.css">
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/amazeui.js"></script>
+  <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -20,9 +21,7 @@
     <!-----------首页头部----------->
     <div class="index_head searchHead">
       <div class="logo backBnt">
-        <a href="gonglvxq.html">
-          <img src="img/icon07.png">
-        </a>
+         <img src="img/icon07.png">
       </div>
       <!----------------搜索------------------>
       <div class="search searchB">
@@ -30,78 +29,37 @@
       </div>
     </div>
     <div class="glplList">
-      <ul>
-        <li>
-          <div class="glfbr">
-            <div class="glfbrL">
+      <ul class="comment-container">
+        <script id="comment-list" type="text/x-handlebars-template">
+          {{#each this}}
+          <li>
+            <div class="glfbr">
+              <div class="glfbrL">
+                <span>
+                  <img src="img/img03.jpg">
+                </span>
+                <p>8083165226</p>
+              </div>
+              <i>
+                <img src="img/icon14-12.png">
+              </i>
+            </div>
+            <div class="gljj">{{textcontent}}</div>
+            <div class="plPic">
               <span>
                 <img src="img/img03.jpg">
               </span>
-              <p>8083165226</p>
-            </div>
-            <i>
-              <img src="img/icon14-12.png">
-            </i>
-          </div>
-          <div class="gljj">看游记就像自己亲身走了一遭，真想来一次，说走就走的旅行！游遍全世界！！</div>
-          <div class="plPic">
-            <span>
-              <img src="img/img03.jpg">
-            </span>
-            <span>
-              <img src="img/img03.jpg">
-            </span>
-            <span>
-              <img src="img/img03.jpg">
-            </span>
-          </div>
-          <div class="glTime"> 2016-07-22 09:51:47</div>
-        </li>
-        <li>
-          <div class="glfbr">
-            <div class="glfbrL">
               <span>
                 <img src="img/img03.jpg">
               </span>
-              <p>8083165226</p>
-            </div>
-            <i>
-              <img src="img/icon14-12.png">
-            </i>
-          </div>
-          <div class="gljj">看游记就像自己亲身走了一遭，真想来一次，说走就走的旅行！游遍全世界！！</div>
-          <div class="glTime"> 2016-07-22 09:51:47</div>
-        </li>
-        <li>
-          <div class="glfbr">
-            <div class="glfbrL">
               <span>
                 <img src="img/img03.jpg">
               </span>
-              <p>8083165226</p>
             </div>
-            <i>
-              <img src="img/icon14-12.png">
-            </i>
-          </div>
-          <div class="gljj">看游记就像自己亲身走了一遭，真想来一次，说走就走的旅行！游遍全世界！！</div>
-          <div class="glTime"> 2016-07-22 09:51:47</div>
-        </li>
-        <li>
-          <div class="glfbr">
-            <div class="glfbrL">
-              <span>
-                <img src="img/img03.jpg">
-              </span>
-              <p>8083165226</p>
-            </div>
-            <i>
-              <img src="img/icon14-12.png">
-            </i>
-          </div>
-          <div class="gljj">看游记就像自己亲身走了一遭，真想来一次，说走就走的旅行！游遍全世界！！</div>
-          <div class="glTime"> 2016-07-22 09:51:47</div>
-        </li>
+            <div class="glTime"> {{creatime}}</div>
+          </li>
+          {{/each}}
+        </script>
       </ul>
     </div>
     <div class="pltx">
@@ -116,5 +74,6 @@
     </div>
   </div>
 </body>
-
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/tourism_strategy/comment.js"></script>
 </html>

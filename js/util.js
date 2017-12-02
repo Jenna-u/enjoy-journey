@@ -16,6 +16,13 @@ function getTime(time) {
   return `${myDate.getMonth() + 1}-${myDate.getDay()} ${myDate.getHours()}:${myDate.getMinutes()}`
 }
 
+// 拿到YY-MM-DD hh：mm：ss
+function getFullTime(time) {
+  var myDate = new Date(time)
+  return `${creatime.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDay()} ${myDate.getHours()}:${myDate.getMinutes()}:${myDate.getSeconds()}`
+}
+
+
 // 根据1，2，3 转化为相应一二三
 var chnNumChar = {
   1: '一',

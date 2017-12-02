@@ -21,7 +21,7 @@
     <script id="xiangq" type="text/x-handlebars-template">
     <div class="index_head dpxqHead">
 		<div class="logo backBnt">
-			<a href="lvyouglList.html"><img src="img/icon07.png"></a>
+            <img src="img/icon07.png">
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchC"> 
@@ -37,8 +37,8 @@
     <div class="yjbigPic"><img src="{{cover}}"></div>
     <div class="gljbxx">
     	<div class="yjzz">
-        	<span><img src="{{imagesThum}}"></span>
-            <p>{{destination}}</p>
+            <span><img src="{{memberImg}}"></span>
+            <p>{{memberName}}</p>
         </div>
         <div class="sjdz">
         	<span class="timeLeft"><img src="img/icon14-5.png"> {{time}}</span>
@@ -46,24 +46,11 @@
         </div>
     </div>
     <div class="yjjk">
-    	<div class="iddz">ID:{{id}}</div>
-        <span class="picLineA"><img src="{{image}}"></span>
-    	<h3 class="nrT">一、谈谈此次体验之行：</h3>
-        <p class="nrC">
-        	作为东方威尼斯之城的苏州，大家肯定是早就有所耳闻了。关于苏州的介绍如此再详细的进行介绍的话，那就是很累赘了。如果再要详细的介绍就是废话连篇了，所以我就不多说了。
-周末直接到苏州游玩，来一次以体验高档酒店夜游山塘古街的休闲周末游。<br>
-倘若你在苏州不远的周边的上海或者无锡，周末来这里休闲、放松是非常不错的哦。<br>
-在炎热的白天在酒店里游泳池里游泳、去健身房健身、到酒吧泡吧、或者是特色餐厅慢慢休闲一番。夜晚，苏州的也是非常的魅力，夜色下凉爽的微风习习而过，逛荡在山塘古街是多么休闲的夜生活呀！其实这样放松式的周末游是在是好的不能再继续好啦，已经爽到极点啦！
-        </p>
-        <h3 class="nrT">二、行程花费：</h3>
-        <p class="nrC">
-        	整个周末休闲游的开销还是挺大的，但是游玩的很舒服的，这一点是非常值得肯定的哦。<br>
-另外，如果是周末游的话，建议一家子来玩，这样更省钱呢。
-        </p>
-        <h3 class="nrT">[ 使用时间 ]</h3>
-        <p class="nrC">
-        	开放时间： 07：30  - 18：30
-        </p>
+        <div class="iddz">ID:{{id}}</div>
+        {{#each images}}
+        <span class="picLineA"><img src="{{this}}"></span>
+        {{/each}}
+    	{{{textcontent}}}
     </div>
     <div class="glcz">
     	<ul class="am-avg-sm-3 glLine">
@@ -73,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a title="" href="gonglvpllist.html">
+                <a title="" href="gonglvpllist.html?id={{id}}">
                     <img alt="" src="img/icon14-8.png"/> 评论
                 </a>
             </li>
