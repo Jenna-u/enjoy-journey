@@ -19,7 +19,7 @@ function getTime(time) {
 // 拿到YY-MM-DD hh：mm：ss
 function getFullTime(time) {
   var myDate = new Date(time)
-  return `${creatime.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDay()} ${myDate.getHours()}:${myDate.getMinutes()}:${myDate.getSeconds()}`
+  return `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDay()} ${myDate.toString().split(" ")[4]}`
 }
 
 
