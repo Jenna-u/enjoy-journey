@@ -1,5 +1,5 @@
 var urlParams = getParam();
-$.ajax(`${api}hotelAPI/getHotelByhotelID?hotelID=${urlParams.id}&startTime=${urlParams.startTime}&endTime=${urlParams.endTime}`)
+$.ajax(`${api}hotelAPI/getHotelByhotelID?hotelID=${urlParams.id}&startTime=${urlParams.startTime || ''}&endTime=${urlParams.endTime || ''}`)
 .done(function(res) {
   if (res.ok !== 1) return;
   var data = res.data.list

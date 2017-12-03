@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>乐享其程</title>
+	<!--库-->
+    <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
+    <script type="text/javascript" src="js/amazeui.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="index">
+    <script id="h_my" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
+    <div class="index_head dpxqHead">
+		<div class="logo backBnt">
+			<a href="#"><img src="img/icon07.png"></a>
+		</div>
+        
+        <a class="phone" href="#"> <img src="img/icon16.png"> </a>
+    </div>
+    <div class="uesrR">
+    	
+        <div class="yhmPic"><span><img src="{{cdn}}{{photo}}"></span><p>{{name}}</p></div>
+    </div>
+    <div class="user_nav">
+        <ul class="list_nav">
+    
+                <li>
+                    <a title="" href="myOrder.html">
+                        <img src="img/icon16-1.png">我的订单
+                        <i><img src="img/icon16-6.png"></i>
+                    </a>
+                </li>
+                <li>
+                    <a title="" href="myTkgl.html">
+                        <img src="img/icon16-2.png">退款管理
+                        <i><img src="img/icon16-6.png"></i>
+                    </a>
+                </li>
+            </ul>
+     </div>
+     <div class="user_nav">
+        <ul class="list_nav">
+                <li>
+                    <a title="" href="myYjgl.html">
+                        <img src="img/icon16-3.png">游记管理
+                        <i><img src="img/icon16-6.png"></i>
+                    </a>
+                </li>
+                <li>
+                    <a title="" href="myPl.html">
+                        <img src="img/icon16-4.png">我的评论
+                        <i><img src="img/icon16-6.png"></i>
+                    </a>
+                </li>
+                <li>
+                    <a title="" href="mySc.html">
+                        <img src="img/icon16-5.png">我的收藏
+                        <i><img src="img/icon16-6.png"></i>
+                    </a>
+                </li>
+            </ul>
+     </div>
+    </script>
+</div>
+<script type="text/javascript" src="js/util.js"></script>
+<script>
+    if (!window.lxqc_user || !window.lxqc_user.id) {
+        alert('请先登录')
+        location.href = "login.html?redirect=myCenter.html";
+    }
+    var template = Handlebars.compile($('#h_my').html());
+    var html = template({
+        cdn: window.cdn || '',
+        name: window.lxqc_user && window.lxqc_user.name || '',
+        photo: window.lxqc_user && window.lxqc_user.photo || '',
+    });
+    $('#index').html(html);
+</script>
+</body>
+</html>

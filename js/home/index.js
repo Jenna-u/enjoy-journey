@@ -48,3 +48,5 @@ function getTours (type, className) {
 }
 
 getTours('-1', 'tab1');
+
+$('.search a').attr('href', window.urlParams.origin || 'jnyxl.html?origin=北京');

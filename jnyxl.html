@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="telephone=no" name="format-detection">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>乐享其程</title>
+<!--库-->
+<link rel="stylesheet" type="text/css" href="css/amazeui.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
+<script type="text/javascript" src="js/amazeui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="index"> 
+	<script id="h_line" type="text/x-handlebars-template">
+  <!-- ---------首页头部--------- -->
+  <div class="index_head searchHead">
+    <div class="logo backBnt"> <a href="index.html"><img src="img/icon07.png"></a> </div>
+    <!----------------搜索------------------>
+    <div class="search searchB"> 旅游线路 </div>
+    </div>
+    <div class="xlbt">热门目的地</div>
+    <div class="rmxlList">
+    	<span><a href="xianluList.html?origin={{origin}}&destination=香港"><em class="topOne">1</em>香港</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=澳门"><em>2</em>澳门</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=天津"><em>3</em>天津</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=杭州">杭州</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=衡水">衡水</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=清远">清远</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=广州">广州</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=上海">上海</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=北京">北京</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=西安">西安</a></span>
+        <span><a href="xianluList.html?origin={{origin}}&destination=苏州">苏州</a></span>
+        <span><a href="xianluList.html?origin={{origin}}">更多 <em class="moreIcon"></em></a></span>
+    </div>
+  <div id="trip_list">
+    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+      <ul>
+				{{#each list}}
+				<li class="view">
+					<div class="pic">
+						<a href="xianluxq.html?id={{id}}&redirect=jnyxl.html"><img src="{{../cdn}}{{cover}}"></a>
+						<div class="cont">
+							<a title="" class="button">￥ <em>{{price}}</em> 起</a>
+							<span class="cfd">
+																	<i></i> 跟团游 | {{origin}}出发
+																</span>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="con">
+						<span> <a href="xianluxq.html?id={{id}}&redirect=jnyxl.html">< {{name}} > </a></span>
+						<p><em>
+							{{#compare type 2}}
+								周边游
+							{{else}}
+								{{#compare type 3}}
+								国内游
+								{{else}}
+								出境游
+								{{/compare}}
+							{{/compare}}
+							</em>{{title}}</p>
+					</div>
+				</li>
+				{{/each}}
+			</ul>
+    </div>
+	</div>
+	</script>
+</div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/handlebars-helps.js"></script>
+<script>
+/* 线路搜索1 */
+  $.ajax({
+    type: "GET",
+    url: window.api + "/toursAPI/getToursList?origin=" + window.urlParams.origin || '北京',
+    success: function(res){
+      if(res.code == 200) {
+        var list = res.data.list;
+        var template = Handlebars.compile($('#h_line').html());
+        var html = template({
+					origin: window.urlParams.origin || '北京',
+					cdn: window.cdn || '',
+					list: list,
+				});
+        $('#index').html(html);
+      }
+    }
+  });
+</script>
+</body>
+</html>
