@@ -6,20 +6,30 @@ window.cdn = 'http://pic.lxqcheng.com/';
 // 拿到当前YY-MM-DD
 function getDateTime (time) {
   var creatime = new Date(time)
-  return `${creatime.getFullYear()}-${creatime.getMonth() + 1}-${creatime.getDay()}`
+  return `${creatime.getFullYear()}-${getMonth(creatime)}-${getDate(creatime)}`
+}
+
+function getMonth(creatime) {
+  var month = creatime.getMonth() + 1
+  return month >= 10 ? month : `0${month}`
+}
+
+function getDate(creatime) {
+  var day = creatime.getDate()
+  return day >= 10 ? day : `0${day}`
 }
 
 // 拿到新闻需要的时间 MM-DD hh:mm
 
 function getTime(time) {
   var myDate = new Date(time)
-  return `${myDate.getMonth() + 1}-${myDate.getDay()} ${myDate.getHours()}:${myDate.getMinutes()}`
+  return `${getMonth(myDate)}-${getDate(myDate)} ${myDate.toString().split(" ")[4].split(':').slice(0,2).join(':')}`
 }
 
 // 拿到YY-MM-DD hh：mm：ss
 function getFullTime(time) {
   var myDate = new Date(time)
-  return `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDay()} ${myDate.toString().split(" ")[4]}`
+  return `${myDate.getFullYear()}-${getMonth(myDate)}-${getDate(myDate)} ${myDate.toString().split(" ")[4]}`
 }
 
 
