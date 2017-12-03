@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>乐享其程</title>
+	<!--库-->
+    <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
+    <script type="text/javascript" src="js/amazeui.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="index">
+    <script id="h_my" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
+    <div class="index_head searchHead">
+		<div class="logo backBnt">
+			<a href="myCenter.html"><img src="img/icon07.png"></a>
+		</div>
+		<!----------------搜索------------------>
+		<div class="search searchB"> 
+        	我的订单
+		</div>
+        <a class="phone" href="#"> <img src="img/icon16.png"> </a>
+    </div>
+    <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
+		<div class="am-tabs" data-am-tabs>
+			<ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-4">
+				<li class="am-active"><a href="#tab1">全部</a></li>
+				<li><a href="#tab2">待付款</a></li>
+                <li><a href="#tab3">待出行</a></li>
+                <li><a href="#tab4">待评价</a></li>
+			</ul>
+
+			<div class="am-tabs-bd">
+				<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+					<div class="ssLine mt0">
+                        <ul>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="myMengpiaopj.html">评价</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">酒店</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="myJiudianpj.html">评价</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">景点</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="myXianlupj.html">评价</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+				<div class="am-tab-panel am-fade" id="tab2">
+					<div class="ssLine mt0">
+                        <ul>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">评价</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+                <div class="am-tab-panel am-fade" id="tab3">
+					<div class="ssLine mt0">
+                        <ul>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">评价</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+                <div class="am-tab-panel am-fade" id="tab4">
+					<div class="ssLine mt0">
+                        <ul>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">评价</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="picLeft">
+                                    <a href="#">
+                                    <span class="picLine"><img src="img/img09.jpg"></span>
+                                    <em>北京出发</em>
+                                    </a>
+                                </div>
+                                <div class="txtRight">
+                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <p class="tipLine mpTip">门票</p>
+                                    <span class="timeLineB">出行日期：2016-7-12</span>
+                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即付款</a></p></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+    </script>
+</div>
+<script type="text/javascript" src="js/util.js"></script>
+<script>
+    if (!window.lxqc_user || !window.lxqc_user.id) {
+        alert('请先登录')
+        location.href = "login.html?redirect=myOrder.html";
+    }
+    $.ajax({
+        type: "GET",
+        url: window.api + "/toursAPI/getToursList?origin=" + (window.urlParams.origin || '北京') + "&destination=" + (window.urlParams.destination || '') + "&theme=" + (window.urlParams.theme || ''),
+        success: function(res){
+            if(res.code == 200) {
+            }
+        }
+    });
+</script>
+</body>
+</html>

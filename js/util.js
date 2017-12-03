@@ -32,6 +32,30 @@ var chnNumChar = {
   5: '五',
 };
 
+// 收藏的方法
+function  collect(type, itemId, flag) {
+  if (window.lxqc_user && window.lxqc_user.id) {
+    var data = {
+      memberId: window.lxqc_user.id,
+      itemType: type,
+      itemId: itemId,
+      flag: flag == '1' ? '-1' : '1'
+    }
+    $.ajax({
+      url: window.api + "/pub/modifyCollect",
+      type: "POST",
+      dataType: 'json',
+      data: data,
+      success: function(res){
+        if(res.code == 200) {
+        }
+      }
+    });
+  } else {
+    alert('请先登录')
+  }
+}
+
 // 给回退按钮加链接
 function fallback () {
   $('#fallback').attr('href', window.urlParams.redirect || 'index.html');

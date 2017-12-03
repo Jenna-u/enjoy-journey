@@ -9,17 +9,19 @@
 	<title>乐享其程</title>
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+	<script id="h_line" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="jnyxl.html"><img src="img/icon07.png"></a>
+			<a href="jnyxl.html?origin={{origin}}"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
@@ -31,27 +33,30 @@
         	<div class="ssk">
             	<div id="optChange" class="option">
                 <select class="xlxla">
-                  <option>北京出发</option>
+                  <option>{{origin}}出发</option>
                 </select>
               </div>
-              <input type="text" placeholder="请输入线路关键词" class="defaultKey" id="defaultKey" name="defaultKey" >
-              <input id="s_button" class="sBtn" type="submit" value="搜 索">
+              <input type="text" placeholder="请输入线路关键词" class="defaultKey" id="defaultKey" name="defaultKey" value="{{destination}}" >
+              <input onclick="search()" id="s_button" class="sBtn" type="submit" value="搜 索">
             </div>
         </div>
     	<div class="find_nav">
     <div class="find_nav_left">
         <div class="find_nav_list" id="pagenavi1">
             <ul>
-                <li><a href="#" class="active">全部</a></li>
-                <li><a href="#">当地游</a></li>
-                <li><a href="#">自由行</a></li>
-                <li><a href="#">跟团游</a></li>
-                <li><a href="#">租车</a></li>
-                <li><a href="#">优惠卡券</a></li>
-                <li><a href="#">阿迪达斯</a></li>
-                <li><a href="#">耐克</a></li>
-                <li><a href="#">范思哲</a></li>
-                <li><a href="#">古驰</a></li>
+                <li data-type=""><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=">全部</a></li>
+                <li data-type="古镇游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=古镇游">古镇游</a></li>
+                <li data-type="山水游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=山水游">山水游</a></li>
+                <li data-type="海岛游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=海岛游">海岛游</a></li>
+                <li data-type="乐园游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=乐园游">乐园游</a></li>
+                <li data-type="蜜月游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=蜜月游">蜜月游</a></li>
+                <li data-type="爸妈游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=爸妈游">爸妈游</a></li>
+                <li data-type="亲子游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=亲子游">亲子游</a></li>
+                <li data-type="温泉游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=温泉游">温泉游</a></li>
+				<li data-type="漂流游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=漂流游">漂流游</a></li>
+				<li data-type="出境游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=出境游">出境游</a></li>
+				<li data-type="国内游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=国内游">国内游</a></li>
+				<li data-type="周边游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=周边游">周边游</a></li>
                 <li class="sideline"></li>
             </ul>
 
@@ -59,90 +64,49 @@
     </div>
 </div>
     	<ul>
-        	<li>
-            	<div class="picLeft">
-                	<a href="xianluxq.html">
-                	<span class="picLine"><img src="img/img03.jpg"></span>
-                    <em>北京出发</em>
-                    <p>当地游</p>
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle"><a href="xianluxq.html">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
-                    <p class="tipLine">火车往返</p>
-                    <span class="timeLineB"><i></i>团期：07/10 07/11 07/04 07/05</span>
-                    <div class="othenLine"><p>8.2万人出游 96%满意</p> <span>￥ <em>23480</em> 起</span></div>
-                </div>
-            </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="xianluxq.html">
-                	<span class="picLine"><img src="img/img03.jpg"></span>
-                    <em>北京出发</em>
-                    <p>当地游</p>
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle"><a href="xianluxq.html">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
-                    <p class="tipLine">火车往返</p>
-                    <span class="timeLineB"><i></i>团期：07/10 07/11 07/04 07/05</span>
-                    <div class="othenLine"><p>8.2万人出游 96%满意</p> <span>￥ <em>23480</em> 起</span></div>
-                </div>
-            </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="xianluxq.html">
-                	<span class="picLine"><img src="img/img03.jpg"></span>
-                    <em>北京出发</em>
-                    <p>当地游</p>
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle"><a href="xianluxq.html">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
-                    <p class="tipLine">火车往返</p>
-                    <span class="timeLineB"><i></i>团期：07/10 07/11 07/04 07/05</span>
-                    <div class="othenLine"><p>8.2万人出游 96%满意</p> <span>￥ <em>23480</em> 起</span></div>
-                </div>
-            </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="xianluxq.html">
-                	<span class="picLine"><img src="img/img03.jpg"></span>
-                    <em>北京出发</em>
-                    <p>当地游</p>
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle"><a href="xianluxq.html">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
-                    <p class="tipLine">火车往返</p>
-                    <span class="timeLineB"><i></i>团期：07/10 07/11 07/04 07/05</span>
-                    <div class="othenLine"><p>8.2万人出游 96%满意</p> <span>￥ <em>23480</em> 起</span></div>
-                </div>
-            </li>
-            <li>
-            	<div class="picLeft">
-                	<a href="xianluxq.html">
-                	<span class="picLine"><img src="img/img03.jpg"></span>
-                    <em>北京出发</em>
-                    <p>当地游</p>
-                    </a>
-                </div>
-                <div class="txtRight">
-                	<h2 class="lineTitle"><a href="xianluxq.html">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
-                    <p class="tipLine">火车往返</p>
-                    <span class="timeLineB"><i></i>团期：07/10 07/11 07/04 07/05</span>
-                    <div class="othenLine"><p>8.2万人出游 96%满意</p> <span>￥ <em>23480</em> 起</span></div>
-                </div>
-            </li>
+			{{#each list}}
+			<li>
+				<div class="picLeft">
+					<a href="xianluxq.html">
+					<span class="picLine"><img src="{{../cdn}}{{cover}}"></span>
+					<em>{{origin}}出发</em>
+					<p>{{#compare type 2}}
+							周边游
+						{{else}}
+							{{#compare type 3}}
+							国内游
+							{{else}}
+							出境游
+							{{/compare}}
+						{{/compare}}</p>
+					</a>
+				</div>
+				<div class="txtRight">
+					<h2 class="lineTitle"><a href="xianluxq.html?id={{id}}&redirect=xianluList.html">{{name}}</a></h2>
+					<p class="tipLine">{{traffic}}</p>
+					<span class="timeLineB"><i></i>团期：{{schedule}}</span>
+					<div class="othenLine"><p>{{sellNum}}万人出游 {{score}}%满意</p> <span>￥ <em>{{price}}</em> 起</span></div>
+				</div>
+			</li>
+			{{/each}}
         </ul>
-    </div>
-    <script type="text/javascript" src="js/touchslider.js"></script>
-<script type="text/javascript">
-$(".find_nav_list").css("left",0);
+	</div>
+	</script>
+</div>
+<script type="text/javascript" src="js/touchslider.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/handlebars-helps.js"></script>
+<script>
+function initStyle () {
+	$(".find_nav_list").css("left",0);
 
 $(".find_nav_list li").each(function(){
 		$(".sideline").css({left:0});
-		$(".find_nav_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+		var type = $(this).attr('data-type');
+		if (type == window.urlParams.theme || '') {
+			$(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+		}
+		// $(".find_nav_list li").eq(0).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
 });
 var nav_w=$(".find_nav_list li").first().width();
 $(".sideline").width(nav_w);
@@ -192,7 +156,7 @@ $(".find_nav_list").on('touchmove', function (e) {
 });
 
 
-for(n=1;n<9;n++){
+for(n=1;n<2;n++){
 	var page='pagenavi'+n;
 	var mslide='slider'+n;
 	var mtitle='emtitle'+n;
@@ -238,7 +202,35 @@ for(n=1;n<9;n++){
 		})();
 	}
 }
+}
+// 搜索事件
+function search() {
+	var destination = $('#defaultKey').val();
+	location.href= "xianluList.html?origin=" + (window.urlParams.origin || '北京') + "&destination=" + destination;
+}
+/* 线路搜索1 */
+  $.ajax({
+    type: "GET",
+    url: window.api + "/toursAPI/getToursList?origin=" + (window.urlParams.origin || '北京') + "&destination=" + (window.urlParams.destination || '') + "&theme=" + (window.urlParams.theme || ''),
+    success: function(res){
+      if(res.code == 200) {
+		var list = res.data.list;
+		for(var i = 0; i < list.length; i++){
+			list[i]['score'] = list[i].score * 100;
+		}
+		var template = Handlebars.compile($('#h_line').html());
+		var html = template({
+			origin: window.urlParams.origin || '北京', 
+			destination: window.urlParams.destination || '',
+			cdn: window.cdn || '', 
+			theme: window.urlParams.theme || '',
+			list: list,
+		});
+		$('#index').html(html);
+		initStyle();
+      }
+    }
+  });
 </script>
-</div>
 </body>
 </html>
