@@ -20,7 +20,6 @@
 
 <body>
 <div id="index">
-    <script id="hotel-detail" type="text/x-handlebars-template">
 	<!-- ---------首页头部---------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
@@ -35,6 +34,8 @@
 		</a>
         
     </div>
+    <div id="detail-content">
+    <script id="hotel-detail" type="text/x-handlebars-template">
     <div class="jdtpLine">
     	<div class="jdLeft">
         	<h1 class="jdTitle">{{hotelName}}</h1>
@@ -193,6 +194,7 @@
         </div>
     </div>
     </script>
+</div>
 </div>
 <!--地图弹层-->
 <div class="mask">

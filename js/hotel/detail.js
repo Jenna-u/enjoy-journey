@@ -30,7 +30,7 @@ $.ajax(`${api}hotelAPI/getHotelByhotelID?hotelID=${urlParams.id}&startTime=${url
   var template = Handlebars.compile(source);
   var html = template(data);
 
-  $('#index').html(html)
+  $('#detail-content').html(html)
 
   // 获取酒店地理位置
   var map = new BMap.Map("allmap");
