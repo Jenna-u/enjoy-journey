@@ -26,10 +26,10 @@
 		<!----------------搜索------------------>
 		
         
-        <a href="jdPicList.html" class="iconA wzB">
+        <!-- <a href="jdPicList.html" class="iconA wzB">
 			<img src="img/icon08b1.png">
-		</a>
-        <a href="jdplList.html" class="iconA wzC">
+		</a> -->
+        <a href="" class="iconA wzC">
 			<img src="img/icon15.png">
 		</a>
     </div>
@@ -67,8 +67,10 @@
         <div class="cfDate">
         	<div class="cfdA">{{origin}}出发</div>
             <div class="cfDateLine">
-            	<span>发团日期：</span>
-                <p>{{schedule}}</p>
+                <span>发团日期：</span>
+                {{#each schedule}}
+                <p>{{this}}</p>
+                {{/each}}
                 <p class="moreDate" style="float: right;"> <a href="xianlucfrq.html?id={{id}}">></a> </p>
             </div>
         </div>
@@ -154,9 +156,16 @@
     <div id="book">
         <div>
             <div class="money czLine">
-                <span><img src="img/icon15-4.png"><p>在线客服</p></span>
+                <!-- <span><img src="img/icon15-4.png"><p>在线客服</p></span> -->
                 <span><img src="img/icon15-5.png"><p>电话客服</p></span>
-                <span onclick="collect(1, '{{id}}', '{{collected}}')"><img src="img/icon15-6.png"><p>收藏</p></span>
+                <span onclick="collect(1, '{{id}}', '{{collected}}')">
+                    {{#compare collected 1}}
+                    <img src="img/starsy.png">
+                    {{else}}
+                    <img src="img/icon15-6.png">
+                    {{/compare}}
+                    <p>收藏</p>
+                </span>
             </div>
             <div class="cur ljdgBnt">
                 <a href="xianlucfrq.html?id={{id}}">立即订购</a>
@@ -173,7 +182,7 @@
 if(window.urlParams.id) {
   $.ajax({
     type: "GET",
-    url: window.api + "/toursAPI/toursDetail?id=" + window.urlParams.id,
+    url: window.api + "toursAPI/toursDetail?id=" + window.urlParams.id + '&memberid=' + (window.lxqc_user && window.lxqc_user.id || ''),
     success: function(res){
       if(res.code == 200) {
         var data = res.data;
@@ -183,6 +192,9 @@ if(window.urlParams.id) {
         data['hotelScore'] = data.hotelScore * 100 + '%';
         data['tourScore'] = data.tourScore * 100 + '%';
         data['trafficScore'] = data.trafficScore * 100 + '%';
+        console.log(data.schedule,data.schedule && data.schedule.split(''))
+        data['schedule'] = data.schedule && data.schedule.split(' ') || [];
+        console.log(data.schedule,2222)
         data['redirect'] = window.urlParams.redirect || 'index.html';
         var template = Handlebars.compile($('#h_line').html());
         var html = template(data);

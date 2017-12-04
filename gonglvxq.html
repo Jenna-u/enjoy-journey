@@ -27,12 +27,12 @@
 		<div class="search searchC"> 
         	精彩游记
 		</div>
-        <a href="#" class="iconA wzB">
+        <!-- <a href="#" class="iconA wzB">
 			<img src="img/icon14-10.png">
-		</a>
-        <a href="#" class="iconA wzC">
+		</a> -->
+        <!-- <a href="#" class="iconA wzC">
 			<img src="img/icon14-11.png">
-		</a>
+		</a> -->
     </div>
     <div class="yjbigPic"><img src="{{cover}}"></div>
     <div class="gljbxx">
@@ -55,8 +55,13 @@
     <div class="glcz">
     	<ul class="am-avg-sm-3 glLine">
             <li class="active">
-                <a title=""  href="#">
-                    <img src="img/icon14-7.png"/> 点赞
+                <a onclick="collect(3,'{{id}}', '{{iscollect}}')">
+                    {{#compare collected 1}}
+                    <img src="img/starsy.png">
+                    {{else}}
+                    <img src="img/icon15-6.png">
+                    {{/compare}}
+                    收藏
                 </a>
             </li>
             <li>
@@ -75,5 +80,6 @@
 </div>
 </body>
 <script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/handlebars-helps.js"></script>
 <script type="text/javascript" src="js/tourism_strategy/detail.js"></script>
 </html>

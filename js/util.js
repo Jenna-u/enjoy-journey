@@ -31,6 +31,11 @@ function getFullTime(time) {
   var myDate = new Date(time)
   return `${myDate.getFullYear()}-${getMonth(myDate)}-${getDate(myDate)} ${myDate.toString().split(" ")[4]}`
 }
+// YY-MM-DD
+function getFullDay(time) {
+  var myDate = new Date(time)
+  return `${myDate.getFullYear()}-${getMonth(myDate)}-${getDate(myDate)}`
+}
 
 
 // 根据1，2，3 转化为相应一二三
@@ -58,6 +63,7 @@ function  collect(type, itemId, flag) {
       data: data,
       success: function(res){
         if(res.code == 200) {
+          location.reload();
         }
       }
     });

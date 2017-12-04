@@ -32,7 +32,8 @@ function submitOrder () {
   var num = $('.Amount').val();
   var name = $('#name').val();
   var mobile = $('#mobile').val();
-  var data = '2017/11/24';
+  var date = new Date('2017/11/24');
+  date = Date.parse(date);
   var readProtocol = $('#xy').prop('checked');
   if (!mobile || !/^0?(1)[0-9]{10}$/.test(mobile)) {
     alert('亲，手机号码格式错误！')
@@ -44,7 +45,7 @@ function submitOrder () {
     num: num,
     name: name,
     mobile: mobile,
-    data: data
+    date: date
   };
   $.ajax({
     url: window.api + "ticket/addOrder",
@@ -52,9 +53,12 @@ function submitOrder () {
     dataType: 'json',
     data: data,
     success: function (res) {
-      console.log(res,'ress')
       if(res.code == 200) {
-        
+        var WIDout_trade_no = res.data.WIDout_trade_no;
+        var WIDsubject = res.data.WIDsubject;
+        var WIDtotal_fee = res.data.WIDtotal_fee;
+        var redirect_url = encodeURIComponent(window.api + "enjoy-journey/myOrder.html");
+        location.href = window.api + "alipay/alipayapi?WIDout_trade_no=" + WIDout_trade_no + "&WIDsubject="+ WIDsubject +"&WIDtotal_fee=" + WIDtotal_fee + "&redirect_url=" + redirect_url;
       } else {
         alert(res.msg)
       }

@@ -10,6 +10,6 @@ $.ajax(`${api}travelsAPI/getTravelsListBytravelsID?travelsId=${id}`)
 
   var source = $("#comment-list").html();
   var template = Handlebars.compile(source);
-  var html = template(list);
-  $('.comment-container').html(html)
+  var html = template({list: list, id: window.urlParams.id, cdn: window.cdn});
+  $('#index').html(html)
 })

@@ -58,10 +58,13 @@
 if(window.urlParams.id) {
     $.ajax({
         type: "GET",
-        url: window.api + "toursAPI/getToursDateStockList?tourid=" + window.urlParams.id + '&dateMonth=201608',
+        url: window.api + "toursAPI/getToursDateStockList?tourid=" + window.urlParams.id + '&dateMonth=201711',
         success: function(res){
             if(res.code == 200) {
-                
+                var list = res.data.list;
+                var template = Handlebars.compile($('#h_line').html());
+                var html = template({list: list});
+                $('#index').html(html);
             }
         }
     });

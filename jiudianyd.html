@@ -17,7 +17,7 @@
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
 			<img src="img/icon07.png">
@@ -167,12 +167,17 @@
     })
 
     $('.tijiao').click(function() {
+        if (!window.lxqc_user && !window.lxqc_user.id) {
+            alert('请先登录')
+            return false
+        }
         var postData = {
             startTime: startTime,
             endTime: endTime,
             hotelID: hotelId,
             hotelHouseTypeID: typeId,
             num: $('.number').html(),
+            memberID: window.lxqc_user.id
         }
         var phone = $('.phonesrk').val()
         if (phone) {
@@ -183,6 +188,15 @@
             method: 'POST',
             url: `${api}hotelAPI/addHotelOrder`,
             data: postData
+        }).done(function (res) {
+            if(res.code == 200) {
+                var WIDout_trade_no = res.data.WIDout_trade_no;
+                var WIDsubject = res.data.WIDsubject;
+                var WIDtotal_fee = res.data.WIDtotal_fee;
+                location.href = window.api + "alipay/alipayapi?WIDout_trade_no=" + WIDout_trade_no + "&WIDsubject="+ WIDsubject +"&WIDtotal_fee=" + WIDtotal_fee;
+            } else {
+                alert(res.msg)
+            }
         })
 
     })

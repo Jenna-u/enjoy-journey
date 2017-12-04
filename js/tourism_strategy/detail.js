@@ -1,5 +1,6 @@
 var id = window.urlParams.id
-$.ajax(`${api}travelsAPI/travelDetailForMobile?id=${id}`)
+var memberid = window.lxqc_user && window.lxqc_user.id || '';
+$.ajax(`${api}travelsAPI/travelDetailForMobile?id=${id}&memberid=${memberid}`)
 .then(function(res) {
   if (res.ok !== 1) return;
   var data = res.data
@@ -9,7 +10,7 @@ $.ajax(`${api}travelsAPI/travelDetailForMobile?id=${id}`)
   data.images = data.images.split(',').map(function(i){
     return cdn + i
   })
-
+  data['browsingnumber'] = data.browsingnumber || 0;
   var source = $("#xiangq").html();
   var template = Handlebars.compile(source);
   var html = template(data);

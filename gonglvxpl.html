@@ -9,14 +9,14 @@
 	<title>乐享其程</title>
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
 			<a href="gonglvpllist.html"><img src="img/icon07.png"></a>
@@ -25,61 +25,87 @@
 		<div class="search searchB"> 
         	发帖子
 		</div>
-        <a class="phone">
+        <a class="phone" onclick="submitPl()">
 			发布
 		</a>
     </div>
     <div class="fbCon">
-    	<input type="text" class="plbt" placeholder="帖子标题">
-        <textarea name="" cols="" rows="" class="plnr" placeholder="分享新鲜事 ... ..."></textarea>
-        <div class="addPic">
+    	<!-- <input id="title" type="text" class="plbt" placeholder="帖子标题"> -->
+        <textarea id="content" name="" cols="" rows="" class="plnr" placeholder="分享新鲜事 ... ..."></textarea>
+        <!-- <div class="addPic">
 			<span class="img_preview"></span>
 			<input type="file" accept="image/*" id="img_input" />
 			<label for="img_input" id="img_label">
 				<span><img src="img/addPic.jpg"></span>
 			</label>
-        </div>
-    </div>
+        </div> -->
+	</div>
 </div>
 </body>
+<script type="text/javascript" src="js/util.js"></script>
 <script  type="text/javascript">
-	$("#img_input").on("change", function(e) {
-  		var file = e.target.files[0]; //获取图片资源
-
-		// 只选择图片文件
-		if (!file.type.match('image.*')) {
-			return false;
+	$('.backBnt a').attr('href', 'gonglvpllist.html?id=' + window.urlParams.id);
+	function submitPl () {
+		var content = $('#content').val();
+		var memberid = window.lxqc_user.id;
+		var travelsId = window.urlParams.id;
+		var data = {
+			content: content,
+			memberid: memberid,
+			travelsId: travelsId
 		}
+		$.ajax({
+			url: window.api + "memberAPI/addTravelsComment",
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			success: function (res) {
+				if(res.code == 200) {
+					location.href = "gonglvpllist.html?id=" + window.urlParams.id;
+				} else {
+					alert(res.msg)
+				}
+			}
+		});
+	}
+	// $("#img_input").on("change", function(e) {
+  	// 	var file = e.target.files[0]; //获取图片资源
 
-		var reader = new FileReader();
+	// 	// 只选择图片文件
+	// 	if (!file.type.match('image.*')) {
+	// 		return false;
+	// 	}
 
-		reader.readAsDataURL(file); // 读取文件
+	// 	var reader = new FileReader();
 
-		// 渲染文件
-		reader.onload = function(arg) {
-			var img = '<img class="preview" src="' + arg.target.result + '" alt="preview"/>';
-			$(".img_preview").append(img);
-		}
-	});
-	// 图片上传服务器
-	var form_data = new FormData();
-	var file_data = $("#img_input").prop("files")[0];
+	// 	reader.readAsDataURL(file); // 读取文件
 
-	// 把上传的数据放入form_data
-	form_data.append("img", file_data);
+	// 	// 渲染文件
+	// 	reader.onload = function(arg) {
+	// 		var img = '<img class="preview" src="' + arg.target.result + '" alt="preview"/>';
+	// 		$(".img_preview").append(img);
+	// 	}
+	// });
+	// // 图片上传服务器
+	// var form_data = new FormData();
+	// var file_data = $("#img_input").prop("files")[0];
 
-	$.ajax({
-		type: "POST", // 上传文件要用POST
-		url: "",
-		dataType : "json",
-		crossDomain: true, // 如果用到跨域，需要后台开启CORS
-		processData: false,  // 注意：不要 process data
-		contentType: false,  // 注意：不设置 contentType
-		data: form_data
-	}).success(function(msg) {
-		console.log(msg);
-	}).fail(function(msg) {
-		console.log(msg);
-	});
+	// // 把上传的数据放入form_data
+	// form_data.append("img", file_data);
+
+	// $.ajax({
+	// 	type: "POST", // 上传文件要用POST
+	// 	url: "",
+	// 	dataType : "json",
+	// 	crossDomain: true, // 如果用到跨域，需要后台开启CORS
+	// 	processData: false,  // 注意：不要 process data
+	// 	contentType: false,  // 注意：不设置 contentType
+	// 	data: form_data
+	// }).success(function(msg) {
+	// 	console.log(msg);
+	// }).fail(function(msg) {
+	// 	console.log(msg);
+	// });
+	// 发布评论
 </script>
 </html>

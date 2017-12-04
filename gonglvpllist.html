@@ -18,10 +18,11 @@
 
 <body>
   <div id="index">
-    <!-----------首页头部----------->
+    <script id="comment-list" type="text/x-handlebars-template">
+    <!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
       <div class="logo backBnt">
-         <img src="img/icon07.png">
+         <a href="gonglvxq.html?id={{id}}"><img src="img/icon07.png"></a>
       </div>
       <!----------------搜索------------------>
       <div class="search searchB">
@@ -30,41 +31,28 @@
     </div>
     <div class="glplList">
       <ul class="comment-container">
-        <script id="comment-list" type="text/x-handlebars-template">
-          {{#each this}}
+          {{#each list}}
           <li>
             <div class="glfbr">
               <div class="glfbrL">
                 <span>
-                  <img src="img/img03.jpg">
+                  <img src="{{../cdn}}{{photo}}">
                 </span>
-                <p>8083165226</p>
+                <p>{{name}}</p>
               </div>
               <i>
                 <img src="img/icon14-12.png">
               </i>
             </div>
             <div class="gljj">{{textcontent}}</div>
-            <div class="plPic">
-              <span>
-                <img src="img/img03.jpg">
-              </span>
-              <span>
-                <img src="img/img03.jpg">
-              </span>
-              <span>
-                <img src="img/img03.jpg">
-              </span>
-            </div>
             <div class="glTime"> {{creatime}}</div>
           </li>
           {{/each}}
-        </script>
       </ul>
     </div>
     <div class="pltx">
       <div class="txpl">
-        <a href="gonglvxpl.html">
+        <a href="gonglvxpl.html?id={{id}}">
           <i>
             <img src="img/icon14-13.png">
           </i>
@@ -72,6 +60,7 @@
         </a>
       </div>
     </div>
+  </script>
   </div>
 </body>
 <script type="text/javascript" src="js/util.js"></script>
