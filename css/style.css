@@ -1205,6 +1205,45 @@ appearance:none;
 .zjlx{border:0;}
 #book .cur.bcBnt{width:100%;}
 /*-------------------------出发日期--------------------------*/
+.date.hide {
+    display: none;
+}
+.date .data-header {
+    height: 50px;
+    line-height: 50px;
+    color: #b0aead;
+    background: #e9e5e3;
+}
+.date .data-header .data-title {
+    display: inline-block;
+}
+.date .data-header .data-right,
+.date .data-header .data-left {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b0aead;
+    border-radius: 100%;
+    line-height: 16px;
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 12px;
+}
+.date .data-header .data-left {
+    float: left;
+    margin-left: 12px;
+}
+.date .data-header .data-left.disable {
+    color: #ccc;
+}
+.date .data-header .data-right {
+    float: right;
+    margin-right: 12px;
+}
+.date .day li.active {
+    color: #fff;
+    background: #ff7700;
+    border-radius: 50%;
+}
 .cfrq{margin-top:50px; background:#fff; padding:10px;}
 .calendar {
   width: 100%;

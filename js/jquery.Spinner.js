@@ -28,6 +28,10 @@
 				bv>=options.min&&bv<=options.max&&b.val(bv);
 				if(bv<=options.min){b.val(options.min);f(a,2,"DisDe","Decrease");}else{f(a,2,"Decrease","DisDe");}
 				if(bv>=options.max){b.val(options.max);f(c,2,"DisIn","Increase");}else{f(c,2,"Increase","DisIn");}
+				// 完成点击事件后需要执行的回调函数
+				if(options.cb) {
+					options.cb()
+				}
 			}
 			
 		});

@@ -40,8 +40,8 @@
             <li>
             	<div class="ddLeft">出游日期</div>
                 <div class="ddRight">
-                	<span>2016 - 07 - 14 		(今天)</span>
-                    <p><a href="#">修改  > </a></p>
+                	<span class="travel-date">{{date}}	(今天)</span>
+                    <p><a onClick="showDate()" href="javascript:void(0)">修改  > </a></p>
                 </div>
             </li>
             <li>
@@ -86,7 +86,7 @@
     <div id="book">
         <div >
             <div class="money">
-                <p>应付金额 <span>￥ {{rackRate}}</span></p>
+                <p>应付金额 ￥<span class="total-price"> {{rackRate}} </span></p>
             </div>
             <div class="cur">
                 <a onclick="submitOrder()">提交订单</a>
@@ -126,9 +126,25 @@
     </div>
     </script>
 </div>
+<div class="date hide">
+    <div class="data-header">
+        <span class="data-left"><</span>
+        <span class="data-right">></span>
+        <div class="data-title">
+            <span class="current-data-year">2017</span>
+            <span>-</span>
+            <span class="current-data-month">12</span>
+        </div>
+    </div>
+    <div class="action mt10">
+        
+    </div>
+    
+</div>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/jquery.Spinner.js"></script>
 <script type="text/javascript" src="js/scenic_spot/order.js"></script>
+<script  type="text/javascript" src="js/month.js"></script>
 <script type="text/javascript">
 function toshare(){
     $(".am-shareA").addClass("am-modal-active");	
