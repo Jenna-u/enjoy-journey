@@ -1205,6 +1205,9 @@ appearance:none;
 .zjlx{border:0;}
 #book .cur.bcBnt{width:100%;}
 /*-------------------------出发日期--------------------------*/
+.cfrq .date {
+    position: static;
+}
 .date.hide {
     display: none;
 }

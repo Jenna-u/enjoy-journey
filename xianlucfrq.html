@@ -10,14 +10,12 @@
 <!--库-->
 <link rel="stylesheet" type="text/css" href="css/amazeui.css">
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
 <script type="text/javascript" src="js/amazeui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index"> 
-  <script id="h_line" type="text/x-handlebars-template">
   <!-- ---------首页头部--------- -->
   <div class="index_head searchHead">
     <div class="logo backBnt"> <a href="index.html"><img src="img/icon07.png"></a> </div>
@@ -26,15 +24,28 @@
     <a class="phone" href="#"> <img src="img/icon14.png"> </a> 
  </div>
   <div class="cfrq">
-  	<div id="datepicker" class="calendar"></div>
+  	<div class="date">
+        <div class="data-header">
+                <span class="data-left"><</span>
+                <span class="data-right">></span>
+                <div class="data-title">
+                    <span class="current-data-year">2017</span>
+                    <span>-</span>
+                    <span class="current-data-month">12</span>
+                </div>
+            </div>
+            <div class="action mt10">
+                
+            </div>
+      </div>
   </div>
   <div class="rsl">
   	<div class="rslLine">
-    	<p>成人 <em class="orange">￥13333</em></p>
+    	<p>成人 <em class="man-price">￥13333</em></p>
         <div id="d" class="Spinner midL"></div>
     </div>
     <div class="rslLine">
-    	<p>儿童 <em class="orange">￥13333</em></p>
+    	<p>儿童 <em class="child-price">￥13333</em></p>
         <div id="d1" class="Spinner midL"></div>
     </div>
   </div>
@@ -49,57 +60,34 @@
             <div class="clear"></div>
         </div>
     </div>
-  </script>
 </div>
-<script src='js/jquery-ui.js'></script>
 <script type="text/javascript" src="js/util.js"></script>
-<script>
-    /* 旅游线路详情-日历库存 */
-if(window.urlParams.id) {
-    $.ajax({
-        type: "GET",
-        url: window.api + "toursAPI/getToursDateStockList?tourid=" + window.urlParams.id + '&dateMonth=201711',
-        success: function(res){
-            if(res.code == 200) {
-                var list = res.data.list;
-                var template = Handlebars.compile($('#h_line').html());
-                var html = template({list: list});
-                $('#index').html(html);
-            }
-        }
-    });
-}
-</script>
-<script>
-$(function() {
-  $( "#datepicker" ).datepicker({ firstDay: 1});
-});
-</script>
 <script type="text/javascript" src="js/jquery.Spinner.js"></script>
+<script type="text/javascript" src="js/xianlu/month.js"></script>
 <script>
-	$(function(){
+	// $(function(){
 
-        $("#a").Spinner({value:868, min:10, len:3, max:1000});
+    //     $("#a").Spinner({value:868, min:10, len:3, max:1000});
 
-        $("#b").Spinner({value:99});
+    //     $("#b").Spinner({value:99});
 
-        $("#c").Spinner({value:66});
+    //     $("#c").Spinner({value:66});
 
-        $("#d").Spinner();
+    //     $("#d").Spinner();
 
-    });
+    // });
 	
-	$(function(){
+	// $(function(){
 
-        $("#a").Spinner({value:868, min:10, len:3, max:1000});
+    //     $("#a").Spinner({value:868, min:10, len:3, max:1000});
 
-        $("#b").Spinner({value:99});
+    //     $("#b").Spinner({value:99});
 
-        $("#c").Spinner({value:66});
+    //     $("#c").Spinner({value:66});
 
-        $("#d1").Spinner();
+    //     $("#d1").Spinner();
 
-    });
+    // });
 </script>
 </body>
 </html>
