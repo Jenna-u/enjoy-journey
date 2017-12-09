@@ -1,35 +1,41 @@
 var id = window.urlParams.id;
 var nowdate = new Date(); // 获取当前时间
 
-var formatNowDate = getDateTime(nowdate)
+// var formatNowDate = getDateTime(nowdate)
 
-var year = nowdate.getFullYear();
-var month = nowdate.getMonth()
-var formatMonth = getMonth(nowdate);
-// 模拟数据
-formatMonth = 11
-year = 2017
-month = 10
+// var year = nowdate.getFullYear();
+// var month = nowdate.getMonth()
+// var formatMonth = getMonth(nowdate);
+// // 模拟数据
+// formatMonth = 11
+// year = 2017
+// month = 10
 
-$.ajax(`${api}toursAPI/getToursDateStockList?tourid=${id}&dateMonth=${year}${formatMonth}`)
-.done(function(res) {
-  if (res.ok === 1) {
-    var list = res.data.list
-    chooseDate = []
-    var data = {}
-    list.forEach(function(l) {
-      var day = String(l.sellDate).slice(-2)
-      chooseDate.push(day)
-      data[`${day}`] = {
-        childPrice: l.childPrice,
-        price: l.price,
-        stock: l.stock
-      }
-    })
-    var calcDate = new Date(year, month)
-    templateDate(calcDate, chooseDate, data)
-  }
-})
+formatDate(nowdate)
+
+function formatDate(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth()
+  var formatMonth = getMonth(date);
+  $.ajax(`${api}toursAPI/getToursDateStockList?tourid=${id}&dateMonth=${year}${formatMonth}`)
+  .done(function(res) {
+    if (res.ok === 1) {
+      var list = res.data.list
+      chooseDate = []
+      var data = {}
+      list.forEach(function(l) {
+        var day = String(l.sellDate).slice(-2)
+        chooseDate.push(day)
+        data[`${day}`] = {
+          childPrice: l.childPrice,
+          price: l.price,
+          stock: l.stock
+        }
+      })
+      templateDate(date, chooseDate, data)
+    }
+  })
+}
 
 function templateDate (date, canChooseArr, data) {
   $('.current-data-year').html(date.getFullYear())
@@ -126,13 +132,13 @@ function getNextMonth(num) {
   return data
 }
 $('.data-left').click(function() {
-  if($(this).hasClass('disable')) return
+  // if($(this).hasClass('disable')) return
   var newDate = getNextMonth(-1)
-  templateDate(newDate)
+  formatDate(newDate)
  
 })
 $('.data-right').click(function() {
   if($(this).hasClass('disable')) return
   var newDate = getNextMonth(1)
-  templateDate(newDate)
+  formatDate(newDate)
 })
