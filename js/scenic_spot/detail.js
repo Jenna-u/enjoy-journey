@@ -16,6 +16,7 @@ if(window.urlParams.id) {
               var imgList = data.img.split(',');
               data['img'] = imgList;
               data['cdn'] = window.cdn || '';
+              data['redirect'] = decodeURIComponent(window.urlParams.redirect || "jingdianmpList.html");
               var template = Handlebars.compile($('#h_sceic_details_wrap').html());
               var html = template(data);
               $('#index').html(html);

@@ -10,97 +10,158 @@
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+    <script id="h_my" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="会员中心.html"><img src="img/icon07.png"></a>
+			<a href="myCenter.html"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
         	退款管理
 		</div>
     </div>
-    <div class="ssLine">
+    <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
+        <div>
+            <ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-3">
+                <li class="{{#compare type 1}}am-active{{/compare}}"><a href="myTkgl.html?type=1">线路退款订单</a></li>
+                <li class="{{#compare type 2}}am-active{{/compare}}"><a href="myTkgl.html?type=2">景点退款订单</a></li>
+                <li class="{{#compare type 3}}am-active{{/compare}}"><a href="myTkgl.html?type=3">酒店退款订单</a></li>
+            </ul>
+
+            <div>
+                <div class="am-tab-panel" id="tab3">
+                    <div class="ssLine mt0">
                         <ul>
+                            {{#each list}}
                             <li>
                                 <div class="picLeft">
                                     <a href="#">
-                                    <span class="picLine"><img src="img/img09.jpg"></span>
-                                    <em>北京出发</em>
+                                    <span class="picLine"><img src="{{../cdn}}{{other}}"></span>
+                                    <!-- <em>北京出发</em> -->
                                     </a>
                                 </div>
                                 <div class="txtRight">
-                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <h2 class="lineTitle"><a href="#">{{name}}</a></h2>
+                                    {{#compare ../type 1}}
                                     <p class="tipLine mpTip">门票</p>
-                                    <span class="timeLineB">出行日期：2016-7-12</span>
-                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="tuikuan.html">立即退款</a></p></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="picLeft">
-                                    <a href="#">
-                                    <span class="picLine"><img src="img/img09.jpg"></span>
-                                    <em>北京出发</em>
-                                    </a>
-                                </div>
-                                <div class="txtRight">
-                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <span class="timeLineB">出行日期：{{traveltime}}</span>
+                                    {{/compare}}
+                                    {{#compare ../type 2}}
                                     <p class="tipLine mpTip">门票</p>
-                                    <span class="timeLineB">出行日期：2016-7-12</span>
-                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight ddcl"><a href="#">等待处理</a></p></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="picLeft">
-                                    <a href="#">
-                                    <span class="picLine"><img src="img/img09.jpg"></span>
-                                    <em>北京出发</em>
-                                    </a>
-                                </div>
-                                <div class="txtRight">
-                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
+                                    <span class="timeLineB">游玩时间：{{tourTime}}</span>
+                                    {{/compare}}
+                                    {{#compare ../type 3}}
                                     <p class="tipLine mpTip">酒店</p>
-                                    <span class="timeLineB">出行日期：2016-7-12</span>
-                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight tkcg"><a href="#">退款成功</a></p></div>
+                                    <span class="timeLineB">入住时间：{{startTime}}</span>
+                                    {{/compare}}
+                                    <div class="othenLine">
+                                        <span class="dateLeft">￥ <em>{{price}}</em></span>
+                                        {{#compare status -2}}
+                                        <p class="bntRight tkcg">
+                                            <a>已退款</a>
+                                        </p>
+                                        {{/compare}}
+                                        {{#compare status -1}}
+                                        <p class="bntRight">
+                                            <a href="tuikuan.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">申请退款</a>
+                                        </p>
+                                        {{/compare}}
+                                        {{#compare status 0}}
+                                        <p class="bntRight">
+                                            <a>预定</a>
+                                        </p>
+                                        {{/compare}}
+                                        {{#compare status 1}}
+                                        <p class="bntRight tkcg">
+                                            <a>已支付</a>
+                                        </p>
+                                        {{/compare}}
+                                        {{#compare status 2}}
+                                        <p class="bntRight">
+                                            <a>未使用</a>
+                                        </p>
+                                        {{/compare}}
+                                        {{#compare status 3}}
+                                        <p class="bntRight">
+                                            <a href="myMengpiaopj.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">评价</a>
+                                        </p>
+                                        {{/compare}}
+                                        {{#compare status 4}}
+                                        <p class="bntRight">
+                                            <a>已评价</a>
+                                        </p>
+                                        {{/compare}}
+                                    </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="picLeft">
-                                    <a href="#">
-                                    <span class="picLine"><img src="img/img09.jpg"></span>
-                                    <em>北京出发</em>
-                                    </a>
-                                </div>
-                                <div class="txtRight">
-                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
-                                    <p class="tipLine mpTip">景点</p>
-                                    <span class="timeLineB">出行日期：2016-7-12</span>
-                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即退款</a></p></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="picLeft">
-                                    <a href="#">
-                                    <span class="picLine"><img src="img/img09.jpg"></span>
-                                    <em>北京出发</em>
-                                    </a>
-                                </div>
-                                <div class="txtRight">
-                                    <h2 class="lineTitle"><a href="#">[国庆]<北欧四国双峡湾8日游>精选酒店，松恩峡湾，哈当厄尔峡湾，斯德哥尔摩市  ...</a></h2>
-                                    <p class="tipLine mpTip">门票</p>
-                                    <span class="timeLineB">出行日期：2016-7-12</span>
-                                    <div class="othenLine"><span class="dateLeft">￥ <em>2348</em> 起</span> <p class="bntRight"><a href="#">立即退款</a></p></div>
-                                </div>
-                            </li>
+                            {{else}}
+                            <p>暂无退款订单</p>
+                            {{/each}}
                         </ul>
                     </div>
-    
+                </div>
+            </div>
+        </div>
+    </div>
+    </script>
 </div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/handlebars-helps.js"></script>
+<script>
+    var redirect = encodeURIComponent(location.href);
+    if (!window.lxqc_user || !window.lxqc_user.id) {
+        alert('请先登录')
+        location.href = "login.html?redirect=" + redirect;
+    }
+    if (window.urlParams.type == 1) {  // 线路
+        var url = window.api + "/memberAPI/getToursOrderList"
+    } else if (window.urlParams.type == 2) { // 景点
+        var url = window.api + "/memberAPI/getTicketOrderList"
+    } else {  // 酒店
+        var url = window.api + "/memberAPI/getHotelOrderList"
+    }
+    $.ajax({
+        type: "GET",
+        url: url + "?isrefund=1&memberid=" + window.lxqc_user.id,
+        success: function(res){
+            if(res.code == 200) {
+                var list = res.data.list;
+                for (var i = 0; i < list.length; i++){
+                    if(window.urlParams.type == 1) {
+                        var other = list[i].other.split(',')[0];
+                        list[i]['other'] = other;
+                        list[i]['traveltime'] = getFullDay(list[i].traveltime);
+                    } else if (window.urlParams.type == 2) {
+                        list[i]['other'] = list[i]['cover'];
+                        list[i]['tourTime'] = getFullDay(list[i].tourTime);
+                        list[i]['name'] = list[i]['orderName'];
+                    } else {
+                        list[i]['other'] = list[i]['cover'];
+                        list[i]['startTime'] = getFullDay(list[i].startTime);
+                        list[i]['price'] = list[i]['countPrice'];
+                        list[i]['name'] = list[i]['orderName'];
+                        list[i]['status'] = list[i]['orderState'];
+                    }
+                }
+                var template = Handlebars.compile($('#h_my').html());
+                var html = template({
+                    cdn: window.cdn,
+                    list: list,
+                    type: window.urlParams.type || 3,
+                    redirect: redirect,
+                });
+                $('#index').html(html);
+            }
+        }
+    });
+</script>
 </body>
 </html>

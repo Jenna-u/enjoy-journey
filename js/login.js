@@ -32,7 +32,7 @@ function login () {
     success: function (res) {
       if(res.code == 200) {
         setCookie(res.data);
-        location.href = window.urlParams.redirect || "index.html";
+        location.href = decodeURIComponent(window.urlParams.redirect || "index.html");
       } else {
         alert(res.msg)
       }

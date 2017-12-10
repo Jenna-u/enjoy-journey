@@ -10,16 +10,18 @@
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+    <script id="h_my" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="会员中心.html"><img src="img/icon07.png"></a>
+			<a href="myCenter.html"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
@@ -27,63 +29,73 @@
 		</div>
     </div>
     <div class="yjListA">
-    	<ul>
-        	<li>
+    	<ul id="myyj">
+            {{#each list}}
+        	<li data-id="{{id}}">
             	<div class="yjLine">
-                	<h3><a href="#">英国将“东伊运”列入恐怖组织</a></h3>
-                    <span>2016-7-18</span>
-                    <p>景色还是挺不错的，值得去！</p>
-                    <i></i>
-                </div>
-                <div class="bjscBnt">
-                	<span><a href="yjbj.html">编辑</a></span>
-                    <span class="scBntBg"><a href="#">删除</a></span>
-                </div>
-            </li>
-            <li>
-            	<div class="yjLine">
-                	<h3><a href="#">英国将“东伊运”列入恐怖组织</a></h3>
-                    <span>2016-7-18</span>
-                    <p>景色还是挺不错的，值得去！</p>
-                    <i></i>
-                </div>
-                
-            </li>
-            <li>
-            	<div class="yjLine">
-                	<h3><a href="#">英国将“东伊运”列入恐怖组织</a></h3>
-                    <span>2016-7-18</span>
-                    <p>景色还是挺不错的，值得去！</p>
+                	<h3><a href="#">{{title}}</a></h3>
+                    <span>{{creatime}}</span>
+                    <p>{{title}}</p>
                     <i></i>
                 </div>
             </li>
-            <li>
-            	<div class="yjLine">
-                	<h3><a href="#">英国将“东伊运”列入恐怖组织</a></h3>
-                    <span>2016-7-18</span>
-                    <p>景色还是挺不错的，值得去！</p>
-                    <i></i>
-                </div>
-            </li>
-            <li>
-            	<div class="yjLine">
-                	<h3><a href="#">英国将“东伊运”列入恐怖组织</a></h3>
-                    <span>2016-7-18</span>
-                    <p>景色还是挺不错的，值得去！</p>
-                    <i></i>
-                </div>
-            </li>
-            <li>
-            	<div class="yjLine">
-                	<h3><a href="#">英国将“东伊运”列入恐怖组织</a></h3>
-                    <span>2016-7-18</span>
-                    <p>景色还是挺不错的，值得去！</p>
-                    <i></i>
-                </div>
-            </li>
+            {{/each}}
         </ul>
     </div>
-    
+    </script>
 </div>
+<script type="text/javascript" src="js/util.js"></script>
+<script>
+    var redirect = encodeURIComponent(location.href);
+    if (!window.lxqc_user || !window.lxqc_user.id) {
+        alert('请先登录')
+        location.href = "login.html?redirect=" + redirect;
+    }
+    $.ajax({
+        type: "GET",
+        url: window.api + "memberAPI/getMemberTravelsList?memberid=" + window.lxqc_user.id,
+        success: function(res){
+            if(res.code == 200) {
+                console.log(res,'res')
+                var list = res.data.list;
+                for(var i = 0; i < list.length; i++) {
+                    list[i]['creatime'] = getFullDay(list[i].creatime);
+                }
+                var template = Handlebars.compile($('#h_my').html());
+                var html = template({
+                    list: list,
+                    cdn: window.cdn,
+                });
+                $('#index').html(html);
+
+                $('#myyj li').each(function (){
+                    $(this).click(function (event) {
+                        var len = $(this).find('.bjscBnt').length;
+                        $('.bjscBnt').remove();
+                        if(len == 0) {
+                            var id = $(this).attr('data-id');
+                            $(this).append('<div class="bjscBnt"><span><a href="yjbj.html?id='+ id +'&redirect='+ redirect +'">编辑</a></span><span class="scBntBg"><a onclick="delyj(' + id + ')">删除</a></span></div>') 
+                        }
+                    })
+                })
+            }
+        }
+    });
+
+    function delyj (id) {
+        var data = {id: id};
+        $.ajax({
+            type: "POST",
+            url: window.api + "memberAPI/deleteMemberTravelsList",
+            dataType: 'json',
+            data: data,
+            success: function(res){
+                if(res.code == 200) {
+                    location.reload();
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

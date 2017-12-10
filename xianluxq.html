@@ -192,10 +192,8 @@ if(window.urlParams.id) {
         data['hotelScore'] = data.hotelScore * 100 + '%';
         data['tourScore'] = data.tourScore * 100 + '%';
         data['trafficScore'] = data.trafficScore * 100 + '%';
-        console.log(data.schedule,data.schedule && data.schedule.split(''))
         data['schedule'] = data.schedule && data.schedule.split(' ') || [];
-        console.log(data.schedule,2222)
-        data['redirect'] = window.urlParams.redirect || 'index.html';
+        data['redirect'] = decodeURIComponent(window.urlParams.redirect || 'index.html');
         var template = Handlebars.compile($('#h_line').html());
         var html = template(data);
         $('#index').html(html);

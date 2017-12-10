@@ -9,60 +9,39 @@
 	<title>乐享其程</title>
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-    <script id="h_my" type="text/x-handlebars-template">
+	<script id="h_my" type="text/x-handlebars-template">
 	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="myCenter.html"><img src="img/icon07.png"></a>
+			<a href="myYjgl.html"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
-        	我的评论
+        	我的游记
 		</div>
+        <a class="phone">
+			发布
+		</a>
     </div>
-    <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
-        <div>
-            <ul class="am-tabs-nav am-nav am-nav-tabs am-avg-sm-4">
-                <li class="{{#compare type 1}}am-active{{/compare}}"><a href="myPl.html?type=1">线路</a></li>
-                <li class="{{#compare type 2}}am-active{{/compare}}"><a href="myPl.html?type=2">景点</a></li>
-                <li class="{{#compare type 3}}am-active{{/compare}}"><a href="myPl.html?type=3">酒店</a></li>
-                <li class="{{#compare type 4}}am-active{{/compare}}"><a href="myPl.html?type=4">游记</a></li>
-            </ul>
-
-            <div>
-                <div class="am-tab-panel">
-                    <div class="ssLine mt0 yjListA">
-                        <ul id="mypl">
-                            {{#each list}}
-                            <li>
-                                <div class="yjLine">
-                                    <h3><a href="">{{name}}</a></h3>
-                                    <span>{{addTime}}</span>
-                                    <p>{{content}}</p>
-                                    <i></i>
-                                </div>
-                            </li>
-                            {{else}}
-                            <p>暂无评论</p>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="fbCon">
+    	<input type="text" class="plbt" placeholder="帖子标题">
+        <textarea name="" cols="" rows="" class="plnr" placeholder="分享新鲜事 ... ..."></textarea>
+        <div class="addPic">
+        	<span><img src="img/img03.jpg"></span>
+            <span><img src="img/addPic.jpg"></span>
         </div>
-    </div>
-    </script>
+	</div>
+	</script>
 </div>
 <script type="text/javascript" src="js/util.js"></script>
-<script type="text/javascript" src="js/handlebars-helps.js"></script>
 <script>
     var redirect = encodeURIComponent(location.href);
     if (!window.lxqc_user || !window.lxqc_user.id) {
