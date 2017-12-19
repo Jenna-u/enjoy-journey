@@ -48,19 +48,17 @@
 			<script id="zixun_list" type="text/x-handlebars-template">
 				{{#each this}}
 				<li>
+					<a href="zixunxq.html?id={{id}}">
 					<div class="picLeft">
-						<a href="zixunxq.html?id={{id}}">
-						<span class="picLine"><img src="{{cdn}}{{imgthum}}"></span>
-						<em class="zxlb">{{cataName}}</em>
-						</a>
+						<span class="picLine"><img src="{{cdn}}{{imgthum}}" style="width: 80px;height: 101px;"></span>
+						<em class="zxlb" style="left: auto;">{{cataName}}</em>
 					</div>
 					<div class="txtRight">
 						<h2 class="lineTitle zxTitleA">
-							<a href="zixunxq.html?id={{id}}">
-								{{title}}
-							</a>
+							{{title}}
 						</h2>
 					</div>
+				</a>
 				</li>
 				{{/each}}
 			</script>

@@ -36,14 +36,34 @@ img{border:none; width:100%;}
 .city i{width:8px; height:5px; background:url(../img/icon.png) no-repeat; position: absolute; display:block; background-size:100%; top:19px; left:44px;}
 #index .index_head .search{
 	position:relative;left: 60px;
-    background:url(../img/icon00.png) #fff no-repeat; background-position:6px 6px; background-size:20px; line-height:30px; padding-left:35px; color:#666; font-size:14px;
+    background-color: #fff;
+    line-height:30px;
     height:30px;
-	/*padding:0 35px 0 65px;*/
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
+    overflow: hidden;
 }
-#index .index_head .search a{display:block;}
+#index .index_head .search:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+#index .index_head .search input{
+    float: left;
+    line-height:30px;
+    font-size:14px;
+    height:30px;
+    border: none;
+}
+#index .index_head .search a{
+    float: left;
+    background:url(../img/icon00.png) no-repeat;
+    background-position:6px 6px;
+    background-size:20px;
+    width: 30px;
+    height: 30px;
+}
 #index .index_head .search a:hover{color:#666;}
 #index .index_head .phone{
     position: absolute;

@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	  <title>乐享其程</title>
+	<!--库-->
+    <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
+    <script type="text/javascript" src="js/amazeui.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style>
+    .rmss{padding: 0}
+    .rmssTitle{background-color: #f8f8f8;padding-left: 10px;height: 40px;line-height: 40px;border: none;}
+    .rmss ul{padding: 0 10px 10px 10px}
+    .rmss ul li{width: 30.33%;background-color: #fff;border-radius: 20px;overflow: hidden;}
+    .mt-0{margin-top: 0 !important}
+    .city-active{background-color: #0060f2 !important;color: #fff;}
+  </style>
+</head>
+
+<body>
+<div id="index">
+  <script id="h_search" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
+    <div class="index_head searchHead">
+      <div class="logo backBnt">
+        <a href="{{redirect}}"><img src="img/icon07.png"></a>
+      </div>
+      <!----------------搜索------------------>
+      <div class="search searchB"> 
+            选择城市
+      </div>
+    </div>
+    <!-- <div class="rmss">
+      <div class="rmssTitle">定位</div>
+      <ul>
+        <li>北京</li>
+      </ul>
+    </div> -->
+    <div class="rmss">
+      <div class="rmssTitle">热门</div>
+      <ul>
+        {{#each hotList}}
+        <li class="{{#compare cityName ../origin}}city-active{{/compare}}" onclick="selectCity('{{cityName}}')">{{cityName}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{#each newList}}
+    <div class="rmss mt-0">
+      <div class="rmssTitle" id="{{letter}}">{{letter}}</div>
+      <ul>
+        {{#each list}}
+        <li class="{{#compare this ../../origin}}city-active{{/compare}}" onclick="selectCity('{{this}}')">{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/each}}
+  </script>
+</div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/handlebars-helps.js"></script>
+<script>
+  var redirect = decodeURIComponent(window.urlParams.redirect || "index.html");
+  function selectCity(origin) {
+    if (redirect.indexOf('origin=') == -1){
+      redirect = redirect + '?origin=' + origin;
+    } else {
+      var a = redirect.split('origin=')[0];
+      var b = redirect.split('origin=')[1];
+      redirect = a + 'origin=' + origin;
+      if (b.indexOf('&') != -1){
+        b = b.slice(b.indexOf('&'))
+        redirect = redirect + b;
+      } 
+    }
+    location.href = redirect;
+  }
+  $.ajax({
+    type: "GET",
+    url: window.api + "area/getAreaList",
+    success: function(res){
+        if(res.code == 200) {
+          var list = res.data.list;
+          var hotList = list.hotList;
+          var cityList = list.cityList;
+          var newObj = {};
+          for (var i = 0;i < cityList.length; i++) {
+            if(newObj[cityList[i].firstName]) {
+              newObj[cityList[i].firstName].push(cityList[i].cityName)
+            } else {
+              newObj[cityList[i].firstName] = [cityList[i].cityName];
+            }
+          }
+          var letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          var newList = [];
+          for (var k = 0; k < letter.length; k++){
+            newList.push({
+              letter: letter[k],
+              list: newObj[letter[k]]
+            })
+          }
+          var template = Handlebars.compile($('#h_search').html());
+          var html = template({newList: newList,hotList: hotList,origin: window.urlParams.origin,redirect: redirect});
+          $('#index').html(html);
+        }
+    }
+  });  
+</script>
+</body>
+</html>

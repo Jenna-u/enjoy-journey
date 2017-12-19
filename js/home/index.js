@@ -49,4 +49,28 @@ function getTours (type, className) {
 
 getTours('-1', 'tab1');
 
-$('.search a').attr('href', window.urlParams.origin || 'jnyxl.html?origin=北京');
+// 获取用户定位信息，优先级最高是链接上的origin参数
+if (window.urlParams.origin && window.urlParams.origin != 'undefined') {
+  window.xianluorigin = window.urlParams.origin;
+  var map = new BMap.Map("allmap");
+  $('#searchCity').html(window.urlParams.origin + '<i></i>');
+} else {
+  var map = new BMap.Map("allmap");
+  var myCity = new BMap.LocalCity();
+  myCity.get(function(result) {
+      var cityName = result.name;
+      cityName = cityName && cityName.substr(0,result.name.Length-1) || '北京';
+      window.xianluorigin = cityName;
+      $('#searchCity').html(cityName + '<i></i>')
+  });
+}
+
+var redirect = encodeURIComponent(location.href);
+function goXianlu(theme) {
+  var destination = $('#destination').val() || '';
+  var theme = theme || '';
+  location.href = "xianluList.html?origin="+ window.xianluorigin +"&destination=" + destination + "&theme=" + theme + "&redirect=" + redirect;
+}
+function selectCity() {
+  location.href = "searchCity.html?origin=" + window.xianluorigin + "&redirect=" + redirect;
+}

@@ -14,6 +14,12 @@
   <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
   <script type="text/javascript" src="js/amazeui.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oldLI23y0a3VLbPOfuGoC7B0XIgxbW2e"></script>
+  <style>
+    .am-slider .am-slides img{
+      height: 180px;
+    }
+  </style>
 </head>
 
 <body>
@@ -23,14 +29,15 @@
       <div class="logo">
         乐享其程
       </div>
-      <div class="city">
-        <a id="searchCity" href="#">北京
+      <div class="city" onclick="selectCity()">
+        <a id="searchCity">北京
           <i></i>
         </a>
       </div>
       <!-- --------------搜索---------------- -->
       <div class="search">
-        <a href="#" style="width: 100%;height: 100%;"></a>
+        <a onclick="goXianlu()"></a>
+        <input id="destination" type="text" placeholder="请输入目的城市" />
       </div>
       <!-- <a class="phone">
         <img src="img/icon01.png">
@@ -81,7 +88,7 @@
         </li>
         <div class="clear"></div>
       </ul>
-      <ul class="box_nav am-avg-sm-4 pt20">
+      <!-- <ul class="box_nav am-avg-sm-4 pt20">
         <li>
           <a title="" href="#">
             <img src="img/tb05.jpg" />
@@ -107,17 +114,23 @@
           </a>
         </li>
         <div class="clear"></div>
-      </ul>
+      </ul> -->
     </div>
     <div class="adLine">
       <span>
-        <img src="img/pic00.jpg">
+        <a onclick="goXianlu('境内游')">
+          <img src="img/pic00.jpg">
+        </a>
       </span>
       <span>
-        <img src="img/pic01.jpg">
+        <a onclick="goXianlu('境外游')">
+          <img src="img/pic01.jpg">
+        </a>
       </span>
       <span>
-        <img src="img/pic02.jpg">
+        <a onclick="goXianlu('周边游')">
+          <img src="img/pic02.jpg">
+        </a>
       </span>
     </div>
     <div class="lxtt">
@@ -145,25 +158,25 @@
       </div>
       <ul class="box_nav am-avg-sm-4">
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('山水游')">
             <img src="img/tj01.png" />
             <p>山水游</p>
           </a>
         </li>
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('古镇游')">
             <img src="img/tj02.png" />
             <p>古镇游</p>
           </a>
         </li>
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('海岛游')">
             <img src="img/tj03.png" />
             <p>海岛游</p>
           </a>
         </li>
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('乐园游')">
             <img src="img/tj04.png" />
             <p>乐园游</p>
           </a>
@@ -172,25 +185,25 @@
       </ul>
       <ul class="box_nav am-avg-sm-4 pt20">
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('蜜月游')">
             <img src="img/tj05.png" />
             <p>蜜月游</p>
           </a>
         </li>
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('亲子游')">
             <img src="img/tj06.png" />
             <p>亲子游</p>
           </a>
         </li>
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('温泉游')">
             <img src="img/tj07.png" />
             <p>温泉游</p>
           </a>
         </li>
         <li>
-          <a title="" href="#">
+          <a title="" onclick="goXianlu('周边游')">
             <img src="img/tj08.png" />
             <p>周边游</p>
           </a>
@@ -226,16 +239,18 @@
               <ul>
                 {{#each list}}
                 <li class="view">
+                  <a href="xianluxq.html?id={{id}}&redirect=index.html">
                   <div class="pic">
                     <img src="{{../cdn}}{{cover}}">
                     <div class="cont">
-                      <a title="" class="button" href="#">￥
-                        <em>{{price}}</em> 起</a>
+                      <span class="button">￥
+                        <em style="font-size: 20px;font-style: normal;color: #fff;">{{price}}</em> 起
+                      </span>
                     </div>
                     <div class="clear"></div>
                   </div>
                   <div class="con">
-                    <a href="xianluxq.html?id={{id}}&redirect=index.html"><span><{{name}}></span></a>
+                    <span><{{name}}></span>
                     <p><em>
                       {{#compare type 2}}
                         周边游
@@ -248,6 +263,7 @@
                       {{/compare}}
                     </em>{{describes}}</p>
                   </div>
+                </a>
                 </li>
                 {{/each}}
               </ul>
@@ -258,16 +274,17 @@
             <ul>
               {{#each list}}
               <li class="view">
+                <a href="xianluxq.html?id={{id}}&redirect=index.html">
                 <div class="pic">
                   <img src="{{../cdn}}{{cover}}">
                   <div class="cont">
-                    <a title="" class="button" href="#">￥
-                      <em>{{price}}</em> 起</a>
+                    <span class="button">￥
+                      <em style="font-size: 20px;font-style: normal;color: #fff;">{{price}}</em> 起</span>
                   </div>
                   <div class="clear"></div>
                 </div>
                 <div class="con">
-                  <a href="xianluxq.html?id={{id}}&redirect=index.html"><span><{{name}}></span></a>
+                  <span><{{name}}></span>
                   <p><em>
                     {{#compare type 2}}
                       周边游
@@ -280,6 +297,7 @@
                     {{/compare}}
                   </em>{{describes}}</p>
                 </div>
+              </a>
               </li>
               {{/each}}
             </ul>
@@ -290,16 +308,17 @@
             <ul>
               {{#each list}}
               <li class="view">
+                <a href="xianluxq.html?id={{id}}&redirect=index.html">
                 <div class="pic">
                   <img src="{{../cdn}}{{cover}}">
                   <div class="cont">
-                    <a title="" class="button" href="#">￥
-                      <em>{{price}}</em> 起</a>
+                    <span class="button">￥
+                      <em style="font-size: 20px;font-style: normal;color: #fff;">{{price}}</em> 起</span>
                   </div>
                   <div class="clear"></div>
                 </div>
                 <div class="con">
-                  <a href="xianluxq.html?id={{id}}&redirect=index.html"><span><{{name}}></span></a>
+                  <span><{{name}}></span>
                   <p><em>
                     {{#compare type 2}}
                       周边游
@@ -312,6 +331,7 @@
                     {{/compare}}
                   </em>{{describes}}</p>
                 </div>
+              </a>
               </li>
               {{/each}}
             </ul>
@@ -322,16 +342,17 @@
             <ul>
               {{#each list}}
               <li class="view">
+                <a href="xianluxq.html?id={{id}}&redirect=index.html">
                 <div class="pic">
                   <img src="{{../cdn}}{{cover}}">
                   <div class="cont">
-                    <a title="" class="button" href="#">￥
-                      <em>{{price}}</em> 起</a>
+                    <span class="button">￥
+                      <em style="font-size: 20px;font-style: normal;color: #fff;">{{price}}</em> 起</span>
                   </div>
                   <div class="clear"></div>
                 </div>
                 <div class="con">
-                  <a href="xianluxq.html?id={{id}}&redirect=index.html"><span><{{name}}></span></a>
+                  <span><{{name}}></span>
                   <p><em>
                     {{#compare type 2}}
                       周边游
@@ -344,6 +365,7 @@
                     {{/compare}}
                   </em>{{describes}}</p>
                 </div>
+              </a>
               </li>
               {{/each}}
             </ul>

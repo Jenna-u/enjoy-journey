@@ -1,6 +1,3 @@
-// 给回退按钮加链接
-fallback();
-
 // 发短信接口
 function sendCode () {
   var mobile = $('#mobile').val();

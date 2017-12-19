@@ -82,12 +82,15 @@ function templateDate (date, canChooseArr, data) {
       if ($(this).hasClass('disable')) return;
       var value = $(this).attr('date-date').trim()
       var day = value.slice(-2)
+      var priceHtml = `<div class="rslLine"><p>成人 <em class="man-price">￥${data[day].price}</em></p><div id="d" class="Spinner midL"></div></div>`;
+      priceHtml += `<div class="rslLine"><p>儿童 <em class="child-price">￥${data[day].childPrice}</em></p><div id="d1" class="Spinner midL"></div></div>`;
       $('.date .day li').removeClass('active')
       $(this).addClass('active')
-      $('.man-price').html(data[day].price)
-      $('.child-price').html(data[day].childPrice)
-      $("#d").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0});
-      $("#d1").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0});
+      $('.total-num').html('成人：0 儿童：0');
+      $('.total-date').html('日期：' + value);
+      $('.rsl').html(priceHtml);
+      $("#d").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0})
+      $("#d1").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0})
     })
   }
 }

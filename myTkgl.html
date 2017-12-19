@@ -44,7 +44,7 @@
                             <li>
                                 <div class="picLeft">
                                     <a href="#">
-                                    <span class="picLine"><img src="{{../cdn}}{{other}}"></span>
+                                    <span class="picLine"><img style="height: 116px;" src="{{../cdn}}{{other}}"></span>
                                     <!-- <em>北京出发</em> -->
                                     </a>
                                 </div>
@@ -66,30 +66,30 @@
                                         <span class="dateLeft">￥ <em>{{price}}</em></span>
                                         {{#compare status -2}}
                                         <p class="bntRight tkcg">
-                                            <a>已退款</a>
+                                            <a>退款成功</a>
                                         </p>
                                         {{/compare}}
                                         {{#compare status -1}}
+                                        <p class="bntRight ddcl">
+                                            <a>等待处理</a>
+                                        </p>
+                                        {{/compare}}
+                                        <!-- {{#compare status 0}}
+                                        <p class="bntRight">
+                                            <a>预定</a>
+                                        </p>
+                                        {{/compare}} -->
+                                        {{#compare status 1}}
                                         <p class="bntRight">
                                             <a href="tuikuan.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">申请退款</a>
                                         </p>
                                         {{/compare}}
-                                        {{#compare status 0}}
-                                        <p class="bntRight">
-                                            <a>预定</a>
-                                        </p>
-                                        {{/compare}}
-                                        {{#compare status 1}}
-                                        <p class="bntRight tkcg">
-                                            <a>已支付</a>
-                                        </p>
-                                        {{/compare}}
-                                        {{#compare status 2}}
+                                        <!-- {{#compare status 2}}
                                         <p class="bntRight">
                                             <a>未使用</a>
                                         </p>
-                                        {{/compare}}
-                                        {{#compare status 3}}
+                                        {{/compare}} -->
+                                        <!-- {{#compare status 3}}
                                         <p class="bntRight">
                                             <a href="myMengpiaopj.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">评价</a>
                                         </p>
@@ -98,7 +98,7 @@
                                         <p class="bntRight">
                                             <a>已评价</a>
                                         </p>
-                                        {{/compare}}
+                                        {{/compare}} -->
                                     </div>
                                 </div>
                             </li>
@@ -122,11 +122,11 @@
         location.href = "login.html?redirect=" + redirect;
     }
     if (window.urlParams.type == 1) {  // 线路
-        var url = window.api + "/memberAPI/getToursOrderList"
+        var url = window.api + "memberAPI/getToursOrderList"
     } else if (window.urlParams.type == 2) { // 景点
-        var url = window.api + "/memberAPI/getTicketOrderList"
+        var url = window.api + "memberAPI/getTicketOrderList"
     } else {  // 酒店
-        var url = window.api + "/memberAPI/getHotelOrderList"
+        var url = window.api + "memberAPI/getHotelOrderList"
     }
     $.ajax({
         type: "GET",

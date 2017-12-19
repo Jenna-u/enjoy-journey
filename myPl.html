@@ -88,7 +88,7 @@
                 for (var i = 0; i < list.length; i++){
                     if(type == 1) {
                         list[i]['name'] = list[i].title;
-                        list[i]['addTime'] = getFullDay(list[i].addTime);
+                        list[i]['addTime'] = getFullDay(list[i].createtime);
                     } else if (type == 2) {
                         list[i]['name'] = list[i]['attractionsName'];
                         list[i]['addTime'] = getFullDay(list[i].createTime);
@@ -110,17 +110,17 @@
                 });
                 $('#index').html(html);
 
-                $('#mypl li').each(function (){
-                    $(this).click(function (event) {
-                        var len = $(this).find('.bjscBnt').length;
-                        $('.bjscBnt').remove();
-                        if(len == 0) {
-                            var type = $(this).attr('data-type');
-                            var id = $(this).attr('data-id');
-                            $(this).append('<div class="bjscBnt plsc"><span class="scBntBg"><a onclick="delpl()">删除</a></span></div>') 
-                        }
-                    })
-                })
+                // $('#mypl li').each(function (){
+                //     $(this).click(function (event) {
+                //         var len = $(this).find('.bjscBnt').length;
+                //         $('.bjscBnt').remove();
+                //         if(len == 0) {
+                //             var type = $(this).attr('data-type');
+                //             var id = $(this).attr('data-id');
+                //             $(this).append('<div class="bjscBnt plsc"><span class="scBntBg"><a onclick="delpl()">删除</a></span></div>') 
+                //         }
+                //     })
+                // })
             }
         }
     });

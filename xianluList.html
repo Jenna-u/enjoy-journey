@@ -20,29 +20,29 @@
 	<script id="h_line" type="text/x-handlebars-template">
 	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
-		<div class="logo backBnt">
-			<a href="jnyxl.html?origin={{origin}}"><img src="img/icon07.png"></a>
-		</div>
-		<!----------------搜索------------------>
-		<div class="search searchB"> 
-        	旅游线路
-		</div>
+			<div class="logo backBnt">
+				<a href="{{redirect}}"><img src="img/icon07.png"></a>
+			</div>
+			<!----------------搜索------------------>
+			<div class="search searchB"> 
+						旅游线路
+			</div>
     </div>
     <div class="ssLine">
     	<div class="cfdd">
         	<div class="ssk">
-            	<div id="optChange" class="option">
+            	<div id="optChange" class="option" onclick="searchCity()">
                 <select class="xlxla">
                   <option>{{origin}}出发</option>
                 </select>
               </div>
               <input type="text" placeholder="请输入线路关键词" class="defaultKey" id="defaultKey" name="defaultKey" value="{{destination}}" >
               <input onclick="search()" id="s_button" class="sBtn" type="submit" value="搜 索">
-            </div>
-        </div>
+          </div>
+      </div>
     	<div class="find_nav">
-    <div class="find_nav_left">
-        <div class="find_nav_list" id="pagenavi1">
+    		<div class="find_nav_left">
+        	<div class="find_nav_list" id="pagenavi1">
             <ul>
                 <li data-type=""><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=">全部</a></li>
                 <li data-type="古镇游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=古镇游">古镇游</a></li>
@@ -53,22 +53,21 @@
                 <li data-type="爸妈游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=爸妈游">爸妈游</a></li>
                 <li data-type="亲子游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=亲子游">亲子游</a></li>
                 <li data-type="温泉游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=温泉游">温泉游</a></li>
-				<li data-type="漂流游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=漂流游">漂流游</a></li>
-				<li data-type="出境游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=出境游">出境游</a></li>
-				<li data-type="国内游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=国内游">国内游</a></li>
-				<li data-type="周边游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=周边游">周边游</a></li>
+								<li data-type="漂流游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=漂流游">漂流游</a></li>
+								<li data-type="出境游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=出境游">出境游</a></li>
+								<li data-type="国内游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=国内游">国内游</a></li>
+								<li data-type="周边游"><a href="xianluList.html?origin={{origin}}&destination={{destination}}&theme=周边游">周边游</a></li>
                 <li class="sideline"></li>
             </ul>
-
         </div>
-    </div>
-</div>
+    	</div>
+		</div>
     	<ul>
 			{{#each list}}
 			<li>
+				<a href="xianluxq.html?id={{id}}&redirect=xianluList.html">
 				<div class="picLeft">
-					<a href="xianluxq.html">
-					<span class="picLine"><img src="{{../cdn}}{{cover}}"></span>
+					<span class="picLine"><img style="height: 80px;" src="{{../cdn}}{{cover}}"></span>
 					<em>{{origin}}出发</em>
 					<p>{{#compare type 2}}
 							周边游
@@ -79,15 +78,17 @@
 							出境游
 							{{/compare}}
 						{{/compare}}</p>
-					</a>
 				</div>
 				<div class="txtRight">
-					<h2 class="lineTitle"><a href="xianluxq.html?id={{id}}&redirect=xianluList.html">{{name}}</a></h2>
+					<h2 class="lineTitle">{{name}}</h2>
 					<p class="tipLine">{{traffic}}</p>
 					<span class="timeLineB"><i></i>团期：{{schedule}}</span>
 					<div class="othenLine"><p>{{sellNum}}万人出游 {{score}}%满意</p> <span>￥ <em>{{price}}</em> 起</span></div>
 				</div>
+			</a>
 			</li>
+			{{else}}
+			<p style="text-align: center;">没有搜到符合条件的线路，请重新搜索</p>
 			{{/each}}
         </ul>
 	</div>
@@ -110,27 +111,27 @@ $(".find_nav_list li").each(function(){
 });
 var nav_w=$(".find_nav_list li").first().width();
 $(".sideline").width(nav_w);
-$(".find_nav_list li").on('click', function(){
-	nav_w=$(this).width();
-	$(".sideline").stop(true);
-	$(".sideline").animate({left:$(this).position().left},300);
-	$(".sideline").animate({width:nav_w});
-	$(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
-	var fn_w = ($(".find_nav").width() - nav_w) / 2;
-	var fnl_l;
-	var fnl_x = parseInt($(this).position().left);
-	if (fnl_x <= fn_w) {
-		fnl_l = 0;
-	} else if (fn_w - fnl_x <= flb_w - fl_w) {
-		fnl_l = flb_w - fl_w;
-	} else {
-		fnl_l = fn_w - fnl_x;
-	}
-	$(".find_nav_list").animate({
-		"left" : fnl_l
-	}, 300);
+// $(".find_nav_list li").on('click', function(){
+// 	nav_w=$(this).width();
+// 	$(".sideline").stop(true);
+// 	$(".sideline").animate({left:$(this).position().left},300);
+// 	$(".sideline").animate({width:nav_w});
+// 	$(this).addClass("find_nav_cur").siblings().removeClass("find_nav_cur");
+// 	var fn_w = ($(".find_nav").width() - nav_w) / 2;
+// 	var fnl_l;
+// 	var fnl_x = parseInt($(this).position().left);
+// 	if (fnl_x <= fn_w) {
+// 		fnl_l = 0;
+// 	} else if (fn_w - fnl_x <= flb_w - fl_w) {
+// 		fnl_l = flb_w - fl_w;
+// 	} else {
+// 		fnl_l = fn_w - fnl_x;
+// 	}
+// 	$(".find_nav_list").animate({
+// 		"left" : fnl_l
+// 	}, 300);
 	
-});
+// });
 var fl_w=$(".find_nav_list").width();
 var flb_w=$(".find_nav_left").width();
 $(".find_nav_list").on('touchstart', function (e) {
@@ -208,26 +209,31 @@ function search() {
 	var destination = $('#defaultKey').val();
 	location.href= "xianluList.html?origin=" + (window.urlParams.origin || '北京') + "&destination=" + destination;
 }
+var redirect = encodeURIComponent(location.href);
+function searchCity() {
+	location.href = "searchCity.html?origin=" + (window.urlParams.origin || '北京') + "&redirect=" + redirect;
+}
 /* 线路搜索1 */
   $.ajax({
     type: "GET",
-    url: window.api + "/toursAPI/getToursList?origin=" + (window.urlParams.origin || '北京') + "&destination=" + (window.urlParams.destination || '') + "&theme=" + (window.urlParams.theme || ''),
+    url: window.api + "toursAPI/getToursList?origin=" + (window.urlParams.origin || '北京') + "&destination=" + (window.urlParams.destination || '') + "&theme=" + (window.urlParams.theme || ''),
     success: function(res){
       if(res.code == 200) {
-		var list = res.data.list;
-		for(var i = 0; i < list.length; i++){
-			list[i]['score'] = list[i].score * 100;
-		}
-		var template = Handlebars.compile($('#h_line').html());
-		var html = template({
-			origin: window.urlParams.origin || '北京', 
-			destination: window.urlParams.destination || '',
-			cdn: window.cdn || '', 
-			theme: window.urlParams.theme || '',
-			list: list,
-		});
-		$('#index').html(html);
-		initStyle();
+				var list = res.data.list;
+				for(var i = 0; i < list.length; i++){
+					list[i]['score'] = list[i].score * 100;
+				}
+				var template = Handlebars.compile($('#h_line').html());
+				var html = template({
+					origin: window.urlParams.origin || '北京', 
+					destination: window.urlParams.destination || '',
+					cdn: window.cdn || '', 
+					theme: window.urlParams.theme || '',
+					list: list,
+					redirect: decodeURIComponent(window.urlParams.redirect || 'index.html'),
+				});
+				$('#index').html(html);
+				initStyle();
       }
     }
   });

@@ -57,7 +57,7 @@ function  collect(type, itemId, flag) {
       flag: flag == '1' ? '-1' : '1'
     }
     $.ajax({
-      url: window.api + "/pub/modifyCollect",
+      url: window.api + "pub/modifyCollect",
       type: "POST",
       dataType: 'json',
       data: data,
@@ -70,11 +70,6 @@ function  collect(type, itemId, flag) {
   } else {
     alert('请先登录')
   }
-}
-
-// 给回退按钮加链接
-function fallback () {
-  $('#fallback').attr('href', window.urlParams.redirect || 'index.html');
 }
 
 // 获取用户cookie

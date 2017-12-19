@@ -1,6 +1,3 @@
-// 给回退按钮加链接
-fallback();
-
 // 写用户cookie
 function setCookie(value) {
 	const exp = new Date();

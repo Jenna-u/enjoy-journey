@@ -56,7 +56,6 @@
         url: window.api + "memberAPI/getMemberTravelsList?memberid=" + window.lxqc_user.id,
         success: function(res){
             if(res.code == 200) {
-                console.log(res,'res')
                 var list = res.data.list;
                 for(var i = 0; i < list.length; i++) {
                     list[i]['creatime'] = getFullDay(list[i].creatime);

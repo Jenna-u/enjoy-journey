@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>乐享其程</title>
+	<!--库-->
+    <link rel="stylesheet" type="text/css" href="css/amazeui.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/amazeui.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="index">
+	<!-- ---------首页头部--------- -->
+    <div class="index_head searchHead">
+		<div class="logo backBnt">
+			<img src="img/icon07.png">
+		</div>
+		<!----------------搜索------------------>
+		<div class="search searchB"> 
+        	退款理由
+		</div>
+        <a class="phone" onclick="submit()">
+			确定
+		</a>
+    </div>
+    <div class="fbCon">
+        <textarea name="" cols="" rows="" class="plnr" placeholder="请输入退款理由 ... ..."></textarea>
+	</div>
+</div>
+<script type="text/javascript" src="js/util.js"></script>
+<script>
+	function submit() {
+		if (window.urlParams.type == 1) {  // 线路
+        	var url = window.api + "memberAPI/refundTourOrder"
+		} else if (window.urlParams.type == 2) { // 景点
+			var url = window.api + "memberAPI/refundTicketOrder"
+		} else {  // 酒店
+			var url = window.api + "memberAPI/refundHotelOrder"
+		}
+		var refundReason = $('.plnr').val();
+		var data = {
+			ticketOrderId: window.urlParams.id,
+			refundReason: refundReason,
+			memberId: window.lxqc_user.id,
+		}
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			success: function (res) {
+				if(res.code == 200) {
+					location.href = decodeURIComponent(window.urlParams.redirect);
+				} else {
+					alert(res.msg)
+				}
+			}
+		});
+	}
+</script>
+</body>
+</html>

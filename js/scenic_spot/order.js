@@ -28,9 +28,10 @@ if(window.urlParams.id) {
 
 
 /* 提交景点订单 */
+var redirect = encodeURIComponent(location.href);
 function submitOrder () {
   if(!window.lxqc_user || !window.lxqc_user.id) {
-    location.href = "login.html?redirect=" + location.href;
+    location.href = "login.html?redirect=" + redirect;
     return false;
   } 
   var ticketId = window.urlParams.id;
@@ -38,8 +39,9 @@ function submitOrder () {
   var num = $('.Amount').val();
   var name = $('#name').val();
   var mobile = $('#mobile').val();
-  var date = new Date('2017/11/24');
-  date = Date.parse(date);
+  var date = $('.travel-date').html().replace('-','/').replace('-','/');
+  var newdate = new Date(date);
+  newdate = Date.parse(newdate);
   var readProtocol = $('#xy').prop('checked');
   if (!mobile || !/^0?(1)[0-9]{10}$/.test(mobile)) {
     alert('亲，手机号码格式错误！')
@@ -51,7 +53,7 @@ function submitOrder () {
     num: num,
     name: name,
     mobile: mobile,
-    date: date
+    date: newdate
   };
   $.ajax({
     url: window.api + "ticket/addOrder",

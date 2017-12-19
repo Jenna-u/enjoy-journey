@@ -45,7 +45,7 @@
                             <li>
                                 <div class="picLeft">
                                     <a href="#">
-                                    <span class="picLine"><img src="{{../cdn}}{{other}}"></span>
+                                    <span class="picLine"><img style="height: 116px;" src="{{../cdn}}{{other}}"></span>
                                     <!-- <em>北京出发</em> -->
                                     </a>
                                 </div>
@@ -123,11 +123,11 @@
         location.href = "login.html?redirect=" + redirect;
     }
     if (window.urlParams.type == 1) {  // 线路
-        var url = window.api + "/memberAPI/getToursOrderList"
+        var url = window.api + "memberAPI/getToursOrderList"
     } else if (window.urlParams.type == 2) { // 景点
-        var url = window.api + "/memberAPI/getTicketOrderList"
+        var url = window.api + "memberAPI/getTicketOrderList"
     } else {  // 酒店
-        var url = window.api + "/memberAPI/getHotelOrderList"
+        var url = window.api + "memberAPI/getHotelOrderList"
     }
     $.ajax({
         type: "GET",

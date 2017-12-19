@@ -52,7 +52,7 @@
   if(window.urlParams.id) {
 	$.ajax({
 		type: "GET",
-		url: window.api + "/ticket/attractionsDetail?id=" + window.urlParams.id + '&memberId=' + (window.urlParams.memberId || ''),
+		url: window.api + "ticket/attractionsDetail?id=" + window.urlParams.id + '&memberId=' + (window.urlParams.memberId || ''),
 		success: function(res){
 		if(res.code == 200) {
 			var data = res.data;

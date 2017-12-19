@@ -48,16 +48,6 @@
         alert('请先登录')
         location.href = "login.html?redirect=" + redirect;
     }
-    var type = window.urlParams.type || 1;
-    if (type == 1) {  // 线路
-        var url = window.api + "memberAPI/getTourCommentList"
-    } else if (type == 2) { // 景点
-        var url = window.api + "memberAPI/getTicketCommentList"
-    } else if (type == 3)  {  // 酒店
-        var url = window.api + "memberAPI/getHotelCommentList"
-    } else if (type == 4)  {  // 游记
-        var url = window.api + "memberAPI/getTravelsCommentList"
-    }
     $.ajax({
         type: "GET",
         url: url + "?memberid=" + window.lxqc_user.id,
