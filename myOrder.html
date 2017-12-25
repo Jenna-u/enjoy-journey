@@ -27,7 +27,7 @@
 		<div class="search searchB"> 
         	我的订单
 		</div>
-        <a class="phone" href="#"> <img src="img/icon16.png"> </a>
+        <!-- <a class="phone" href="#"> <img src="img/icon16.png"> </a> -->
     </div>
     <div id="trip_list" style="width:100%;overflow:hidden; margin-top:50px;">
 		<div>
@@ -66,37 +66,55 @@
                                     <div class="othenLine">
                                         <span class="dateLeft">￥ <em>{{price}}</em></span>
                                         {{#compare status -2}}
-                                        <p class="bntRight tkcg">
+                                        <p class="bntRight ddcl">
                                             <a>已退款</a>
                                         </p>
                                         {{/compare}}
                                         {{#compare status -1}}
-                                        <p class="bntRight">
-                                            <a href="tuikuan.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">申请退款</a>
+                                        <p class="bntRight ddcl">
+                                            <a>等待退款</a>
                                         </p>
                                         {{/compare}}
                                         {{#compare status 0}}
                                         <p class="bntRight">
-                                            <a>预定</a>
+                                            <a onclick="payOrder('{{orderNum}}','{{name}}','{{price}}')">立即支付</a>
                                         </p>
                                         {{/compare}}
                                         {{#compare status 1}}
                                         <p class="bntRight tkcg">
-                                            <a>已支付</a>
+                                            <a>待出行</a>
                                         </p>
                                         {{/compare}}
                                         {{#compare status 2}}
-                                        <p class="bntRight">
-                                            <a>未使用</a>
-                                        </p>
+                                            {{#compare ../type 1}}
+                                            <p class="bntRight">
+                                                <a href="myXianlupj.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">评价</a>
+                                            </p>
+                                            {{/compare}}
+                                            {{#compare ../type 2}}
+                                            <p class="bntRight">
+                                                <a href="myMengpiaopj.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">评价</a>
+                                            </p>
+                                            {{/compare}}
+                                            {{#compare ../type 3}}
+                                            <p class="bntRight">
+                                                <a>待出行</a>
+                                            </p>
+                                            {{/compare}}
                                         {{/compare}}
                                         {{#compare status 3}}
-                                        <p class="bntRight">
-                                            <a href="myMengpiaopj.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">评价</a>
-                                        </p>
+                                            {{#compare ../type 3}}
+                                                <p class="bntRight">
+                                                    <a href="myJiudianpj.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">评价</a>
+                                                </p>
+                                            {{else}}
+                                                <p class="bntRight tkcg">
+                                                    <a>已评价</a>
+                                                </p>
+                                            {{/compare}}
                                         {{/compare}}
                                         {{#compare status 4}}
-                                        <p class="bntRight">
+                                        <p class="bntRight tkcg">
                                             <a>已评价</a>
                                         </p>
                                         {{/compare}}
@@ -122,12 +140,12 @@
         alert('请先登录')
         location.href = "login.html?redirect=" + redirect;
     }
-    if (window.urlParams.type == 1) {  // 线路
-        var url = window.api + "memberAPI/getToursOrderList"
+    if (window.urlParams.type == 3) {  // 线路
+        var url = window.api + "memberAPI/getHotelOrderList"
     } else if (window.urlParams.type == 2) { // 景点
         var url = window.api + "memberAPI/getTicketOrderList"
     } else {  // 酒店
-        var url = window.api + "memberAPI/getHotelOrderList"
+        var url = window.api + "memberAPI/getToursOrderList"
     }
     $.ajax({
         type: "GET",
@@ -140,10 +158,12 @@
                         var other = list[i].other.split(',')[0];
                         list[i]['other'] = other;
                         list[i]['traveltime'] = getFullDay(list[i].traveltime);
+                        list[i]['orderNum'] = list[i]['serialNumber'];
                     } else if (window.urlParams.type == 2) {
                         list[i]['other'] = list[i]['cover'];
                         list[i]['tourTime'] = getFullDay(list[i].tourTime);
                         list[i]['name'] = list[i]['orderName'];
+                        list[i]['orderNum'] = list[i]['serialNumber'];
                     } else {
                         list[i]['other'] = list[i]['cover'];
                         list[i]['startTime'] = getFullDay(list[i].startTime);
@@ -163,6 +183,13 @@
             }
         }
     });
+
+    // 立即支付
+    function payOrder(WIDout_trade_no,WIDsubject,WIDtotal_fee) {
+        // return false
+        console.log(WIDout_trade_no,WIDsubject,WIDtotal_fee)
+        location.href = window.api + "alipay/alipayapi?WIDout_trade_no=" + WIDout_trade_no + "&WIDsubject="+ WIDsubject +"&WIDtotal_fee=" + WIDtotal_fee + "&redirect_url=" + redirect;
+    }
 </script>
 </body>
 </html>

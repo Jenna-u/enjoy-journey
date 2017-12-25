@@ -40,16 +40,16 @@
       </div>
   </div>
   <div class="rsl people-choose">
-      请选择日期
+      <p class="empty">请选择日期</p>
   </div>
   <div id="book">
         <div >
             <div class="money zgrq">
-                <p class="total-num"></p>
-                <p class="total-date"></p>
+                <p>成人：<span class="total-man">0</span>儿童：<span class="total-child">0</span></p>
+                <p>日期：<span class="total-date"></span></p>
             </div>
             <div class="cur">
-                <a href="xianluyd.html">下一步</a>
+                <a onclick="goNext()" href="">下一步</a>
             </div>
             <div class="clear"></div>
         </div>
@@ -59,29 +59,19 @@
 <script type="text/javascript" src="js/jquery.Spinner.js"></script>
 <script type="text/javascript" src="js/xianlu/month.js"></script>
 <script>
-	// $(function(){
-
-    //     $("#a").Spinner({value:868, min:10, len:3, max:1000});
-
-    //     $("#b").Spinner({value:99});
-
-    //     $("#c").Spinner({value:66});
-
-    //     $("#d").Spinner();
-
-    // });
-	
-	// $(function(){
-
-    //     $("#a").Spinner({value:868, min:10, len:3, max:1000});
-
-    //     $("#b").Spinner({value:99});
-
-    //     $("#c").Spinner({value:66});
-
-    //     $("#d1").Spinner();
-
-    // });
+	function goNext() {
+        var manNum = $('.total-man').html();
+        if (manNUm > 0) {
+            var travelTime = $('.total-date').html();
+            var childNumber = $('.total-child').html();
+            var manPrice = $('.man-price').html().replace('￥', '');
+            var childPrice = $('.child-price').html().replace('￥', '');
+            var price = parseInt(manPrice) * parseInt(manNUm) + parseInt(childPrice) * parseInt(childNumber)
+            location.href = `xianluyd.html?id=${window.urlParams.id}&travelTime=${travelTime}&number=${manNum}&childNumber=${childNumber}&price=${price}`
+        } else {
+            alert('成人票数不能为0')
+        }
+    }
 </script>
 </body>
 </html>

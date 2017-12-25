@@ -10,16 +10,18 @@
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+    <script id="h_my" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="myOrder.html"><img src="img/icon07.png"></a>
+			<a href="{{redirect}}"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
@@ -27,7 +29,7 @@
 		</div>
     </div>
     <div class="pjCon">
-    	<div class="tipLineA">线路：海南5日游 > 乐享分界洲，预知州岛，双岛奇迹，2人减400</div>
+    	<div class="tipLineA">线路：{{orderName}}</div>
         <div class="pfLineB">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -56,12 +58,59 @@
         	<p>点评内容</p>
             <textarea name="" cols="" rows="" class="dpnr"></textarea>
             <div class="bntList">
-            	<span><input type="button" class="qrbntA" value="确定"></span>
-                <span><input type="button" class="qrbntB" value="取消"></span>
+            	<span><input type="button" class="qrbntA" onclick="submit('{{ticketId}}')" value="确定"></span>
+                <span><input type="button" class="qrbntB" onclick="javascript:location.href='{{redirect}}';" value="取消"></span>
             </div>
         </div>
     </div>
-    
+    </script>
 </div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/handlebars-helps.js"></script>
+<script>
+    var redirect = encodeURIComponent(location.href);
+    if (!window.lxqc_user || !window.lxqc_user.id) {
+        alert('请先登录')
+        location.href = "login.html?redirect=" + redirect;
+    }
+    $.ajax({
+        type: "GET",
+        url: window.api + "memberAPI/getTicketOrderDetail?ticketId="+ window.urlParams.id,
+        success: function(res){
+            if(res.code == 200) {
+                var data = res.data.list;
+                data['redirect'] = decodeURIComponent(window.urlParams.redirect);
+                var template = Handlebars.compile($('#h_my').html());
+                var html = template(data);
+                $('#index').html(html);
+            }
+        }
+    });
+    function submit(attractionsId) {
+        var memberid = window.lxqc_user.id;
+        var attractionsId = attractionsId;
+        var serialNum = window.urlParams.id;
+        var content = $('.dpnr').val();
+        var data = {
+            memberid: memberid,
+            attractionsId: attractionsId,
+            serialNum: serialNum,
+            content: content
+        }
+        $.ajax({
+			url: window.api + "memberAPI/addTicketComment",
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			success: function (res) {
+				if(res.code == 200) {
+					location.href = decodeURIComponent(window.urlParams.redirect);
+				} else {
+					alert(res.msg)
+				}
+			}
+		});
+    }
+</script>
 </body>
 </html>

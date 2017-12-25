@@ -16,7 +16,7 @@ formatDate(nowdate)
 function formatDate(date) {
   var year = date.getFullYear();
   var month = date.getMonth()
-  var formatMonth = getMonth(date);
+  var formatMonth = 11 || getMonth(date);
   $.ajax(`${api}toursAPI/getToursDateStockList?tourid=${id}&dateMonth=${year}${formatMonth}`)
   .done(function(res) {
     if (res.ok === 1) {
@@ -86,15 +86,29 @@ function templateDate (date, canChooseArr, data) {
       priceHtml += `<div class="rslLine"><p>儿童 <em class="child-price">￥${data[day].childPrice}</em></p><div id="d1" class="Spinner midL"></div></div>`;
       $('.date .day li').removeClass('active')
       $(this).addClass('active')
-      $('.total-num').html('成人：0 儿童：0');
-      $('.total-date').html('日期：' + value);
+      $('.total-man').html(0);
+      $('.total-child').html(0);
+      $('.total-date').html(value);
       $('.rsl').html(priceHtml);
-      $("#d").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0})
-      $("#d1").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0})
+      $("#d").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0, cb: cbman})
+      $("#d1").empty().Spinner({min:0, max:data[day].stock, len: String(data[day].stock).length, value: 0, cb: cbchild})
     })
   }
 }
 
+function cbman() {
+  var num = $('#d .Amount').val()
+  if (num) {
+    $('.total-man').html(num)
+  }
+}
+
+function cbchild() {
+  var num = $('#d1 .Amount').val()
+  if (num) {
+    $('.total-child').html(num)
+  }
+}
   
 // 获取当月天数
 function getDays(date) {

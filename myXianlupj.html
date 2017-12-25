@@ -10,16 +10,18 @@
 	<!--库-->
     <link rel="stylesheet" type="text/css" href="css/amazeui.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="js/amazeui.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <div id="index">
-	<!-----------首页头部----------->
+    <script id="h_my" type="text/x-handlebars-template">
+	<!-- ---------首页头部--------- -->
     <div class="index_head searchHead">
 		<div class="logo backBnt">
-			<a href="myOrder.html"><img src="img/icon07.png"></a>
+			<a href="{{redirect}}"><img src="img/icon07.png"></a>
 		</div>
 		<!----------------搜索------------------>
 		<div class="search searchB"> 
@@ -61,7 +63,54 @@
             </div>
         </div>
     </div>
-    
+    </script>
 </div>
+<script type="text/javascript" src="js/util.js"></script>
+<script type="text/javascript" src="js/handlebars-helps.js"></script>
+<script>
+    var redirect = encodeURIComponent(location.href);
+    if (!window.lxqc_user || !window.lxqc_user.id) {
+        alert('请先登录')
+        location.href = "login.html?redirect=" + redirect;
+    }
+    $.ajax({
+        type: "GET",
+        url: window.api + "memberAPI/getToursOrderDetail?toursOrderID="+ window.urlParams.id,
+        success: function(res){
+            if(res.code == 200) {
+                var data = res.data.list;
+                data['redirect'] = decodeURIComponent(window.urlParams.redirect);
+                var template = Handlebars.compile($('#h_my').html());
+                var html = template(data);
+                $('#index').html(html);
+            }
+        }
+    });
+    function submit(tourid) {
+        var memberid = window.lxqc_user.id;
+        var tourid = tourid;
+        var orderid = window.urlParams.id;
+        var contentStr = $('.dpnr').val();
+        var data = {
+            memberid: memberid,
+            tourid: tourid,
+            orderid: orderid,
+            contentStr: contentStr
+        }
+        $.ajax({
+			url: window.api + "memberAPI/addTourComment",
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			success: function (res) {
+				if(res.code == 200) {
+					location.href = decodeURIComponent(window.urlParams.redirect);
+				} else {
+					alert(res.msg)
+				}
+			}
+		});
+    }
+</script>
 </body>
 </html>

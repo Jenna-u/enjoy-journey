@@ -27,15 +27,21 @@
 		<div class="search searchB"> 
         	我的游记
 		</div>
-        <a class="phone">
+        <a onclick="release()" class="phone">
 			发布
 		</a>
     </div>
     <div class="fbCon">
-    	<input type="text" class="plbt" placeholder="帖子标题">
-        <textarea name="" cols="" rows="" class="plnr" placeholder="分享新鲜事 ... ..."></textarea>
+    	<input type="text" class="plbt" value="{{title}}" placeholder="帖子标题">
+        <textarea name="" cols="" rows="" class="plnr" placeholder="分享新鲜事 ... ...">
+            {{contentBytes}}
+        </textarea>
         <div class="addPic">
-        	<span><img src="img/img03.jpg"></span>
+            {{#each imageList}}
+              {{#if this}}
+                <span><img class="newImage" style="width:60px;height:60px;" src="{{../cdn}}{{this}}"></span>
+              {{/if}}
+            {{/each}}
             <span><img src="img/addPic.jpg"></span>
         </div>
 	</div>
@@ -50,52 +56,46 @@
     }
     $.ajax({
         type: "GET",
-        url: url + "?memberid=" + window.lxqc_user.id,
+        url: window.api + "travelsAPI/travelDetailForMobile?id="+ window.urlParams.id +"&memberid=" + window.lxqc_user.id,
         success: function(res){
             if(res.code == 200) {
-                var list = res.data.list;
-                for (var i = 0; i < list.length; i++){
-                    if(type == 1) {
-                        list[i]['name'] = list[i].title;
-                        list[i]['addTime'] = getFullDay(list[i].addTime);
-                    } else if (type == 2) {
-                        list[i]['name'] = list[i]['attractionsName'];
-                        list[i]['addTime'] = getFullDay(list[i].createTime);
-                    } else if (type == 3) {
-                        list[i]['name'] = list[i]['hotelName'];
-                        list[i]['addTime'] = getFullDay(list[i].addTime);
-                    } else if (type == 4) {
-                        list[i]['name'] = list[i]['title'];
-                        list[i]['addTime'] = getFullDay(list[i].creatime);
-                        list[i]['content'] = list[i].textcontent;
-                    }
-                }
                 var template = Handlebars.compile($('#h_my').html());
-                var html = template({
-                    cdn: window.cdn,
-                    list: list,
-                    type: type,
-                    redirect: redirect,
-                });
+                var data = res.data;
+                data['imageList'] = data.images ? data.images.split(',') : [];
+                data['cdn'] = window.cdn;
+                var html = template(data);
                 $('#index').html(html);
-
-                $('#mypl li').each(function (){
-                    $(this).click(function (event) {
-                        var len = $(this).find('.bjscBnt').length;
-                        $('.bjscBnt').remove();
-                        if(len == 0) {
-                            var type = $(this).attr('data-type');
-                            var id = $(this).attr('data-id');
-                            $(this).append('<div class="bjscBnt plsc"><span class="scBntBg"><a onclick="delpl()">删除</a></span></div>') 
-                        }
-                    })
-                })
             }
         }
     });
-
-    function delpl () {
-
+    function release () {
+        var id = window.urlParams.id;
+        var title = $('.plbt').val();
+        var contentBytes = $('.plnr').val();
+        var newimgpath = '';
+        $('.newImage').each(function () {
+            var src = $(this).attr('src');
+            newimgpath += src ? src.replace(window.cdn,'') + ',' : ''
+        })
+        var data = {
+            id: id,
+            title: title,
+            contentBytes: contentBytes,
+            newimgpath: newimgpath
+        }
+        $.ajax({
+            url: window.api + "memberAPI/updateMemberTravels",
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function (res) {
+                if(res.code == 200) {
+                    location.href = "myYjgl.html";
+                } else {
+                    alert(res.msg)
+                }
+            }
+        });
     }
 </script>
 </body>

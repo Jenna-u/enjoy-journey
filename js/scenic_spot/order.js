@@ -43,6 +43,7 @@ function submitOrder () {
   var newdate = new Date(date);
   newdate = Date.parse(newdate);
   var readProtocol = $('#xy').prop('checked');
+  var redirect_url = encodeURIComponent("myOrder.html?type=2")
   if (!mobile || !/^0?(1)[0-9]{10}$/.test(mobile)) {
     alert('亲，手机号码格式错误！')
     return false
@@ -65,7 +66,6 @@ function submitOrder () {
         var WIDout_trade_no = res.data.WIDout_trade_no;
         var WIDsubject = res.data.WIDsubject;
         var WIDtotal_fee = res.data.WIDtotal_fee;
-        var redirect_url = encodeURIComponent(window.api + "enjoy-journey/myOrder.html");
         location.href = window.api + "alipay/alipayapi?WIDout_trade_no=" + WIDout_trade_no + "&WIDsubject="+ WIDsubject +"&WIDtotal_fee=" + WIDtotal_fee + "&redirect_url=" + redirect_url;
       } else {
         alert(res.msg)

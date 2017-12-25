@@ -29,9 +29,9 @@
 		<div class="search searchB"> 
         	酒店
 		</div>
-        <a class="phone">
+        <!-- <a class="phone">
 			<img src="img/icon12.png">
-		</a>
+		</a> -->
         
     </div>
     <div id="detail-content">
@@ -43,8 +43,8 @@
             <p><em>{{score}}</em> 分 <a href="jiudiandpList.html">共{{countComment}}人点评</a></p>
         </div>
         <div class="picListRight" id="photos">
-        	<img src="{{cover}}">
-            <p>{{imgLength}}</p>
+        	<img style="height: 100%;" src="{{cover}}">
+            <p>{{imgLength}}张</p>
         </div>
     </div>
     <!--图片放大预览-->
@@ -105,7 +105,7 @@
             <li>
                 <div class="link">
                 	<div class="roomjj">
-                    	<div class="roomPic"><img src="{{houseTypeCover}}"></div>
+                    	<div class="roomPic"><img style="height: 100%;" src="{{houseTypeCover}}"></div>
                         <div class="roomTxt">
                         	<span>{{houseTypeName}} ></span>
                             <p>{{houseTypeBed}}</p>

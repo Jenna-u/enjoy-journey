@@ -6,9 +6,12 @@ $.ajax(`${api}travelsAPI/travelDetailForMobile?id=${id}&memberid=${memberid}`)
   var data = res.data
   data.cover = cdn + data.cover
   data.imagesThum = cdn + data.imagesThum
+  data.photo = cdn + data.photo
   data.time = getDateTime(data.starttime)
   data.images = data.images.split(',').map(function(i){
-    return cdn + i
+    if (i) {
+      return cdn + i
+    }
   })
   data['browsingnumber'] = data.browsingnumber || 0;
   var source = $("#xiangq").html();

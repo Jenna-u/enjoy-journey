@@ -1,12 +1,16 @@
 // 发短信接口
 function sendCode () {
   var mobile = $('#mobile').val();
+  console.log(mobile,'mobile')
   if (!mobile || !/^0?(1)[0-9]{10}$/.test(mobile)) {
     alert('亲，手机号码格式错误！')
     return false
   }
   var data = {
     mobile: mobile
+  }
+  if (window.isDown) {
+    return false
   }
   $.ajax({
     url: window.api + "codeAPI/mobileCode",
@@ -15,12 +19,14 @@ function sendCode () {
     data: data,
     success: function (res) {
       console.log(res,'res')
+      countDown();
     }
   });
 };
 
 //倒计时
 function countDown(){
+  window.isDown = true;
   var initStr = $('#sendCode').html();
   $('#sendCode').html('60秒之后重发');
   var time = 60;
@@ -30,6 +36,7 @@ function countDown(){
       setTimeout(timeDown,1000);
     }else{
       $('#sendCode').html(initStr);
+      window.isDown = false;
     }
   }
   timeDown();
@@ -67,16 +74,20 @@ function register () {
     username: mobile,
     password: password,
     mobileCode: mobileCode,
-    imei: '',
-    rcode: '',
+    imei: navigator.userAgent.toLowerCase(),
   }
   $.ajax({
-    url: window.api + "memberAPI/getMemberRegister",
+    url: window.api + "memberAPI/getMemberRegisterForMobile",
     type: 'POST',
     dataType: 'json',
     data: data,
     success: function (res) {
-      console.log(res,'res')
+      if (res.code == 200) {
+        setCookie(res.data);
+        location.href = decodeURIComponent(window.urlParams.redirect || "index.html");
+      } else {
+        alert(res.msg)
+      }
     }
   });
 };

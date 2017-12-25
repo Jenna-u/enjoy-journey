@@ -81,7 +81,7 @@
                                         {{/compare}} -->
                                         {{#compare status 1}}
                                         <p class="bntRight">
-                                            <a href="tuikuan.html?id={{id}}&type={{../type}}&redirect={{../redirect}}">申请退款</a>
+                                            <a href="tuikuan.html?num={{orderNum}}&redirect={{../redirect}}">申请退款</a>
                                         </p>
                                         {{/compare}}
                                         <!-- {{#compare status 2}}
@@ -121,12 +121,12 @@
         alert('请先登录')
         location.href = "login.html?redirect=" + redirect;
     }
-    if (window.urlParams.type == 1) {  // 线路
-        var url = window.api + "memberAPI/getToursOrderList"
+    if (window.urlParams.type == 3) {  // 线路
+        var url = window.api + "memberAPI/getHotelOrderList"
     } else if (window.urlParams.type == 2) { // 景点
         var url = window.api + "memberAPI/getTicketOrderList"
     } else {  // 酒店
-        var url = window.api + "memberAPI/getHotelOrderList"
+        var url = window.api + "memberAPI/getToursOrderList"
     }
     $.ajax({
         type: "GET",
@@ -143,6 +143,7 @@
                         list[i]['other'] = list[i]['cover'];
                         list[i]['tourTime'] = getFullDay(list[i].tourTime);
                         list[i]['name'] = list[i]['orderName'];
+                        list[i]['orderNum'] = list[i]['serialNumber'];
                     } else {
                         list[i]['other'] = list[i]['cover'];
                         list[i]['startTime'] = getFullDay(list[i].startTime);
@@ -155,7 +156,7 @@
                 var html = template({
                     cdn: window.cdn,
                     list: list,
-                    type: window.urlParams.type || 3,
+                    type: window.urlParams.type || 1,
                     redirect: redirect,
                 });
                 $('#index').html(html);

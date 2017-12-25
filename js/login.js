@@ -5,6 +5,8 @@ function setCookie(value) {
 	document.cookie = `lxqc_user=${encodeURIComponent(JSON.stringify(value))};expires=${exp.toGMTString()};path=/`;
 }
 
+$('.phone').attr('href', 'register.html?redirect=' + window.urlParams.redirect);
+
 // 登录接口
 function login () {
   var mobile = $('#mobile').val();

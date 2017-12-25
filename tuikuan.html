@@ -36,21 +36,13 @@
 <script type="text/javascript" src="js/util.js"></script>
 <script>
 	function submit() {
-		if (window.urlParams.type == 1) {  // 线路
-        	var url = window.api + "memberAPI/refundTourOrder"
-		} else if (window.urlParams.type == 2) { // 景点
-			var url = window.api + "memberAPI/refundTicketOrder"
-		} else {  // 酒店
-			var url = window.api + "memberAPI/refundHotelOrder"
-		}
 		var refundReason = $('.plnr').val();
 		var data = {
-			ticketOrderId: window.urlParams.id,
+			orderNum: window.urlParams.num,
 			refundReason: refundReason,
-			memberId: window.lxqc_user.id,
 		}
 		$.ajax({
-			url: url,
+			url: window.api + "alipay/applyForRefund",
 			type: 'POST',
 			dataType: 'json',
 			data: data,
