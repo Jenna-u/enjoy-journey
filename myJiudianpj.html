@@ -32,26 +32,21 @@
     	<div class="tipLineA">酒店：{{orderName}}</div>
         <div class="pfLineB">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="28%" bgcolor="#eee">设施装潢</td>
-                <td width="52%"><div class="star_score"><i class="starHover"></i><i class="starHover"></i><i class="starHover"></i><i></i><i></i></div></td>
-                <td width="20%" bgcolor="#eee">良</td>
-              </tr>
-              <tr>
-                <td bgcolor="#eee">交通位置</td>
-                <td><div class="star_score"><i class="starHover"></i><i class="starHover"></i><i class="starHover"></i><i></i><i></i></div></td>
-                <td bgcolor="#eee">良</td>
-              </tr>
-              <tr>
-                <td bgcolor="#eee">卫生情况</td>
-                <td><div class="star_score"><i class="starHover"></i><i class="starHover"></i><i class="starHover"></i><i></i><i></i></div></td>
-                <td bgcolor="#eee">良</td>
-              </tr>
-              <tr>
-                <td bgcolor="#eee">性价比</td>
-                <td><div class="star_score"><i class="starHover"></i><i class="starHover"></i><i class="starHover"></i><i></i><i></i></div></td>
-                <td bgcolor="#eee">良</td>
-              </tr>
+                {{#each assets}}
+                    <tr>
+                    <td width="28%" bgcolor="#eee">{{this}}</td>
+                    <td width="52%">
+                        <div class="star_score">
+                            <i class="star"></i>
+                            <i class="star"></i>
+                            <i class="star"></i>
+                            <i class="star"></i>
+                            <i class="star"></i>
+                        </div>
+                    </td>
+                    <td width="20%" bgcolor="#eee">良</td>
+                    </tr>
+                {{/each}}
             </table>
         </div>
         <div class="dpCon">
@@ -73,19 +68,39 @@
         alert('请先登录')
         location.href = "login.html?redirect=" + redirect;
     }
+
+    var assetsArr = ['设施装潢', '交通位置', '卫生情况', '性价比']
+
     $.ajax({
         type: "GET",
         url: window.api + "memberAPI/getHotelOrderDetail?hotelOrderID="+ window.urlParams.id,
         success: function(res){
             if(res.code == 200) {
                 var data = res.data.list;
+                data.assets = assetsArr
                 data['redirect'] = decodeURIComponent(window.urlParams.redirect);
                 var template = Handlebars.compile($('#h_my').html());
                 var html = template(data);
                 $('#index').html(html);
+                $('.star').click(function(e) {
+                    var current = e.target
+                    current.classList.add('starHover')
+                    var prev = current.previousElementSibling
+                    var next = current.nextElementSibling
+                    while(prev) {
+                        prev.classList.add('starHover')
+                        prev = prev.previousElementSibling
+                    }
+                    while(next) {
+                        next.classList.remove('starHover')
+                        next = next.nextElementSibling
+                    }
+                    
+                })      
             }
         }
     });
+
     function submit(hotelid) {
         var memberid = window.lxqc_user.id;
         var hotelid = hotelid;
